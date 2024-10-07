@@ -1,0 +1,24 @@
+{
+  "template": "https://github.com/brightway-lca/cookiecutter-brightwaylib",
+  "commit": "dc0764a425dd99c849c6f749c4a6f07b37f0208c",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Simon van Lierde",
+      "email": "simonvanlierde@gmail.com",
+      "github_username": "simonvanlierde",
+      "project_name": "batterway",
+      "package_name": "batterway",
+      "project_short_description": "Batterway LCA models for Depart de Sentier vocabularies",
+      "version": "0.0.1",
+      "use_pytest": "y",
+      "open_source_license": "GPL-3.0",
+      "copyright_year": "2024",
+      "_copy_without_render": [
+        ".github/*"
+      ],
+      "_template": "https://github.com/brightway-lca/cookiecutter-brightwaylib"
+    }
+  },
+  "directory": null
+}
