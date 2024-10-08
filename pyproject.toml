@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "batterway"
 authors = [
   { name="Simon van Lierde", email="simonvanlierde@gmail.com" }
+  {name = "Johanna Holsten", email = "j.holsten@tu-braunschweig.de"}
 ]
 maintainers = [
   { name="Simon van Lierde", email="simonvanlierde@gmail.com" }
