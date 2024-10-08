@@ -1,6 +1,6 @@
 from typing import List
 
-from batterway.datamodel.Generic.Flow import Flow
+from batterway.datamodel.Generic.Product import Flow
 
 
 class Process:
