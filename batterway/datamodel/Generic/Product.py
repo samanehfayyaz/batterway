@@ -1,11 +1,8 @@
-from typing import Tuple, List
-
-import chempy
-from sentier_data_tools.iri import ProductIRI, UnitIRI
 from chempy import Substance
-from chempy.util.periodic import atomic_number, mass_from_composition, relative_atomic_masses, _elements
+from chempy.util.periodic import relative_atomic_masses, symbols
+from sentier_data_tools.iri import ProductIRI, UnitIRI
 
-atom
+
 class Unit:
     def __init__(self, name, iri: str):
         self.name = name
@@ -20,17 +17,17 @@ class Quantity:
 
 
 class Product:
-
     def __init__(self, name, IRI):
         self.name = name
         self.IRI: ProductIRI = IRI
 
+
 class ChemicalCompound(Product):
-    def __init__(self,name,IRI, formulae):
+    def __init__(self, name, IRI, formulae):
         super().__init__(name, IRI)
         self.__density = ""
         self.__molar_mass = ""
-        self.__chemical_formulae:chempy.Substance = Substance.from_formula(formulae)
+        self.__chemical_formulae: Substance = Substance.from_formula(formulae)
 
     def get_molar_share(self):
         mass_per_elemen = self.get_mass_per_element()
@@ -39,13 +36,12 @@ class ChemicalCompound(Product):
 
     def get_mass_per_element(self):
         return {
-            _elements[ele-1]:(_elements[ele-1][2] * qty)
+            symbols[ele - 1]: (relative_atomic_masses[ele - 1] * qty)
             for ele, qty in self.__chemical_formulae.composition.items()
         }
 
 
 class Flow:
-    def __init__(self, product: Product, quantity):
+    def __init__(self, product: Product, quantity: Quantity):
         self.product: Product = product
         self.quantity: Quantity = quantity
-
