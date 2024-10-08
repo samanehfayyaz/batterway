@@ -6,8 +6,7 @@ from sentier_data_tools.iri import ProductIRI, UnitIRI
 class Unit:
     def __init__(self, name, iri: str):
         self.name = name
-        self.dimensionality = ""
-        self.unit = UnitIRI(iri)
+        self.iri = UnitIRI(iri)
 
 
 class Quantity:
@@ -17,28 +16,29 @@ class Quantity:
 
 
 class Product:
-    def __init__(self, name, IRI):
+    def __init__(self, name, iri):
         self.name = name
-        self.IRI: ProductIRI = IRI
+        self.iri: ProductIRI = iri
 
 
 class ChemicalCompound(Product):
-    def __init__(self, name, IRI, formulae):
-        super().__init__(name, IRI)
-        self.__density = ""
-        self.__molar_mass = ""
+    def __init__(self, name, iri, formulae):
+        super().__init__(name, iri)
         self.__chemical_formulae: Substance = Substance.from_formula(formulae)
+        self.molar_mass = self.__chemical_formulae.mass
+
+    def _get_mass_per_element(self):
+        return {
+            symbols[ele - 1]: (relative_atomic_masses[ele - 1] * qty)
+            for ele, qty in self.__chemical_formulae.composition.items()
+        }
 
     def get_molar_share(self):
         mass_per_elemen = self.get_mass_per_element()
         total_mass = sum(mass_per_elemen.values())
         return {elem: mass / total_mass for elem, mass in mass_per_elemen.items()}
 
-    def get_mass_per_element(self):
-        return {
-            symbols[ele - 1]: (relative_atomic_masses[ele - 1] * qty)
-            for ele, qty in self.__chemical_formulae.composition.items()
-        }
+
 
 
 class Flow:
