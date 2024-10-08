@@ -1,0 +1,47 @@
+Route;Process;Material;Efficiency;Efficieny_type;Source;Annotation
+1,2,3;Disassembly;All;99%;direct;Assumption;
+1,3;Pyrometallurgy alloy;Cobalt;96%;indirect;Umicore Patent US 8,840,702 B2;Selectivity alloy / slag
+1,3;Pyrometallurgy alloy;Nickel;98%;indirect;Umicore Patent US 8,840,702 B2;Selectivity alloy / slag
+1,3;Pyrometallurgy alloy;Copper;95%;indirect;Umicore Patent US 8,840,702 B2;Selectivity alloy / slag
+1,3;Pyrometallurgy alloy;Iron alloy+slag (A+S);99%;indirect;Umicore Patent US 8,840,702 B2;Recoverable in alloy and slag
+1,3;Pyrometallurgy slag;Manganese;95%;indirect;Assumption;Selectivity alloy / slag
+1,3;Pyrometallurgy slag;Lithium;86%;indirect;Umicore Patent US 8,840,702 B2;Rest in fly ash (loss)
+1,3;Pyrometallurgy slag;Aluminium;97%;indirect;Umicore Patent US 8,840,702 B2;Selectivity alloy / slag
+1,3;Pyrometallurgy slag;Iron (A+S);99%;indirect;Umicore Patent US 8,840,702 B2;Recoverable in alloy and slag
+1,3;Pyrometallurgy slag;Limestone CaO;98%;indirect;Umicore Patent US 8,840,702 B2;Slag generator
+1,3;Pyrometallurgy slag;Quartz sand / silicon (SiO2);99%;indirect;Umicore Patent US 8,840,702 B2;Slag generator
+1,3;Hydrometallurgy alloy;Cementation / filtering;95%;direct;Assumption;Cu
+1,3;Hydrometallurgy alloy;Precipitation / Filtering Fe;90%;direct;Assumption;Fe
+1,3;Hydrometallurgy alloy;Co + Ni extraction;99%;indirect;LithoRec_II_Final_Report(2016) p.46;
+1,3;Hydrometallurgy alloy;Extraction co;99%;indirect;LithoRec_II_Final_Report(2016) p.46;
+1,3;Hydrometallurgy alloy;Crystallization Co;99%;direct;LithoRec_II_Final_Report(2016) p.46;Co
+1,3;Hydrometallurgy alloy;Critallization Ni;99%;direct;LithoRec_II_Final_Report(2016) p.46;Ni
+1,3;Hydrometallurgy slag;Filter;90%;direct;Assumption;CaSO4
+1,3;Hydrometallurgy slag;Filter;98%;direct;Assumption;SiO2
+1,3;Hydrometallurgy slag;Precipitation / Filtering Fe;90%;direct;Assumption;Fe
+1,3;Hydrometallurgy slag;Precipitation / Filtering Al;90%;direct;Assumption;Al
+1,3;Hydrometallurgy slag;Extraction Mn;99%;indirect;Expert estimate;
+1,3;Hydrometallurgy slag;Crystallization Mn;99%;direct;Expert estimate;Mn
+1,3;Hydrometallurgy slag;Precipitation / filtering Li;85%;direct;Expert estimate;Li
+2;Mechanical;Electrolyte recovery;79%;direct;LithoRec_II_Final_Report(2016) p.173;Evaporation + condensation
+2,3;Mechanical;Magnetic separation;98%;direct;Assumption;
+2;Mechanical;Zigzag 1, Aluminum;95%;direct;LithoRec_II_Final_Report(2016) p.46;
+2;Mechanical;Zigzag 1, Plastic;90%;direct;LithoRec_II_Final_Report(2016) p.46;Including electronic components
+2,3;Mechanical;Filter general;85%;direct;LithoRec_II_Final_Report(2016) p.46;Sieving efficiency (for hydrometallurgy)
+2,3;Mechanical;Zigzag 2, Copper foil;98%;direct;LithoRec_II_Final_Report(2016) p.46;
+2,3;Mechanical;Zigzag 2, Aluminum foil;97%;direct;LithoRec_II_Final_Report(2016) p.46;
+2,3;Mechanical;Zigzag 2, Plastic film;95%;direct;LithoRec_II_Final_Report(2016) p.46;
+2;Hydro;Filter / washing;98%;direct;LithoRec_II_Final_Report(2016) p.46;Graphite
+2;Hydro;Cementation / filtering;97%;direct;Assumption (purer than Route 1);Cu
+2;Hydro;Precipitation / Filtering Fe;92%;direct;Assumption (purer than Route 1);Fe
+2;Hydro;Precipitation / Filtering Al;92%;direct;Assumption (purer than Route 1);Al
+2;Hydro;Co + Ni extraction;99%;indirect;Expert estimate;
+2;Hydro;Extraction Co;98%;indirect;Expert estimate;
+2;Hydro;Crystallization Co;97%;direct;Expert estimate;Co
+2;Hydro;Critallization Ni;98%;direct;Expert estimate;Ni
+2;Hydro;Extraction Mn;99%;indirect;Expert estimate;
+2;Hydro;Crystallization Mn;98%;direct;Expert estimate;Mn
+2;Hydro;Precipitation / Filtering Li;85%;direct;Expert estimate;Li
+3;Mechanical;Filter Cobalt;96%;direct;Accurec BATTERY RECYCLING DATASHEET;
+3;Mechanical;Filter Nickel;97%;direct;Accurec BATTERY RECYCLING DATASHEET;
+3;Mechanical;Filter Graphite;79%;direct;Accurec BATTERY RECYCLING DATASHEET;
