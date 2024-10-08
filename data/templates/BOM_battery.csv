@@ -1,0 +1,9 @@
+Material;Amount;Unit
+Aluminum (housing, junction box);145.64;kg
+Steel;36.5;kg
+Copper / Sn;0.4556*p;kg
+Electronic components;3.6;kg
+Cable (1.9kg) including plug / connectors;0;kg
+Plastics;0;kg
+other (gap filler, elastomer, seals, ..);0.04;kg
+Module;p;unit
