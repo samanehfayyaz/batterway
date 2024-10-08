@@ -1,31 +1,51 @@
-from typing import Dict, List, Tuple
+from typing import Tuple, List
 
-from pydantic import BaseModel
+import chempy
+from sentier_data_tools.iri import ProductIRI, UnitIRI
+from chempy import Substance
+from chempy.util.periodic import atomic_number, mass_from_composition, relative_atomic_masses, _elements
 
-from batterway.datamodel.Generic.LUCA import LUCA
-from batterway.datamodel.Generic.Quantity import Quantity
-
-class dataProduct(BaseModel):
-    name:str
-    IRI:str
-    def __init__(self,name:str,IRI:str):
-
+atom
+class Unit:
+    def __init__(self, name, iri: str):
         self.name = name
-        self.IRI = IRI
+        self.dimensionality = ""
+        self.unit = UnitIRI(iri)
 
 
+class Quantity:
+    def __init__(self, value, unit: Unit):
+        self.value: float = value
+        self.unit: Unit = unit
 
 
-class Product(LUCA):
+class Product:
 
-    def __init__(self, name,IRI, description, composition, uid, metadata: Dict[str, str]):
-        super().__init__(uid, metadata)
+    def __init__(self, name, IRI):
         self.name = name
-        self.IRI = IRI
-        self.description = description
-        self.composition:List[Tuple['Product',Quantity]] = composition
+        self.IRI: ProductIRI = IRI
+
+class ChemicalCompound(Product):
+    def __init__(self,name,IRI, formulae):
+        super().__init__(name, IRI)
+        self.__density = ""
+        self.__molar_mass = ""
+        self.__chemical_formulae:chempy.Substance = Substance.from_formula(formulae)
+
+    def get_molar_share(self):
+        mass_per_elemen = self.get_mass_per_element()
+        total_mass = sum(mass_per_elemen.values())
+        return {elem: mass / total_mass for elem, mass in mass_per_elemen.items()}
+
+    def get_mass_per_element(self):
+        return {
+            _elements[ele-1]:(_elements[ele-1][2] * qty)
+            for ele, qty in self.__chemical_formulae.composition.items()
+        }
 
 
-    @classmethod
-    def class_builder(cls, dataProduct:dataProduct) -> 'Product':
-        return cls(dataProduct.name,)
+class Flow:
+    def __init__(self, product: Product, quantity):
+        self.product: Product = product
+        self.quantity: Quantity = quantity
+
