@@ -5,7 +5,6 @@ from sentier_data_tools.iri import ProductIRI, UnitIRI
 from chempy import Substance
 from chempy.util.periodic import atomic_number, mass_from_composition, relative_atomic_masses, _elements
 
-atom
 class Unit:
     def __init__(self, name, iri: str):
         self.name = name
@@ -39,7 +38,7 @@ class ChemicalCompound(Product):
 
     def get_mass_per_element(self):
         return {
-            _elements[ele-1]:(_elements[ele-1][2] * qty)
+            _elements[ele-1][0]:(_elements[ele-1][2] * qty)
             for ele, qty in self.__chemical_formulae.composition.items()
         }
 
