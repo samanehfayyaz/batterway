@@ -45,3 +45,12 @@ class Flow:
     def __init__(self, product: Product, quantity: Quantity):
         self.product: Product = product
         self.quantity: Quantity = quantity
+        # todo fix with real stuff
+        # assert self.quantity.unit == "mass"
+
+    def get_total_mass_per_element(self):
+        if isinstance(self.product, ChemicalCompound):
+            return {element:Quantity(share*self.quantity.value,self.quantity.unit)
+                    for element,share in self.product.get_molar_share().items()}
+        else:
+            raise NotImplementedError("Only implemented for chemical compound type")
