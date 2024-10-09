@@ -1,5 +1,6 @@
 from chempy import Substance
 from chempy.util.periodic import relative_atomic_masses, symbols
+from Process import Process
 from sentier_data_tools.iri import ProductIRI, UnitIRI
 
 
@@ -30,6 +31,19 @@ class Product:
         self.iri: ProductIRI = iri
 
 
+class ProductArchetype:
+    def __init__(self, product: Product, reference_quantity: Quantity, bom: list[(Product, Quantity)] | None):
+        self.product: Product = product
+        self.reference_quantity: Quantity = reference_quantity
+        self.bom: list[(Product, Quantity)] | None = bom
+
+
+class ProductInstance:
+    def __init__(self, product_archteype: ProductArchetype, quantity: Quantity):
+        self.product_type: ProductArchetype = product_archteype
+        self.qty: Quantity = quantity
+
+
 class ChemicalCompound(Product):
     def __init__(self, name, iri, formulae):
         super().__init__(name, iri)
@@ -48,18 +62,11 @@ class ChemicalCompound(Product):
         return {elem: mass / total_mass for elem, mass in mass_per_elemen.items()}
 
 
-
-
 class Flow:
-    def __init__(self, product: Product, quantity: Quantity):
+    """Directional and quantified flow of a product."""
+
+    def __init__(self, product: Product, quantity: Quantity, source_process: Process, target_process: Process):
         self.product: Product = product
         self.quantity: Quantity = quantity
-        # todo fix with real stuff
-        # assert self.quantity.unit == "mass"
-
-    def get_total_mass_per_element(self):
-        if isinstance(self.product, ChemicalCompound):
-            return {element:Quantity(share*self.quantity.value,self.quantity.unit)
-                    for element,share in self.product.get_molar_share().items()}
-        else:
-            raise NotImplementedError("Only implemented for chemical compound type")
+        self.source_process: Process = None
+        self.target_process: Process = None

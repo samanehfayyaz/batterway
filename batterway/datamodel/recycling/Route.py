@@ -1,6 +1,6 @@
 from typing import List
 
-from batterway.datamodel.Generic.Process import Process
+from batterway.datamodel.generic.Process import Process
 
 
 class Route:
