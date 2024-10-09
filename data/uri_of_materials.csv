@@ -1,0 +1,46 @@
+﻿materials,id,chebi_link,sentier_vocab_URIs,skosmos_link
+Waste (incineration),,,,
+Wastewater,,,,
+Aluminum scrap,7602 007602 00 Aluminium waste and scrap ,,http://data.europa.eu/xsp/cn2024/760200000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F760200000080
+Aluminium hydroxide,2818 30 00Aluminium hydroxide,,http://data.europa.eu/xsp/cn2024/281830000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F281830000080
+Calcium sulfate,31346 - calcium sulfate,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:31346,,
+CoSO4 * 7 H2O,91244 - cobalt(2+) sulfate heptahydrate,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:91244,,
+Cyanex 272,25710 - organophosphorus compound,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:25710,,
+Cyanex 301GN,166461 - Dimethyldithiophosphate,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:25710,,
+D2EHPA,"29192919 Phosphoric esters and their salts, including lactophosphates; their halogenated, sulphonated, nitrated or nitrosated derivatives ",,http://data.europa.eu/xsp/cn2024/291900000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F291900000080
+Iron,"7323 10 00Iron or steel wool; pot scourers and scouring or polishing pads, gloves and the like",,http://data.europa.eu/xsp/cn2024/732310000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F732310000080
+Iron hydroxide Fe(OH)3,2821 10 00Iron oxides and hydroxides,,http://data.europa.eu/xsp/cn2024/282110000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F282110000080
+Electricity,,,,
+Electrolyte,7226 99 10 Electrolytically plated or coated with zinc ,,http://data.europa.eu/xsp/cn2024/722699100080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F722699100080
+Electronic waste,8443 99 10Electronic assemblies ,,http://data.europa.eu/xsp/cn2024/844399100080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F844399100080
+Natural gas (CH4),2711 21 00Natural gas,,http://data.europa.eu/xsp/cn2024/271111000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F271121000080
+Graphite,33418 - graphite,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:33418,,
+Cable,,,,
+Limestone (CaO),"2517 10 20Limestone, dolomite and other calcareous stone, broken or crushed",,http://data.europa.eu/xsp/cn2024/251710200080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F251710200080
+Kerosene,Kerosene ,,http://data.europa.eu/xsp/cn2024/271019210020,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F271019210020
+conc. Wastewater,,,,
+Copper scrap,7404 007404 00 Copper waste and scrap,,http://data.europa.eu/xsp/cn2024/740400000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F740400000080
+Li2CO3 (anhydrous),6504 - lithium carbonate,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=166461,,
+MnSO4 * 1 H2O,86364 - manganese(II) sulfate monohydrate,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:86364,,
+Sodium carbonate,29377 - sodium carbonate,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:29377,,
+Sodium carbonate,,,,
+Sodium hydroxide,Sodium hydroxide (caustic soda),,http://data.europa.eu/xsp/cn2024/281511000010,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F281511000010
+NiSO4 * 6 H2O,53001 - nickel sulfate,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=53001,,
+Sand (SiO2),2505 10 00Silica sands and quartz sands,,http://data.europa.eu/xsp/cn2024/250510000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F250510000080
+Oxygen,2804 40 00Oxygen   ,,http://data.europa.eu/xsp/cn2024/280440000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F280440000080
+Sulfuric acid (95%),2807 00 002807 00 00 Sulphuric acid; oleu,,http://data.europa.eu/xsp/cn2024/280700000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F280700000080
+Steel,"8504 90 13Steel laminations and cores, whether or not stacked or wound ",,http://data.europa.eu/xsp/cn2024/850490130080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F850490130080
+Nitrogen (N2),2804 30 00Nitrogen,,http://data.europa.eu/xsp/cn2024/280430000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F280430000080
+Water (Input),"22012201 Waters, including natural or artificial mineral waters and aerated waters, not containing added sugar or other sweetening matter nor flavoured; ice and snow ",,http://data.europa.eu/xsp/cn2024/220100000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F220100000080
+Hydrogen peroxide,"2847 00 002847 00 00 Hydrogen peroxide, whether or not solidified with urea",,http://data.europa.eu/xsp/cn2024/284700000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F284700000080
+Alloy,"7201 50 10Alloy pig iron containing by weight not less than 0,3 % but not more than 1 % of titanium and not less than 0,5 % but not more than 1 % of vanadium",,http://data.europa.eu/xsp/cn2024/720150100080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F720150100080
+Slag,"2619 002619 00 Slag, dross (other than granulated slag), scalings and other waste from the manufacture of iron or steel",,http://data.europa.eu/xsp/cn2024/261900000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F261900000080
+Fly ash,"26202620 Slag, ash and residues (other than from the manufacture of iron or steel), containing metals, arsenic or their compounds",,http://data.europa.eu/xsp/cn2024/262000000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F262000000080
+Nickel,"7502 10 00Nickel, not alloyed",,http://data.europa.eu/xsp/cn2024/750210000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F750210000080
+Cobalt,8105 20 00Cobalt mattes and other intermediate products of cobalt metallurgy; unwrought cobalt; powders,,http://data.europa.eu/xsp/cn2024/810520000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F810520000080
+Copper foil and connectors,"74107410 Copper foil (whether or not printed or backed with paper, paperboard, plastics or similar backing materials) of a thickness (excluding any backing) not exceeding 0,15 mm",,http://data.europa.eu/xsp/cn2024/741000000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F741000000080
+Iron,72067206 Iron and non-alloy steel in ingots or other primary forms (excluding iron of heading 7203),,http://data.europa.eu/xsp/cn2024/720600000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F720600000080
+Aluminum foil,"76077607 Aluminium foil (whether or not printed or backed with paper, paperboard, plastics or similar backing materials) of a thickness (excluding any backing) not exceeding 0,2 mm",,http://data.europa.eu/xsp/cn2024/760700000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F760700000080
+Manganese,"8111 008111 00 Manganese and articles thereof, including waste and scrap",,http://data.europa.eu/xsp/cn2024/811100000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F811200000080
+Lithium,8506 50Lithium,,http://data.europa.eu/xsp/cn2024/850650000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F850650000080
+"spent primary cells, spent primary batteries and spent electric accumulators","Waste and scrap of primary cells, primary batteries and electric accumulators; spent primary cells, spent primary batteries and spent electric accumulators",,http://data.europa.eu/xsp/cn2024/854911000010,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F854911000010
