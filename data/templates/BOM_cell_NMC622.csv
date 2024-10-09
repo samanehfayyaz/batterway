@@ -1,13 +1,13 @@
-Material;Amount;Unit
-Aluminum (foil);0.0386;kg
-Nickel;0.122817198;kg
-Cobalt;0.041108096;kg
-Manganese;0.038336004;kg
-Lithium;0.024205096;kg
-Copper (foil);0.099616;kg
-Graphite;0.20412;kg
-Aluminum;0;kg
-Plastics;0.0271265;kg
-Electrolyte;0.1356;kg
-Steel;0;kg
-Others;0.141673606;kg
+Material;Amount;Unit;Link
+Aluminum (foil);0.0386;kg;http://data.europa.eu/xsp/cn2024/760700000080
+Nickel;0.122817198;kg;http://data.europa.eu/xsp/cn2024/750210000080
+Cobalt;0.041108096;kg;http://data.europa.eu/xsp/cn2024/810520000080
+Manganese;0.038336004;kg;http://data.europa.eu/xsp/cn2024/811100000080
+Lithium;0.024205096;kg;http://data.europa.eu/xsp/cn2024/850650000080
+Copper (foil);0.099616;kg;http://data.europa.eu/xsp/cn2024/741000000080
+Graphite;0.20412;kg;https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:33418
+Aluminum;0;kg;http://data.europa.eu/xsp/cn2024/760700000080
+Plastics;0.0271265;kg;
+Electrolyte;0.1356;kg;http://data.europa.eu/xsp/cn2024/722699100080
+Steel;0;kg;http://data.europa.eu/xsp/cn2024/850490130080
+Others;0.141673606;kg;
