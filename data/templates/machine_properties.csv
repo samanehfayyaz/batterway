@@ -1,5 +1,5 @@
 "
-Process step";Process / apparatus;Machine;Original capacity;Unit;Connected load [kW];Surcharge factor (periphery);Degression coefficient;"Original batch time [h]
+Process step";Process / apparatus;Machine_URI;Original capacity;Unit;Connected load [kW];Surcharge factor (periphery);Degression coefficient;"Original batch time [h]
 *for continous process =1";Source;Assumptions
 Mechanical processing;Zigzag sighting 1;Aerial_sighting_1;1.5;t/ h;1.5;40%;0.8;;LithoRec2;
 Mechanical processing;Zigzag sighting 2;Aerial_sighting_2;1.5;t/ h;0.3;40%;0.8;;LithoRec2;
