@@ -1,6 +1,6 @@
 ﻿materials,id,chebi_link,sentier_vocab_URIs,skosmos_link
 Waste (incineration),,,,
-Wastewater,waste water,,https://vocab.sentier.dev/flows/envo/ENVO_00002001,https://vocab.sentier.dev/flows/en/page/?uri=https%3A%2F%2Fvocab.sentier.dev%2Fflows%2Fenvo%2FENVO_00002001
+Wastewater,waste water,,https://vocab.sentier.dev/flows/envo/ENVO_00002001 ,https://vocab.sentier.dev/flows/en/page/?uri=https%3A%2F%2Fvocab.sentier.dev%2Fflows%2Fenvo%2FENVO_00002001
 Aluminum scrap,7602 007602 00 Aluminium waste and scrap ,,http://data.europa.eu/xsp/cn2024/760200000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F760200000080
 Aluminium hydroxide,2818 30 00Aluminium hydroxide,,http://data.europa.eu/xsp/cn2024/281830000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F281830000080
 Calcium sulfate,31346 - calcium sulfate,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:31346,,
@@ -10,9 +10,9 @@ Cyanex 301GN,166461 - Dimethyldithiophosphate,https://www.ebi.ac.uk/chebi/search
 D2EHPA,"29192919 Phosphoric esters and their salts, including lactophosphates; their halogenated, sulphonated, nitrated or nitrosated derivatives ",,http://data.europa.eu/xsp/cn2024/291900000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F291900000080
 Iron,"7323 10 00Iron or steel wool; pot scourers and scouring or polishing pads, gloves and the like",,http://data.europa.eu/xsp/cn2024/732310000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F732310000080
 Iron hydroxide Fe(OH)3,2821 10 00Iron oxides and hydroxides,,http://data.europa.eu/xsp/cn2024/282110000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F282110000080
-Electricity,2716 00 002716 00 00 Electrical energy,,http://data.europa.eu/xsp/cn2024/271600000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F271600000080
-Electrolyte,7226 99 10 Electrolytically plated or coated with zinc ,,http://data.europa.eu/xsp/cn2024/722699100080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F722699100080
-Electronic waste,8443 99 10Electronic assemblies ,,http://data.europa.eu/xsp/cn2024/844399100080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F844399100080
+Electricity,2716 00 002716 00 00 Electrical energy ,,http://data.europa.eu/xsp/cn2024/271600000080 ,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F271600000080
+Electrolyte,7226 99 10 Electrolytically plated or coated with zinc ,,http://data.europa.eu/xsp/cn2024/722699100080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F854900000080
+Electronic waste,85498549 Electrical and electronic waste and scrap ,,http://data.europa.eu/xsp/cn2024/854900000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F844399100080
 Natural gas (CH4),2711 21 00Natural gas,,http://data.europa.eu/xsp/cn2024/271111000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F271121000080
 Graphite,33418 - graphite,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:33418,,
 Cable,,,,
