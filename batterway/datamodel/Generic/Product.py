@@ -16,6 +16,9 @@ class Quantity:
         self.unit: Unit = unit
 
     def __add__(self, other):
+        self.__check_compat_operation(other)
+        if other.unit != self.unit:
+            raise ValueError("Quantity have to be of the same unit")
         if isinstance(other, Quantity):
             if other.unit == self.unit:
                 return Quantity(self.value + other.value, self.unit)
@@ -23,7 +26,18 @@ class Quantity:
                 raise ValueError("Quantity have to be of the same unit")
         elif isinstance(other,float|int):
             return Quantity(self.value + other, self.unit)
-
+    def __check_compat_operation(self,other):
+        if isinstance(other, Quantity):
+            if other.unit != self.unit:
+                raise ValueError("Quantity have to be of the same unit")
+        elif not isinstance(other,float|int):
+            raise ValueError("Quantity have to be of the same unit")
+    def __mult__(self, other):
+        self.__check_compat_operation(other)
+        if isinstance(other, Quantity):
+            return Quantity(self.value * other.value, self.unit)
+        elif isinstance(other,float|int):
+            return Quantity(self.value * other, self.unit)
 
 class Product:
     def __init__(self, name, iri):
@@ -32,16 +46,19 @@ class Product:
 
 
 class ProductArchetype:
-    def __init__(self, product: Product, reference_quantity: Quantity, bom: list[(Product, Quantity)] | None):
+    def __init__(self, product: Product, reference_quantity: Quantity, bom: dict[Product, Quantity] | None):
         self.product: Product = product
         self.reference_quantity: Quantity = reference_quantity
-        self.bom: list[(Product, Quantity)] | None = bom
+        self.bom: dict[Product, Quantity] | None = bom
 
 
 class ProductInstance:
     def __init__(self, product_archteype: ProductArchetype, quantity: Quantity):
-        self.product_type: ProductArchetype = product_archteype
+        self.product_archtype: ProductArchetype = product_archteype
         self.qty: Quantity = quantity
+
+    def get_absolute_bom(self):
+        return {p: qty*self.qty for p, qty in self.product_archtype.bom.items()}
 
 
 class ChemicalCompound(Product):
