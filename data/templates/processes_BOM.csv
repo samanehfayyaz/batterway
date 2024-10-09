@@ -1,0 +1,4 @@
+Process type;Flow type;Flow name;Amount;Unit
+Discharge;Input;Battery;1;unit
+Discharge;Output;Module;20;unit
+Discharge;Output;Steel;1;kg
