@@ -1,6 +1,6 @@
 from typing import List
 
-from batterway.datamodel.Generic.Product import Flow, ChemicalCompound
+from batterway.datamodel.generic.Product import Flow, ChemicalCompound
 
 from collections import Counter
 
