@@ -1,19 +1,17 @@
+from codecs import BOM
+from batterway.datamodel.generic.Product import Product, ProductArchetype, Quantity
+
+
+
+class Celltype(Enum):
+    NMC622  = "NMC622"
+    NMC811: str = "NMC811"
+    LFP: str = "LFP"
+
 class EletrochemicalCell:
-    def __init__(self):
-        self.anode: 
-        pass
-    
-cell ,  product | quantity | unit
-
-class BoM():
-    def __init__(self):
-        self.materials: List[Flow]
- 
+    def __init__(self, product_archetype: ProductArchetype):
+        self.product_archetype = product_archetype
+        self.cell_type = product_archetype.product.name
+        self.unique_id = uuid
 
 
-
-RecyclingProcess:
-    
-    def __init__(self):
-        self.inputBom: BoM:
-        self.outputBom: BoM:
