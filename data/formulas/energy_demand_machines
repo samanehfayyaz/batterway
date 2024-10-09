@@ -1,1 +1,4 @@
-total_power = (1+surchage_factore)*connected_load
+total_power = (1+surchage_factor)*connected_load 
+total_energy_demand = total_power*(input/original_capacity)
+heat_demand_evaporation =  input * spec_heat
+heat_demand_exposure = input * heat_capacity * (T2-T1)
