@@ -14,6 +14,15 @@ class Quantity:
         self.value: float = value
         self.unit: Unit = unit
 
+    def __add__(self, other):
+        if isinstance(other, Quantity):
+            if other.unit == self.unit:
+                return Quantity(self.value + other.value, self.unit)
+            else:
+                raise ValueError("Quantity have to be of the same unit")
+        elif isinstance(other,float|int):
+            return Quantity(self.value + other, self.unit)
+
 
 class Product:
     def __init__(self, name, iri):
@@ -34,7 +43,7 @@ class ChemicalCompound(Product):
         }
 
     def get_molar_share(self):
-        mass_per_elemen = self.get_mass_per_element()
+        mass_per_elemen = self._get_mass_per_element()
         total_mass = sum(mass_per_elemen.values())
         return {elem: mass / total_mass for elem, mass in mass_per_elemen.items()}
 
