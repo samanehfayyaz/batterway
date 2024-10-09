@@ -1,5 +1,6 @@
 from collections import Counter
 from typing import Optional
+
 from chempy import Substance
 from chempy.util.periodic import relative_atomic_masses, symbols
 from scipy.fftpack import ifft2
@@ -64,7 +65,7 @@ class Quantity:
             return self.value > other
 
     def __str__(self):
-        return f"{self.value} {self.unit.name}"
+        return f"{round(self.value, 5)} {self.unit.name}"
 
 
 class Product:
@@ -81,8 +82,19 @@ class Product:
     def __str__(self):
         return f"{self.reference_quantity} of {self.name}"
 
+    def get_final_bom(self) -> "BoM":
+        if self.bom is None:
+            return None
+        final_bom = BoM({})
+        for product, qty in self.bom.product_quantities.items():
+            if product.bom is None:  # Within the model, this means the product is a raw material
+                final_bom += BoM({product: qty})
+            else:
+                final_bom += product.get_final_bom() * qty
+        return final_bom
 
-class BoM():
+
+class BoM:
     def __init__(self, product_quantities: dict[Product, Quantity]):
         self.product_quantities = product_quantities
         self.products = product_quantities.keys()
@@ -96,16 +108,26 @@ class BoM():
         if not isinstance(other, BoM):
             return TypeError("Can only add BoM objects together")
 
-        # Create a new Counter by adding the product quantities from both BoMs
         combined_quantities = dict(Counter(self.product_quantities) + Counter(other.product_quantities))
-        # Return a new BoM object with the combined quantities
         return BoM(combined_quantities)
+
+    def __mul__(self, other):
+        """Multiply a BoM by a Quantity object and return a new BoM."""
+        if not isinstance(other, Quantity | float | int):
+            return TypeError("Can only multiply BoM objects by Quantity objects")
+
+        multiplied_quantities = {p: q * other for p, q in self.product_quantities.items()}
+        return BoM(multiplied_quantities)
+
 
 class ProductInstance:
     def __init__(self, product: Product, quantity: Quantity):
         self.product: Product = product
         self.qty: Quantity = quantity
         self.bom: BoM = BoM({p: qty * self.qty for p, qty in self.product.bom.product_quantities.items()})
+
+    def get_final_bom(self) -> BoM:
+        return self.product.get_final_bom() * self.qty
 
     def __str__(self):
         return f"{self.qty} of {self.product.name}"
