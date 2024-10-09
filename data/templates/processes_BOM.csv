@@ -1,7 +1,7 @@
-Process type;Flow type;Flow name;Amount;Unit
-Discharge;Input;Battery;1;unit
-Discharge;Output;Battery, discharged;1;unit
-Discharge;Output;Electricity;x;kWh
-Disassembly;Input;Battery, discharged;1;unit
-Disassembly;Output;Aluminium;=BOM*eff;
-Disassembly;Output;Modules;;
+Process type;Flow type;Flow name;URI
+Discharge;Input;Battery;
+Discharge;Output;Battery, discharged;
+Discharge;Output;Electricity;
+Disassembly;Input;Battery, discharged;
+Disassembly;Output;Aluminium;
+Disassembly;Output;Modules;

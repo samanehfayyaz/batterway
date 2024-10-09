@@ -1,3 +1,5 @@
+from collections import Counter
+from typing import Optional
 from chempy import Substance
 from chempy.util.periodic import relative_atomic_masses, symbols
 from scipy.fftpack import ifft2
@@ -54,52 +56,59 @@ class Quantity:
         if isinstance(other, float | int):
             return Quantity(self.value * other, self.unit)
 
+    def __gt__(self, other):
+        self.__check_compat_operation(other)
+        if isinstance(other, Quantity):
+            return self.value > other.value
+        if isinstance(other, float | int):
+            return self.value > other
+
     def __str__(self):
         return f"{self.value} {self.unit.name}"
 
 
 class Product:
-    def __init__(self, name: str, iri: str):
-        self.name = name
-        self.iri = ProductIRI(iri)
+    def __init__(self, name: str, iri: str, reference_quantity: Quantity, bom: Optional["BoM"] = None):
+        self.name: str = name
+        self.iri: ProductIRI = ProductIRI(iri)
+        self.reference_quantity: Quantity = reference_quantity
+        self.bom: BoM = bom
+
+        # Check that the sum of quantities in the BoM is equal to the reference quantity
+        if bom is not None and self.bom.quantity_total != reference_quantity:
+            raise ValueError("The sum of quantities in the BoM is not equal to the reference quantity")
 
     def __str__(self):
-        return self.name
+        return f"{self.reference_quantity} of {self.name}"
 
 
-class BoM:
+class BoM():
     def __init__(self, product_quantities: dict[Product, Quantity]):
-        self.product_quantities: dict[Product, Quantity] = product_quantities
+        self.product_quantities = product_quantities
         self.products = product_quantities.keys()
         self.quantity_total = sum(product_quantities.values())
 
     def __str__(self) -> str:
         return "\n".join([f"{p.name}: {q}" for p, q in self.product_quantities.items()])
 
+    def __add__(self, other):
+        """Add two BoM objects together and return a new BoM."""
+        if not isinstance(other, BoM):
+            return TypeError("Can only add BoM objects together")
 
-class ProductArchetype:
-    def __init__(self, product: Product, reference_quantity: Quantity, bom: dict[Product, Quantity] | None):
-        self.product: Product = product
-        self.reference_quantity: Quantity = reference_quantity
-        self.bom: BoM = bom
-
-        # Check that the sum of quantities in the BoM is equal to the reference quantity
-        if bom is not None:
-            if bom.quantity_total != reference_quantity:
-                raise ValueError("The sum of quantities in the BoM is not equal to the reference quantity")
-
-        def __str__(self):
-            return f"{self.reference_quantity} of {self.product.name}"
-
+        # Create a new Counter by adding the product quantities from both BoMs
+        combined_quantities = dict(Counter(self.product_quantities) + Counter(other.product_quantities))
+        # Return a new BoM object with the combined quantities
+        return BoM(combined_quantities)
 
 class ProductInstance:
-    def __init__(self, product_archteype: ProductArchetype, quantity: Quantity):
-        self.product_archetype: ProductArchetype = product_archteype
+    def __init__(self, product: Product, quantity: Quantity):
+        self.product: Product = product
         self.qty: Quantity = quantity
-        self.bom: BoM = BoM({p: qty * self.qty for p, qty in self.product_archetype.bom.product_quantities.items()})
+        self.bom: BoM = BoM({p: qty * self.qty for p, qty in self.product.bom.product_quantities.items()})
 
     def __str__(self):
-        return f"{self.qty} of {self.product_archetype.product.name}"
+        return f"{self.qty} of {self.product.name}"
 
 
 class ChemicalCompound(Product):
