@@ -1,6 +1,6 @@
 ﻿materials,id,chebi_link,sentier_vocab_URIs,skosmos_link
 Waste (incineration),,,,
-Wastewater,,,,
+Wastewater,waste water,,https://vocab.sentier.dev/flows/envo/ENVO_00002001,https://vocab.sentier.dev/flows/en/page/?uri=https%3A%2F%2Fvocab.sentier.dev%2Fflows%2Fenvo%2FENVO_00002001
 Aluminum scrap,7602 007602 00 Aluminium waste and scrap ,,http://data.europa.eu/xsp/cn2024/760200000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F760200000080
 Aluminium hydroxide,2818 30 00Aluminium hydroxide,,http://data.europa.eu/xsp/cn2024/281830000080,https://vocab.sentier.dev/products/en/page/?uri=http%3A%2F%2Fdata.europa.eu%2Fxsp%2Fcn2024%2F281830000080
 Calcium sulfate,31346 - calcium sulfate,https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:31346,,
