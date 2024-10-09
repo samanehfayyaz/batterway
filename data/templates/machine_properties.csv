@@ -1,84 +1,32 @@
 "
-Process step";Process / apparatus;System ;Original capacity;Unit;Connected load [kW];Surcharge factor (periphery);Degression coefficient;"Original batch time [h]
+Process step";Process / apparatus;Machine_URI;Original capacity;Unit;Connected load [kW];Surcharge factor (periphery);Degression coefficient;"Original batch time [h]
 *for continous process =1";Source;Assumptions
-Hydro (Alloy);Cementation Cu;Reactor;10;m3/ h;24;40%;0.80; 1.00 ;Reference offer;
-Pyrolyse;Deactivation and evaporation;Rotary kiln;2;m3/ h;350;40%;0.80; 2.00 ;Reference offer;"Densitiy of battery cell 2500 kg/m3; Linear increase of energy compared to temparature"
-Disassembly;Disassembly (to cells);Disassembly place and tools;0.50;batteries/ h;0;0%;0.80;;;
-Disassembly;Disassembly (to modules);Disassembly place and tools;0.25;batteries/ h;0;0%;0.80;;;50% longer process duration if disassembled to cell level
-Disassembly;Discharge;Unlaoding place and device;0.27;batteries/ h;0;0%;0.80;;;
-Mechanical processing;Dry;Mixing dryer;1.5;t/ h;2.8;40%;0.80;;LithoRec2;
-Pyro;Exhaust gas cleaning;Gas scrubber;1.5;batteries/h;5.00;40%;0.80; 1.00 ;LithoRec2;
-Hydro;Exposure;Rotary kiln;2;m3/ h;350;40%;0.80; 2.00 ;Reference offer;
-Hydro;Extraction;Reactor ;10;m3/ h;24;40%;0.80; 0.17 ;Reference offer;
-Mechanical processing;Filter;Filter;1.5;t/ h;5.0;40%;0.80;;LithoRec2;
-Hydro;Filter;Band filter;10;m3/ h;18.5;40%;0.80; 0.17 ;Reference offer;
-Hydro;Filtration;Chamber filter press;10;m3/ h;18.5;40%;0.80; 0.33 ;Reference offer, Outotec Lacrox FFP 1517;
-Hydro;Filtration;Band filter ;10;m3/ h;18.5;40%;0.80; 0.17 ;Reference offer, Outotec Lacrox FFP 1516;
-Hydro;Leaching;Reactor ;10;m3/ h;24;40%;0.80; 0.25 ;Reference offer;
-Mechanical processing;Magnetic seperation;Magnetic seperation;1.5;t/ h;0.0;40%;0.80;;LithoRec2;
-Pyrometallurgy;Mill;Mill;20.00;t/h;200;0%;0.80;;Loesche LM15.2;
-Hydro;Oxidation;Reactor ;10;m3/ h;24;40%;0.80; 0.25 ;Reference offer;
-Hydro;Precipitation;Reactor ;10;m3/ h;24;40%;0.80; 0.50 ;Reference offer;
-Hydro;Scrubbing;Reactor ;10;m3/ h;24;40%;0.80; 0.17 ;Reference offer;
-Mechanical processing;Shredder 1;Cutting mill;1.5;t/ h;2.0;40%;0.80;;LithoRec2;
-Mechanical processing;Shredder 2;Granulator;1.5;t/ h;1.0;40%;0.80;;LithoRec2;50% power of Shredder 1
-Disassembly;Storage;System container;0.33;batteries/ h;0;0%;0.80;;;
-Disassembly;Storage (defective);Hazardous material container (F-90);6.00;batteries;0;0%;0.80;;;
-Hydro;Stripping;Reactor;10;m3/ h;24;40%;0.80; 0.17 ;Reference offer;
-Disassembly;Transport;Industrial truck;6.00;batteries/ h;0;0%;0.80;;;
-Hydro;Washing C;Sprinkling;10;m3/ h;5;40%;0.80; 1.00 ;;
-Mechanical processing & Pyro;Waste gas cleaning;Gas scrubber;1.5;batteries/h;5.00;40%;0.80; 1.00 ;LithoRec2;
-Mechanical processing;Zigzag sighting 1;Aerial sighting;1.5;t/ h;1.5;40%;0.80;;LithoRec2;
-Mechanical processing;Zigzag sighting 2;Aerial sighting;1.5;t/ h;0.3;40%;0.80;;LithoRec2;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
-;;;;;;;;;;
+Mechanical processing;Zigzag sighting 1;Aerial_sighting_1;1.5;t/ h;1.5;40%;0.8;;LithoRec2;
+Mechanical processing;Zigzag sighting 2;Aerial_sighting_2;1.5;t/ h;0.3;40%;0.8;;LithoRec2;
+Hydro;Filter;Band_filter_1;10;m3/ h;18.5;40%;0.8;0.17;Reference offer;
+Hydro;Filtration;Band_filter_2;10;m3/ h;18.5;40%;0.8;0.17;Reference offer, Outotec Lacrox FFP 1516;
+Hydro;Filtration;Chamber filter press;10;m3/ h;18.5;40%;0.8;0.33;Reference offer, Outotec Lacrox FFP 1517;
+Mechanical processing;Shredder 1;Cutting mill;1.5;t/ h;2;40%;0.8;;LithoRec2;
+Disassembly;Disassembly (to cells);Disassembly_place_and_tools_1;0.5;batteries/ h;0;0%;0.8;;;
+Disassembly;Disassembly (to modules);Disassembly_place_and_tools_2;0.25;batteries/ h;0;0%;0.8;;;50% longer process duration if disassembled to cell level
+Mechanical processing;Filter;Filter;1.5;t/ h;5;40%;0.8;;LithoRec2;
+Pyro;Exhaust gas cleaning;Gas_scrubber_1;1.5;batteries/h;5;40%;0.8;1;LithoRec2;
+Mechanical processing & Pyro;Waste gas cleaning;Gas_scrubber_2;1.5;batteries/h;5;40%;0.8;1;LithoRec2;
+Mechanical processing;Shredder 2;Granulator;1.5;t/ h;1;40%;0.8;;LithoRec2;50% power of Shredder 1
+Disassembly;Storage (defective);Hazardous material container (F-90);6;batteries;0;0%;0.8;;;
+Disassembly;Transport;Industrial truck;6;batteries/ h;0;0%;0.8;;;
+Mechanical processing;Magnetic seperation;Magnetic seperation;1.5;t/ h;0;40%;0.8;;LithoRec2;
+Pyrometallurgy;Mill;Mill;20;t/h;200;0%;0.8;;Loesche LM15.2;
+Mechanical processing;Dry;Mixing dryer;1.5;t/ h;2.8;40%;0.8;;LithoRec2;
+Hydro (Alloy);Cementation Cu;Reactor_1;10;m3/ h;24;40%;0.8;1;Reference offer;
+Hydro;Stripping;Reactor_2;10;m3/ h;24;40%;0.8;0.17;Reference offer;
+Hydro;Extraction;Reactor_3;10;m3/ h;24;40%;0.8;0.17;Reference offer;
+Hydro;Leaching;Reactor_4;10;m3/ h;24;40%;0.8;0.25;Reference offer;
+Hydro;Oxidation;Reactor_5;10;m3/ h;24;40%;0.8;0.25;Reference offer;
+Hydro;Precipitation;Reactor_6;10;m3/ h;24;40%;0.8;0.5;Reference offer;
+Hydro;Scrubbing;Reactor_7;10;m3/ h;24;40%;0.8;0.17;Reference offer;
+Pyrolyse;Deactivation and evaporation;Rotary_kiln_1;2;m3/ h;350;40%;0.8;2;Reference offer;"Densitiy of battery cell 2500 kg/m3; Linear increase of energy compared to temparature"
+Hydro;Exposure;Rotary_kiln_2;2;m3/ h;350;40%;0.8;2;Reference offer;
+Hydro;Washing C;Sprinkling;10;m3/ h;5;40%;0.8;1;;
+Disassembly;Storage;System container;0.33;batteries/ h;0;0%;0.8;;;
+Disassembly;Discharge;Unlaoding place and device;0.27;batteries/ h;0;0%;0.8;;;
