@@ -1,4 +1,4 @@
-Product;Material;Quantity;Unit
+BoMId;Material;Quantity;Unit
 Battery;Aluminum (housing, junction box);145.64;kg
 Battery;Steel;36.5;kg
 Battery;Copper / Sn;0.4556;kg

@@ -1,2 +1,2 @@
-name;iri;reference_quantity;BoM;chemical_formulae
-cell;"whatever.fr";1;;"LiFePo4"
+name;iri;reference_quantity;unit;BoM_id;chemical_formulae
+cell;"whatever.fr";1;"kg";"";"LiFePo4"
