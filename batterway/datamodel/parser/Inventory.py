@@ -2,15 +2,28 @@ from pathlib import Path
 
 import pandas as pd
 
-from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, Unit, ProductInstance
-from batterway.datamodel.parser.parsers import BoMPdt, ChemicalCompoundPdt, ProductPdt, QuantityPdt, UnitPdt, ProcessLCIPdt
+from batterway.datamodel.generic.process import ProcessLCI
+from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, ProductInstance, Unit
+from batterway.datamodel.parser.parsers import (
+    BoMPdt,
+    ChemicalCompoundPdt,
+    ProcessLCIPdt,
+    ProductPdt,
+    QuantityPdt,
+    UnitPdt,
+)
 
 
 class Inventory:
-    def __init__(self, units: dict[str, Unit] | None, products: list[str:Product] | None, all_process_lcis):
+    def __init__(
+        self,
+        units: dict[str, Unit] | None,
+        products: list[str:Product] | None,
+        process_lcis: dict[str, ProcessLCI] | None,
+    ):
         self.units = units
         self.products = products
-        self.all_process_lcis = all_process_lcis
+        self.process_lcis = process_lcis
 
     @classmethod
     def create_from_file(cls, file_name: Path):
@@ -51,26 +64,27 @@ class Inventory:
         all_products = {p.name: p for p in pydt_products_parsed + pydt_chemical_compounds}
         all_boms = dict()
         for BoMId, df_bom_product in Inventory.__read_csv(file_name.joinpath("BoM.csv")).groupby("BoMId"):
-             all_boms[BoMId] = BoMPdt(
-                 BoMId=BoMId,
-                 product_quantities={
-                     all_products[row["Material"]].name: QuantityPdt(
-                         quantity=row["Quantity"], unit=all_unit[row["Unit"]]
-                     )
-                     for _, row in df_bom_product.iterrows()
-                 },
-             )
+            all_boms[BoMId] = BoMPdt(
+                BoMId=BoMId,
+                product_quantities={
+                    all_products[row["Material"]].name: QuantityPdt(
+                        quantity=row["Quantity"], unit=all_unit[row["Unit"]]
+                    )
+                    for _, row in df_bom_product.iterrows()
+                },
+            )
 
         all_process_lcis = dict()
 
-        for (lci_id,direction), df_lci_product in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).groupby(["lci_id", "direction"]):
+        for (lci_id, direction), df_lci_product in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).groupby(
+            ["lci_id", "direction"]
+        ):
             all_process_lcis[lci_id] = ProcessLCIPdt(
                 lci_id=lci_id,
                 direction=direction,
-                relative_lci={
-                    (row["influencer"], row["influenced"]): row["qty"]
-                    for _, row in df_lci_product.iterrows()
-                }
+                relative_lci=[
+                    (row["influencer"], row["influenced"], row["qty"]) for _, row in df_lci_product.iterrows()
+                ],
             )
 
         # Now we have to create the real object
@@ -95,24 +109,37 @@ class Inventory:
             for x in all_products.items()
         )
         real_product_dict = {p.name: p for p in real_products}
+
         real_BoMs = {
             v[1].BoMId: BoM(
-            {real_product_dict[p]: ProductInstance(real_product_dict[p],p_qty.to_quantity(real_units))
-                 for p, p_qty in v[1].product_quantities.items()}
-             )
-             for v in all_boms.items()
+                {
+                    real_product_dict[p]: ProductInstance(real_product_dict[p], p_qty.to_quantity(real_units))
+                    for p, p_qty in v[1].product_quantities.items()
+                }
+            )
+            for v in all_boms.items()
         }
 
         for p in all_products:
             strippe_dbom_id = all_products[p].BoM_id.strip()
             if len(strippe_dbom_id):
                 real_product_dict[p].bom = real_BoMs[strippe_dbom_id]
-        return cls(real_units, real_product_dict, all_process_lcis)
-    
+
+        real_process_lcis = {
+            l[0]: ProcessLCI(
+                id=l[1],
+                direction=l[1].direction,
+                relative_lci={(real_product_dict[t[0]], real_product_dict[t[1]]): t[2] for t in l[1].relative_lci},
+            )
+            for l in all_process_lcis.items()
+        }
+
+        return cls(real_units, real_product_dict, real_process_lcis)
 
     @staticmethod
-    def parse_possible_input(folder_path:Path):
+    def parse_possible_input(folder_path: Path):
         df_fixed_lci = Inventory.__read_csv(folder_path.joinpath("fixed_lci.csv"))
+
     @staticmethod
     def __read_csv(file_name: Path):
         return pd.read_csv(file_name, sep=";", decimal=".")
