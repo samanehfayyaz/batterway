@@ -6,10 +6,10 @@ from collections import Counter
 
 
 class Process:
-    def __init__(self, name, inputs_products: List[ProductInstance], output_products: List[ProductInstance]):
+    def __init__(self, name, inputs_products: BoM, output_products: BoM):
         self.name = name
-        self.inputs: List[ProductInstance] = inputs_products
-        self.outputs: List[ProductInstance] = output_products
+        self.inputs: BoM= inputs_products
+        self.outputs: BoM = output_products
 
     def get_input_total_mass_per_element(self):
         return self.__get_total_mass_per_element(self.inputs)
@@ -18,7 +18,7 @@ class Process:
         return self.__get_total_mass_per_element(self.outputs)
 
     @staticmethod
-    def __get_total_mass_per_element(flows: List[ProductInstance]):
+    def __get_total_mass_per_element(flows: BoM):
         list_of_mass_elem = [
             Counter(input.product.get_total_mass_per_element())
             for input in flows if isinstance(input.product, ChemicalCompound)
@@ -32,7 +32,7 @@ class Process:
 
 
 class RecyclingProcess(Process):
-    def __init__(self, inputs_products: List[ProductInstance], output_products: List[ProductInstance], name):
+    def __init__(self, inputs_products: BoM, output_products: BoM, name):
         super().__init__(name, inputs_products, output_products)
         self.ref_input_to_output_relation: dict[tuple[Product, Product], float] = []
         self.ref_input_to_input_relation: dict[tuple[Product, Product], float] = []
@@ -54,19 +54,13 @@ class RecyclingProcess(Process):
             "Output influencing product should be in the inputs")
 
     def update_flow(self):
-        final_bom = [p_inst.get_final_bom()
-            for p_inst in self.inputs]
-
-        if len(final_bom) > 1:
-            map(lambda x: final_bom[0].update(x), final_bom[1:])
-        else:
-            final_bom = final_bom[0]
+        final_bom = self.inputs
         updated_in_flow_value = dict()
         for (product_influencing, product_influenced), ratio in self.ref_input_to_input_relation.items():
             if product_influencing in final_bom:
                 if product_influenced not in updated_in_flow_value:
                     updated_in_flow_value[product_influenced] = ProductInstance(product_influenced,Quantity(0,product_influenced.reference_quantity.unit))
-                updated_in_flow_value[product_influenced] += ratio * final_bom.product_quantities[product_influencing]
+                updated_in_flow_value[product_influenced] += final_bom.product_quantities[product_influencing].qty * ratio
         for product_influenced in updated_in_flow_value:
             product_influenced.quantity = Quantity(updated_in_flow_value[product_influenced],
                                                    product_influenced.reference_quantity.unit)
@@ -76,7 +70,7 @@ class RecyclingProcess(Process):
             if product_influencing in final_bom:
                 if product_influenced not in updated_out_flow_value:
                     updated_out_flow_value[product_influenced] = ProductInstance(product_influenced,Quantity(0,product_influenced.reference_quantity.unit))
-                updated_out_flow_value[product_influenced] +=  final_bom.product_quantities[product_influencing] * ratio
+                updated_out_flow_value[product_influenced] +=  final_bom.product_quantities[product_influencing].qty * ratio
 
 
         for product_influenced in updated_out_flow_value:
@@ -86,7 +80,8 @@ class RecyclingProcess(Process):
         # cheat
         self.final_output_bom = updated_out_flow_value
         self.final_input_bom = updated_in_flow_value
-
+        print(self.final_input_bom.items())
+        print(self.final_output_bom.items())
 
     def ensure_recycling_coherency(self):
         input_dfsdf = ""

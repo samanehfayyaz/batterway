@@ -1,15 +1,16 @@
 from batterway.datamodel.generic.process import RecyclingProcess
 import tests.unit_test.utils_common as UC
-from batterway.datamodel.generic.product import ProductInstance, Quantity
+from batterway.datamodel.generic.product import ProductInstance, Quantity, BoM
 
 
 def test_recycling_process_relative_lci():
-    input_products = [
-        ProductInstance(UC.water,Quantity(1.0,UC.kg))
-    ]
+    input_products = BoM(
+        {UC.water: ProductInstance(UC.water, Quantity(1.0, UC.kg))}
+    )
+
     relative_input_influenced = {(UC.water, UC.heat): Quantity(1.0, UC.kg)}
 
-    output_products = []
+    output_products = BoM({})
     relative_output_influences = {
         (UC.water,UC.vapor): Quantity(3.0, UC.kg)
     }
