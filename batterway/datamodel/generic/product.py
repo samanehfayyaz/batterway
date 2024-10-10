@@ -101,14 +101,14 @@ class Product:
         return f"{self.reference_quantity} of {self.name} " + bom_str
 
     def get_final_bom(self) -> "BoM":
-        if self.bom is None:
-            return None
-        final_bom = BoM({})
-        for product, qty in self.bom.product_quantities.items():
-            if product.bom is None:  # Within the model, this means the product is a raw material
-                final_bom += BoM({product: qty})
-            else:
-                final_bom += product.get_final_bom() * qty
+        final_bom = BoM({self:self.reference_quantity})
+        if self.bom:
+            final_bom = BoM({})
+            for product, qty in self.bom.product_quantities.items():
+                if product.bom is None:  # Within the model, this means the product is a raw material
+                    final_bom += BoM({product: qty})
+                else:
+                    final_bom += product.get_final_bom() * qty
         return final_bom
 
 
@@ -145,6 +145,12 @@ class BoM:
         multiplied_quantities = {p: q * other for p, q in self.product_quantities.items()}
         return BoM(multiplied_quantities)
 
+    def __contains__(self, item):
+        if isinstance(item,str):
+            return item in [p.name for p in self.products]
+        elif isinstance(item,Product):
+            return item in self.products
+
 
 
 class ProductInstance:
@@ -153,7 +159,7 @@ class ProductInstance:
     def __init__(self, product: Product, quantity: Quantity):
         self.product: Product = product
         self.qty: Quantity = quantity
-        self.bom: BoM = BoM({p: qty * self.qty for p, qty in self.product.bom.product_quantities.items()})
+        self.bom: BoM = BoM({p: qty * self.qty for p, qty in self.product.bom.product_quantities.items()}) if self.product.bom else {}
 
     def get_final_bom(self) -> BoM:
         return self.product.get_final_bom() * self.qty
