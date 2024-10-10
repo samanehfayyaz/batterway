@@ -1,6 +1,6 @@
 import pydantic
 
-from batterway.datamodel.Generic.Product import Quantity, Unit
+from batterway.datamodel.generic.product import Quantity, Unit
 
 
 class UnitPdt(pydantic.BaseModel):

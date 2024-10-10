@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from batterway.datamodel.Generic.Product import Product, Unit, ProductInstance, Quantity, BoM, ChemicalCompound
+from batterway.datamodel.generic.product import Product, Unit, ProductInstance, Quantity, BoM, ChemicalCompound
 from batterway.datamodel.parser.parsers import UnitPdt, ProductPdt, ChemicalCompoundPdt, BoMPdt, QuantityPdt
 
 
