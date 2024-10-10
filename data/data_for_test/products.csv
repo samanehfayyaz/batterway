@@ -1,5 +1,5 @@
 name;iri;reference_quantity;unit;BoM_id
-Alloy;http://data.europa.eu/xsp/cn2024/720150100080;1;kg;
+Alloy;http://data.europa.eu/xsp/cn2024/720150100080;1;kg;   
 Aluminium hydroxide;http://data.europa.eu/xsp/cn2024/281830000080;1;kg;
 Aluminium sulfate (Al2(SO4)3);http://data.europa.eu/xsp/cn2024/283330000080;1;kg;
 Aluminum (housing junction box);http://data.europa.eu/xsp/cn2024/760700000080;1;kg;
@@ -36,7 +36,6 @@ Iron hydroxide Fe(OH)3;http://data.europa.eu/xsp/cn2024/282110000080;1;kg;
 Iron sulfate (FeSO4);https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:75832;1;kg;
 Iron;http://data.europa.eu/xsp/cn2024/720600000080;1;kg;
 Kerosene;http://data.europa.eu/xsp/cn2024/271019210020;1;kg;
-Li2CO3 (anhydrous);https://www.ebi.ac.uk/chebi/searchId.do?chebiId=166461;1;kg;
 Limestone (CaO);http://data.europa.eu/xsp/cn2024/251710200080;1;kg;
 Lithium sulfate (Li2SO4);https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:53474;1;kg;
 Lithium;http://data.europa.eu/xsp/cn2024/850650000080;1;kg;

@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 
 from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, Unit
-from batterway.datamodel.parser.parsers import BoMPdt, ChemicalCompoundPdt, ProductPdt, QuantityPdt, UnitPdt
+from batterway.datamodel.parser.parsers import BoMPdt, ChemicalCompoundPdt, ProductPdt, QuantityPdt, UnitPdt, ProcessLCIPdt
 
 
 class Inventory:
@@ -45,6 +45,7 @@ class Inventory:
             .fillna({"iri": "https://empty.com", "BoM_id": ""})
             .iterrows()
         ]
+
         # Merge chemical and product as they should be unique by Id
         all_products = {p.name: p for p in pydt_products_parsed + pydt_chemical_compounds}
         all_boms = dict()
@@ -58,6 +59,22 @@ class Inventory:
                     for _, row in df_bom_product.iterrows()
                 },
             )
+        #TODO fix this product lci stuff below
+        all_product_lcis = dict()
+        
+        for lci_id, df_lci_product in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).groupby("lci_id"):
+            all_product_lcis[lci_id] = ProcessLCIPdt(
+                lci_id=lci_id,
+                direction=df_lci_product["direction"].iloc[0],
+                reference_product=df_lci_product["reference_product"].iloc[0],
+                product_quantities={
+                    all_products[row["influenced"]].name: QuantityPdt(
+                        quantity=row["qty"], unit=all_unit[row["unit"]]
+                    )
+                    for _, row in df_lci_product.iterrows()
+                }
+            )
+        
         # Now we have to create the real object
         # And associate the BoM to their respective product
         real_units = {
@@ -93,9 +110,9 @@ class Inventory:
 
         for p in real_product_dict.values():
             print(p)
+        
 
         return cls(real_units, real_product_dict)
-    
     
 
     @staticmethod

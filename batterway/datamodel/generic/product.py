@@ -39,6 +39,8 @@ class Quantity:
     def __eq__(self, other: "Quantity") -> bool:
         if isinstance(other, Quantity):
             return self.value == other.value and self.unit == other.unit
+        if isinstance(other, int|float):
+            return self.value == other
         return False
 
     def __add__(self, other: "Quantity | float | int") -> "Quantity":
@@ -98,27 +100,27 @@ class Product:
 
     def __str__(self):
         bom_str = str(self.bom) if self.bom else ""
-        return f"{self.reference_quantity} of {self.name} " + bom_str
+        return f"{self.name}[Ref:{self.reference_quantity}] " + bom_str
 
     def get_final_bom(self) -> "BoM":
-        final_bom = BoM({self: self.reference_quantity})
+        final_bom = BoM({self: ProductInstance(self,self.reference_quantity)})
         if self.bom:
             final_bom = BoM({})
-            for product, qty in self.bom.product_quantities.items():
+            for product, p_instance in self.bom.product_quantities.items():
                 if product.bom is None:  # Within the model, this means the product is a raw material
-                    final_bom += BoM({product: qty})
+                    final_bom += BoM({product: p_instance})
                 else:
-                    final_bom += product.get_final_bom() * qty
+                    final_bom += product.get_final_bom() * p_instance.qty
         return final_bom
 
 
 class BoM:
     """A Bill of Materials with a dictionary of products and quantities."""
 
-    def __init__(self, product_quantities: dict[Product, Quantity]):
-        self.product_quantities = product_quantities
-        self.products = product_quantities.keys()
-        self.quantity_total = sum(product_quantities.values())
+    def __init__(self, product_quantities: dict[Product,'ProductInstance']):
+        self.product_quantities: dict[Product,'ProductInstance'] = product_quantities
+        self.products = [p.product for p in product_quantities.values()]
+        self.quantity_total = sum(x.qty.value for x in product_quantities.values())
 
     def __str__(self) -> str:
         return "\n".join([f"{p.name}: {q}" for p, q in self.product_quantities.items()])
@@ -148,6 +150,8 @@ class BoM:
     def __contains__(self, item):
         if isinstance(item, str):
             return item in [p.name for p in self.products]
+        elif isinstance(item, ProductInstance):
+            return item.product in self.products
         elif isinstance(item, Product):
             return item in self.products
 

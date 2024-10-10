@@ -8,7 +8,13 @@ cell_nmc_333 = Product(
     name="cell_type",
     iri="cell_type.com",
     reference_quantity=Quantity(1.0, UC.kg),
-    bom=BoM({UC.nickel: Quantity(0.3, UC.kg), UC.manganese: Quantity(0.3, UC.kg), UC.cobalt: Quantity(0.4, UC.kg)})
+    bom=BoM(
+        {
+            UC.nickel: ProductInstance(UC.nickel,Quantity(0.3, UC.kg)),
+            UC.manganese: ProductInstance(UC.manganese,Quantity(0.3, UC.kg)),
+            UC.cobalt: ProductInstance(UC.cobalt,Quantity(0.4, UC.kg))
+        }
+    )
 )
 leave_no_bom_product = Product(
     name="cell_type",
@@ -21,10 +27,10 @@ battery_nmc_333 = Product(
     reference_quantity=Quantity(1.1, UC.kg),
     bom=BoM(
         {
-            cell_nmc_333: Quantity(0.8, UC.kg),
-            UC.manganese: Quantity(0.1, UC.kg),
-            UC.steel: Quantity(0.1, UC.kg),
-            leave_no_bom_product: Quantity(0.1, UC.kg)
+            cell_nmc_333: ProductInstance(cell_nmc_333, Quantity(0.8, UC.kg)),
+            UC.manganese: ProductInstance(UC.manganese, Quantity(0.1, UC.kg)),
+            UC.steel: ProductInstance(UC.steel, Quantity(0.1, UC.kg)),
+            leave_no_bom_product: ProductInstance(leave_no_bom_product, Quantity(0.1, UC.kg))
         }
     )
 )
@@ -48,7 +54,9 @@ def test_product_bom() -> None:
     # Check if the BoM is correct
     for material, quantity in expected_bom.items():
         assert material in final_bom.product_quantities
-        assert final_bom.product_quantities[material].value == pytest.approx(quantity.value)
+        print(quantity)
+        print(final_bom.product_quantities[material])
+        assert final_bom.product_quantities[material].qty.value == pytest.approx(quantity.value)
 
 
 def test_product_instance_bom() -> None:
@@ -66,4 +74,6 @@ def test_product_instance_bom() -> None:
     # Check if the BoM is correct
     for material, quantity in expected_bom.items():
         assert material in final_bom.product_quantities
-        assert final_bom.product_quantities[material].value == pytest.approx(quantity.value)
+        assert final_bom.product_quantities[material].qty.value == pytest.approx(quantity.value)
+test_product_bom()
+test_product_instance_bom()
