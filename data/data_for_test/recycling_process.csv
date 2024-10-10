@@ -1,2 +1,2 @@
-process_name, fixed_input_bom, rel_inout, rel_output
-recyclin_process_1;battery_product;recyclin_battery_input_rel_1;recycling_lci_output_battery_1;
+process_name;fixed_input_bom_id;relative_lci_id
+route1;Battery_NMC622;route1

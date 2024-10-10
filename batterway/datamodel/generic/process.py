@@ -5,6 +5,13 @@ from batterway.datamodel.generic.product import ChemicalCompound, Product, Quant
 from collections import Counter
 
 
+class ProcessLCI():
+    def __init__(self, id: str, direction: str, relative_lci: dict[tuple[Product, Product], float]):
+        self.id: str = id
+        self.direction: str = direction
+        self.relative_lci: dict[tuple[str, str], float] = relative_lci
+
+
 class Process:
     def __init__(self, name, inputs_products: BoM, output_products: BoM):
         self.name = name
@@ -132,3 +139,4 @@ class RecyclingRoute:
                     raise ValueError(f"Missing the reference input of {process} from {previous_process}")
             output_products = [f.product for f in process.outputs]
             previous_process = process
+    
