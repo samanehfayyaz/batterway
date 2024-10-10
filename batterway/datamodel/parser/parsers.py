@@ -37,21 +37,15 @@ class ChemicalCompoundPdt(ProductPdt):
 
 ### RecyclingProcess parsers ###
 
-
-class ProcessLCIFixed(BaseModel):
+class ProcessLCIPdt(BaseModel):
     lci_id: str
-    product_quantities: dict[str, QuantityPdt]
-
-
-class ProcessLCIRelative(BaseModel):
-    lci_id: str
-    reference_product: str
-    product_quantities: dict[str, QuantityPdt]
+    direction: str
+    influencer: str
+    influenced: str
+    ratio: QuantityPdt
 
 
 class RecyclingProcess(BaseModel):
     name: str
-    lci_input_fixed: ProcessLCIFixed
-    lci_output_fixed: ProcessLCIFixed
-    lci_input_relative: ProcessLCIRelative
-    lci_output_relative: ProcessLCIRelative
+    lci_input: ProcessLCIPdt
+

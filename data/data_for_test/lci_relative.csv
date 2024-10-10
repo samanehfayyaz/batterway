@@ -1,6 +1,5 @@
-lci_id;influencer;influenced;qty;unit
-route1_relativeinput;Battery;Battery;0.0017292810514028794;kg
-route1_relativeinput;Battery;Limestone (CaO);0.0004831080096058538;kg
+lci_id;direction;influencer;influenced;qty;unit
+route1;input,Battery;Limestone (CaO);0.0004831080096058538;kg
 route1_relativeinput;Battery;Sand (SiO2);0.0002500130944652863;kg
 route1_relativeinput;Battery;Oxygen;0.00018893157451147532;kg
 route1_relativeinput;Battery;Sulfuric acid (95%);-14397.107826806181;kg

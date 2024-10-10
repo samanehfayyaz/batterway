@@ -2,7 +2,7 @@ import sentier_data_tools
 from sentier_data_tools import Demand, RunConfig, DatasetKind, ProductIRI
 
 
-class RecyclingModel(sentier_data_tools.SentierModel):
+class RecyclingModel(sentier_data_tools.SentierModel, ):
     provides = {
         #ProductIRI(
         #    "http://openenergy-platform.org/ontology/oeo/OEO_00010379"
