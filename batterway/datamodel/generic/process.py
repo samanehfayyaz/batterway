@@ -32,7 +32,6 @@ class Process:
 class RecyclingProcess(Process):
     def __init__(self, inputs_flows: List[ProductInstance], output_flows: List[ProductInstance], name, ref_input:ProductInstance):
         super().__init__(name, inputs_flows, output_flows)
-        self.ref_input_flow = ref_input
         self.ref_input_to_output_relation:dict[tuple[Product, Product], float] = []
         self.ref_input_to_input_relation:dict[tuple[Product, Product], float] = []
 
@@ -42,8 +41,8 @@ class RecyclingProcess(Process):
         if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_input_relation]):raise ValueError("Input influencing product should be in the input")
         if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_output_relation]): raise ValueError("Output influencing product should be in the inputs")
 
-    def update_output_flow(self):
-        final_bom = self.ref_input_flow.get_final_bom()
+    def update_flow(self):
+        final_bom = self.get_input_total_mass_per_element()
         updated_out_flow_value = dict()
         updated_in_flow_value = dict()
         for (product,flow),ratio in self.ref_input_to_output_relation.items():
