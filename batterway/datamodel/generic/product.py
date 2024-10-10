@@ -101,7 +101,7 @@ class Product:
         return f"{self.reference_quantity} of {self.name} " + bom_str
 
     def get_final_bom(self) -> "BoM":
-        final_bom = BoM({self:self.reference_quantity})
+        final_bom = BoM({self: self.reference_quantity})
         if self.bom:
             final_bom = BoM({})
             for product, qty in self.bom.product_quantities.items():
@@ -146,11 +146,10 @@ class BoM:
         return BoM(multiplied_quantities)
 
     def __contains__(self, item):
-        if isinstance(item,str):
+        if isinstance(item, str):
             return item in [p.name for p in self.products]
-        elif isinstance(item,Product):
+        elif isinstance(item, Product):
             return item in self.products
-
 
 
 class ProductInstance:
@@ -159,10 +158,80 @@ class ProductInstance:
     def __init__(self, product: Product, quantity: Quantity):
         self.product: Product = product
         self.qty: Quantity = quantity
-        self.bom: BoM = BoM({p: qty * self.qty for p, qty in self.product.bom.product_quantities.items()}) if self.product.bom else {}
+        self.bom: BoM = BoM(
+            {p: qty * self.qty for p, qty in self.product.bom.product_quantities.items()}) if self.product.bom else {}
 
     def get_final_bom(self) -> BoM:
         return self.product.get_final_bom() * self.qty
+
+    def _compatibility_check(self, other: "ProductInstance | Quantity | float | int") -> bool:
+        """Check if an object is compatible with the Quantity object."""
+        if isinstance(other, ProductInstance):
+            if other.product != self.product:
+                err_msg = f"Units {self.product.name} and {other.product.name} are not compatible"
+                raise ValueError(err_msg)
+        elif not isinstance(other, float | int | Quantity):
+            err_msg = (
+                f"Quantity is not compatible with {other.__class__.__name__}, only with float, int or Quantity objects."
+            )
+            return TypeError(err_msg)
+        return True
+
+    def __eq__(self, other: "ProductInstance") -> bool:
+        if isinstance(other, Quantity):
+            return self.qty == other.qty and self.product == other.product
+        return False
+
+    def __add__(self, other: "ProductInstance | Quantity | float | int") -> "ProductInstance":
+        if self._compatibility_check(other):
+            if isinstance(other, ProductInstance):
+                return ProductInstance(self.product, self.qty + other.qty)
+            if isinstance(other, Quantity):
+                return ProductInstance(self.product, self.qty + other.value)
+            if isinstance(other, float | int):
+                return ProductInstance(self.product, self.qty + other)
+        return None
+
+    def __radd__(self, other: "ProductInstance | Quantity | float | int") -> "ProductInstance":
+        if (self._compatibility_check(other)
+                and (
+                        other == 0 or (isinstance(other, Quantity) and other.value == 0)
+                        or
+                        (isinstance(other, ProductInstance) and other.qty == 0)
+                )
+        ):
+            return self
+        return self.__add__(other)
+
+    def __sub__(self, other: "ProductInstance | Quantity | float | int") -> "ProductInstance":
+        if self._compatibility_check(other):
+            if isinstance(other, Quantity):
+                return ProductInstance(self.product, self.qty - other.value)
+            if isinstance(other, ProductInstance):
+                return ProductInstance(self.product, self.qty - other.qty)
+            if isinstance(other, float | int):
+                return ProductInstance(self.product, self.qty - other)
+        return None
+
+    def __mul__(self, other: "ProductInstance | Quantity | float | int") -> "ProductInstance":
+        if self._compatibility_check(other):
+            if isinstance(other, ProductInstance):
+                return ProductInstance(self.product, self.qty * other.qty)
+            if isinstance(other, Quantity):
+                return ProductInstance(self.product, self.qty * other.value)
+            if isinstance(other, float | int):
+                return ProductInstance(self.product, self.qty * other)
+        return None
+
+    def __gt__(self, other: "ProductInstance | Quantity | float | int") -> bool:
+        if self._compatibility_check(other):
+            if isinstance(other, Quantity):
+                return self.qty > other
+            if isinstance(other, float | int):
+                return self.qty > other
+            if isinstance(other, ProductInstance):
+                return self.qty > other.qty
+        return None
 
     def __str__(self):
         return f"{self.qty} of {self.product.name}"
@@ -171,7 +240,7 @@ class ProductInstance:
 class ChemicalCompound(Product):
     """A chemical compound with a name, sentier.dev ProductIRI, and chemical formula."""
 
-    def __init__(self, name: str, iri: URIRef, reference_quantity:Quantity, formula: str):
+    def __init__(self, name: str, iri: URIRef, reference_quantity: Quantity, formula: str):
         super().__init__(name, iri, reference_quantity, bom=None)
         self.__chemical_formula: Substance = Substance.from_formula(formula)
         self.molar_mass = self.__chemical_formula.mass

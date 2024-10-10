@@ -65,7 +65,7 @@ class RecyclingProcess(Process):
         for (product_influencing, product_influenced), ratio in self.ref_input_to_input_relation.items():
             if product_influencing in final_bom:
                 if product_influenced not in updated_in_flow_value:
-                    updated_in_flow_value[product_influenced] = 0
+                    updated_in_flow_value[product_influenced] = ProductInstance(product_influenced,Quantity(0,product_influenced.reference_quantity.unit))
                 updated_in_flow_value[product_influenced] += ratio * final_bom.product_quantities[product_influencing]
         for product_influenced in updated_in_flow_value:
             product_influenced.quantity = Quantity(updated_in_flow_value[product_influenced],
@@ -75,16 +75,18 @@ class RecyclingProcess(Process):
         for (product_influencing, product_influenced), ratio in self.ref_input_to_output_relation.items():
             if product_influencing in final_bom:
                 if product_influenced not in updated_out_flow_value:
-                    updated_out_flow_value[product_influenced] = 0
-                updated_out_flow_value[product_influenced] += ratio * final_bom.product_quantities[product_influencing]
+                    updated_out_flow_value[product_influenced] = ProductInstance(product_influenced,Quantity(0,product_influenced.reference_quantity.unit))
+                updated_out_flow_value[product_influenced] +=  final_bom.product_quantities[product_influencing] * ratio
 
 
         for product_influenced in updated_out_flow_value:
             product_influenced.quantity = Quantity(updated_out_flow_value[product_influenced],
                                                    product_influenced.reference_quantity.unit)
 
-        print(BoM(updated_out_flow_value))
-        print(BoM(updated_in_flow_value))
+        # cheat
+        self.final_output_bom = updated_out_flow_value
+        self.final_input_bom = updated_in_flow_value
+
 
     def ensure_recycling_coherency(self):
         input_dfsdf = ""
