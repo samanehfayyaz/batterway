@@ -68,7 +68,7 @@ class Inventory:
                 lci_id=lci_id,
                 direction=direction,
                 relative_lci={
-                    (row["influencer"], row["influencer"]): row["qty"]
+                    (row["influencer"], row["influenced"]): row["qty"]
                     for _, row in df_lci_product.iterrows()
                 }
             )
