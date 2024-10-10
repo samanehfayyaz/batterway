@@ -36,6 +36,8 @@ class RecyclingProcess(Process):
         super().__init__(name, inputs_products, output_products)
         self.ref_input_to_output_relation: dict[tuple[Product, Product], float] = []
         self.ref_input_to_input_relation: dict[tuple[Product, Product], float] = []
+        self.computed_output_bom: BoM|None = None
+        self.computed_input_bom: BoM|None = None
 
     def set_influencing_input_process(self, input_to_input_relation: dict[tuple[Product, Product], float]):
         self.ref_input_to_input_relation = input_to_input_relation
@@ -77,9 +79,13 @@ class RecyclingProcess(Process):
             product_influenced.quantity = Quantity(updated_out_flow_value[product_influenced],
                                                    product_influenced.reference_quantity.unit)
 
-        # cheat
-        self.final_output_bom = updated_out_flow_value
-        self.final_input_bom = updated_in_flow_value
+        self.computed_output_bom = BoM(updated_out_flow_value)
+        self.computed_input_bom = BoM(updated_in_flow_value)
+
+    def update_fixed_input_lci(self,product:str,qty:float):
+        self.computed_output_bom = None
+        self.computed_input_bom = None
+        self.inputs.set_quantity_of_product(product,qty)
 
     def ensure_recycling_coherency(self):
         input_dfsdf = ""

@@ -122,6 +122,8 @@ class BoM:
         self.products = [p.product for p in product_quantities.values()]
         self.quantity_total = sum(x.qty.value for x in product_quantities.values())
 
+    def set_quantity_of_product(self,product_name,qty):
+        self.product_quantities[product_name].qty = qty
     def __str__(self) -> str:
         return "\n".join([f"{p.name}: {q}" for p, q in self.product_quantities.items()])
 
