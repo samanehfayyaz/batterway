@@ -1,4 +1,4 @@
-from batterway.datamodel.generic.product import Process
+from batterway.datamodel.generic.process import Process
 from batterway.datamodel.generic.product import ChemicalCompound, Flow, Quantity
 
 
