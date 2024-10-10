@@ -49,17 +49,17 @@ class Inventory:
 
         # Merge chemical and product as they should be unique by Id
         all_products = {p.name: p for p in pydt_products_parsed + pydt_chemical_compounds}
-        all_boms = dict()
-        for BoMId, df_bom_product in Inventory.__read_csv(file_name.joinpath("BoM.csv")).groupby("BoMId"):
-            all_boms[BoMId] = BoMPdt(
-                BoMId=BoMId,
-                product_quantities={
-                    all_products[row["Material"]].name: QuantityPdt(
-                        quantity=row["Quantity"], unit=all_unit[row["Unit"]]
-                    )
-                    for _, row in df_bom_product.iterrows()
-                },
-            )
+        # all_boms = dict()
+        # for BoMId, df_bom_product in Inventory.__read_csv(file_name.joinpath("BoM.csv")).groupby("BoMId"):
+        #     all_boms[BoMId] = BoMPdt(
+        #         BoMId=BoMId,
+        #         product_quantities={
+        #             all_products[row["Material"]].name: QuantityPdt(
+        #                 quantity=row["Quantity"], unit=all_unit[row["Unit"]]
+        #             )
+        #             for _, row in df_bom_product.iterrows()
+        #         },
+        #     )
 
         all_process_lcis = dict()
 
@@ -68,7 +68,7 @@ class Inventory:
                 lci_id=lci_id,
                 direction=direction,
                 relative_lci={
-                    (all_products[row["influencer"]].name, all_products[row["influencer"]].name): row["qty"]
+                    (row["influencer"], row["influencer"]): row["qty"]
                     for _, row in df_lci_product.iterrows()
                 }
             )
@@ -95,22 +95,22 @@ class Inventory:
             for x in all_products.items()
         )
         real_product_dict = {p.name: p for p in real_products}
-        real_BoMs = {
-            v[1].BoMId: BoM(
-                {real_product_dict[p]: p_qty.to_quantity(real_units) for p, p_qty in v[1].product_quantities.items()}
-            )
-            for v in all_boms.items()
-        }
+        # real_BoMs = {
+        #     v[1].BoMId: BoM(
+        #         {real_product_dict[p]: p_qty.to_quantity(real_units) for p, p_qty in v[1].product_quantities.items()}
+        #     )
+        #     for v in all_boms.items()
+        # }
 
-        for p in all_products:
-            if all_products[p].BoM_id:
-                real_product_dict[p].bom = real_BoMs[all_products[p].BoM_id]
+        # for p in all_products:
+        #     if all_products[p].BoM_id:
+        #         real_product_dict[p].bom = real_BoMs[all_products[p].BoM_id]
 
         for p in real_product_dict.values():
             print(p)
         
 
-        return cls(real_units, real_product_dict, all_product_lcis)
+        return cls(real_units, real_product_dict, all_process_lcis)
     
 
     @staticmethod
