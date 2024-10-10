@@ -23,7 +23,7 @@ class BoMPdt(pydantic.BaseModel):
     BoMId: str|None
     product_quantities : dict[str, QuantityPdt]
 class ChemicalCompoundPdt(ProductPdt):
-    chemical_formulae: str
+    chemical_formula: str
     reference_quantity:QuantityPdt
 class ProductInstance(pydantic.BaseModel):
     product: ProductPdt

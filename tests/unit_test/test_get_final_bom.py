@@ -1,5 +1,5 @@
 import pytest
-from batterway.datamodel.generic.Product import Product, Unit, Quantity, ProductInstance, BoM
+from batterway.datamodel.generic.product import Product, Unit, Quantity, ProductInstance, BoM
 
 # Define the Unit for kg
 kg = Unit("kg", "kg_IRI")

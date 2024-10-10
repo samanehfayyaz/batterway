@@ -1,5 +1,5 @@
 from codecs import BOM
-from batterway.datamodel.generic.Product import Product, ProductArchetype, Quantity
+from batterway.datamodel.generic.product import Product, ProductArchetype, Quantity
 
 
 

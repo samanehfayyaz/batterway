@@ -1,5 +1,5 @@
-from batterway.datamodel.Generic.Process import Process
-from batterway.datamodel.Generic.Product import ChemicalCompound, Flow, Quantity
+from batterway.datamodel.generic.product import Process
+from batterway.datamodel.generic.product import ChemicalCompound, Flow, Quantity
 
 
 def test_mass_per_element_process_level():

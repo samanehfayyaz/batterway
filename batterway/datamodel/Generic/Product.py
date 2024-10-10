@@ -1,75 +1,91 @@
+"""Generic data model classes for products, quantities, and bills of materials."""
+
 from collections import Counter
-from typing import Optional
 
 from chempy import Substance
 from chempy.util.periodic import relative_atomic_masses, symbols
-from scipy.fftpack import ifft2
+from rdflib import URIRef
 from sentier_data_tools.iri import ProductIRI, UnitIRI
-from sympy import false
 
 
 class Unit:
-    def __init__(self, name, iri: str):
+    """A unit of measurement with sentier.dev URI."""
+
+    def __init__(self, name: str, iri: str):
         self.name = name
         self.iri = UnitIRI(iri)
 
 
 class Quantity:
-    def __init__(self, value, unit: Unit):
+    """A quantity with a unit of measurement."""
+
+    def __init__(self, value: float, unit: Unit):
         self.value: float = value
         self.unit: Unit = unit
 
-    def __check_compat_operation(self, other):
+    def _compatibility_check(self, other: "Quantity | float | int") -> bool:
+        """Check if an object is compatible with the Quantity object."""
         if isinstance(other, Quantity):
             if other.unit != self.unit:
-                raise ValueError("Quantity have to be of the same unit")
+                err_msg = f"Units {self.unit.name} and {other.unit.name} are not compatible"
+                raise ValueError(err_msg)
         elif not isinstance(other, float | int):
-            raise ValueError("Quantity has to be a float, int or Quantity object")
+            err_msg = (
+                f"Quantity is not compatible with {other.__class__.__name__}, only with float, int or Quantity objects."
+            )
+            return TypeError(err_msg)
+        return True
 
-    def __eq__(self, other):
+    def __eq__(self, other: "Quantity") -> bool:
         if isinstance(other, Quantity):
             return self.value == other.value and self.unit == other.unit
         return False
 
-    def __add__(self, other):
-        self.__check_compat_operation(other)
-        if isinstance(other, Quantity):
-            return Quantity(self.value + other.value, self.unit)
-        if isinstance(other, float | int):
-            return Quantity(self.value + other, self.unit)
+    def __add__(self, other: "Quantity | float | int") -> "Quantity":
+        if self._compatibility_check(other):
+            if isinstance(other, Quantity):
+                return Quantity(self.value + other.value, self.unit)
+            if isinstance(other, float | int):
+                return Quantity(self.value + other, self.unit)
+        return None
 
-    def __radd__(self, other):
-        if other == 0:
+    def __radd__(self, other: "Quantity | float | int") -> "Quantity":
+        if self._compatibility_check(other) and (other == 0 or (isinstance(other, Quantity) and other.value == 0)):
             return self
         return self.__add__(other)
 
-    def __sub__(self, other):
-        self.__check_compat_operation(other)
-        if isinstance(other, Quantity):
-            return Quantity(self.value - other.value, self.unit)
-        if isinstance(other, float | int):
-            return Quantity(self.value - other, self.unit)
+    def __sub__(self, other: "Quantity | float | int") -> "Quantity":
+        if self._compatibility_check(other):
+            if isinstance(other, Quantity):
+                return Quantity(self.value - other.value, self.unit)
+            if isinstance(other, float | int):
+                return Quantity(self.value - other, self.unit)
+        return None
 
-    def __mul__(self, other):
-        self.__check_compat_operation(other)
-        if isinstance(other, Quantity):
-            return Quantity(self.value * other.value, self.unit)
-        if isinstance(other, float | int):
-            return Quantity(self.value * other, self.unit)
+    def __mul__(self, other: "Quantity | float | int") -> "Quantity":
+        if self._compatibility_check(other):
+            if isinstance(other, Quantity):
+                return Quantity(self.value * other.value, self.unit)
+            if isinstance(other, float | int):
+                return Quantity(self.value * other, self.unit)
+        return None
 
-    def __gt__(self, other):
-        self.__check_compat_operation(other)
-        if isinstance(other, Quantity):
-            return self.value > other.value
-        if isinstance(other, float | int):
-            return self.value > other
+    def __gt__(self, other: "Quantity | float | int") -> bool:
+        if self._compatibility_check(other):
+            if isinstance(other, Quantity):
+                return self.value > other.value
+            if isinstance(other, float | int):
+                return self.value > other
+        return None
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{round(self.value, 5)} {self.unit.name}"
 
 
 class Product:
-    def __init__(self, name: str, iri: str, reference_quantity: Quantity, bom: Optional["BoM"] = None):
+    """A product with a name, sentier.dev ProductIRI, reference quantity and a BoM."""
+
+    def __init__(self, name: str, iri: str, reference_quantity: Quantity, bom: "BoM | None" = None):
         self.name: str = name
         self.iri: ProductIRI = ProductIRI(iri)
         self.reference_quantity: Quantity = reference_quantity
@@ -77,7 +93,8 @@ class Product:
 
         # Check that the sum of quantities in the BoM is equal to the reference quantity
         if bom is not None and self.bom.quantity_total != reference_quantity:
-            raise ValueError("The sum of quantities in the BoM is not equal to the reference quantity")
+            err_msg = f"Sum of quantities in BoM ({self.bom.quantity_total}) is not equal to reference quantity ({reference_quantity})"
+            raise ValueError(err_msg)
 
     def __str__(self):
         bom_str = str(self.bom) if self.bom else ""
@@ -96,6 +113,8 @@ class Product:
 
 
 class BoM:
+    """A Bill of Materials with a dictionary of products and quantities."""
+
     def __init__(self, product_quantities: dict[Product, Quantity]):
         self.product_quantities = product_quantities
         self.products = product_quantities.keys()
@@ -104,18 +123,24 @@ class BoM:
     def __str__(self) -> str:
         return "\n".join([f"{p.name}: {q}" for p, q in self.product_quantities.items()])
 
-    def __add__(self, other):
+    def __add__(self, other: "BoM") -> "BoM":
         """Add two BoM objects together and return a new BoM."""
         if not isinstance(other, BoM):
-            return TypeError("Can only add BoM objects together")
+            err_msg = f"Can only add BoM objects together, not {other.__class__.__name__}"
+            raise TypeError(err_msg)
+            return None
 
         combined_quantities = dict(Counter(self.product_quantities) + Counter(other.product_quantities))
         return BoM(combined_quantities)
 
-    def __mul__(self, other):
+    def __mul__(self, other: "Quantity | float | int") -> "BoM":
         """Multiply a BoM by a Quantity object and return a new BoM."""
         if not isinstance(other, Quantity | float | int):
-            return TypeError("Can only multiply BoM objects by Quantity objects")
+            err_msg = (
+                f"Can only multiply BoM objects with int, float, or Quantity objects, not {other.__class__.__name__}"
+            )
+            raise TypeError(err_msg)
+            return None
 
         multiplied_quantities = {p: q * other for p, q in self.product_quantities.items()}
         return BoM(multiplied_quantities)
@@ -123,6 +148,8 @@ class BoM:
 
 
 class ProductInstance:
+    """An instance of a product with a specific quantity."""
+
     def __init__(self, product: Product, quantity: Quantity):
         self.product: Product = product
         self.qty: Quantity = quantity
@@ -136,21 +163,25 @@ class ProductInstance:
 
 
 class ChemicalCompound(Product):
-    def __init__(self, name, iri,reference_quantity:Quantity, formulae:str):
-        super().__init__(name, iri,reference_quantity,bom=None)
-        self.__chemical_formulae: Substance = Substance.from_formula(formulae)
-        self.molar_mass = self.__chemical_formulae.mass
+    """A chemical compound with a name, sentier.dev ProductIRI, and chemical formula."""
 
-    def _get_mass_per_element(self):
+    def __init__(self, name: str, iri: URIRef, reference_quantity:Quantity, formula: str):
+        super().__init__(name, iri, reference_quantity, bom=None)
+        self.__chemical_formula: Substance = Substance.from_formula(formula)
+        self.molar_mass = self.__chemical_formula.mass
+
+    def _get_mass_per_element(self) -> dict[str, float]:
+        """Get the atomic mass of each element in the chemical formula."""
         return {
             symbols[ele - 1]: (relative_atomic_masses[ele - 1] * qty)
-            for ele, qty in self.__chemical_formulae.composition.items()
+            for ele, qty in self.__chemical_formula.composition.items()
         }
 
-    def get_molar_share(self):
-        mass_per_elemen = self._get_mass_per_element()
-        total_mass = sum(mass_per_elemen.values())
-        return {elem: mass / total_mass for elem, mass in mass_per_elemen.items()}
+    def get_molar_share(self) -> dict[str, float]:
+        """Get the relative mass of each element in the chemical formula."""
+        mass_per_element = self._get_mass_per_element()
+        total_mass = sum(mass_per_element.values())
+        return {elem: mass / total_mass for elem, mass in mass_per_element.items()}
 
 
 class Flow:
@@ -160,21 +191,25 @@ class Flow:
         self.product: Product = product
         self.quantity: Quantity = quantity
 
-    def __is_op_compact(self, other):
+    def _compatibility_check(self, other: "Flow | float | int") -> bool:
+        """Check if an object is compatible with the Flow object."""
         if isinstance(other, Flow):
             if other.product != self.product:
-                raise ValueError("Flow have to be of the same product")
+                err_msg = f"Products {self.product.name} and {other.product.name} are not compatible"
+                raise ValueError(err_msg)
         elif not isinstance(other, float | int):
-            raise ValueError("Flow can be update only with float|int")
+            err_msg = f"Flow can be updated only with float, int or Flow objects, not {other.__class__.__name__}"
+            raise TypeError(err_msg)
+        return True
 
-    def __add__(self, other):
-        self.__is_op_compact(other)
+    def __add__(self, other: "Flow | float | int") -> "Flow":
+        self._compatibility_check(other)
         if isinstance(other, Flow):
             return Flow(self.product, self.quantity + other.quantity)
         return Flow(self.product, self.quantity + other)
 
-    def __mult__(self, other):
-        self.__is_op_compact(other)
+    def __mul__(self, other: "Flow | float | int") -> "Flow":
+        self._compatibility_check(other)
         if isinstance(other, Flow):
             return Flow(self.product, self.quantity * other.quantity)
         return Flow(self.product, self.quantity * other)
