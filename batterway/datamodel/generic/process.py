@@ -80,8 +80,6 @@ class RecyclingProcess(Process):
         # cheat
         self.final_output_bom = updated_out_flow_value
         self.final_input_bom = updated_in_flow_value
-        print(self.final_input_bom.items())
-        print(self.final_output_bom.items())
 
     def ensure_recycling_coherency(self):
         input_dfsdf = ""

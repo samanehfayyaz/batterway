@@ -1,10 +1,10 @@
 from pathlib import Path
 
-from batterway.datamodel.parser.Inventory import InventoryParser
+from batterway.datamodel.parser.Inventory import Inventory
 
 
 def test_parser():
-    InventoryParser.create_from_file(
+    Inventory.create_from_file(
         Path("C:/Users/the-m/PycharmProjects/batterway/data/data_for_test/")
     )
 
