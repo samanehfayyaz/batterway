@@ -11,6 +11,7 @@ Cable;http://data.europa.eu/xsp/cn2024/740800000080;1;kg;
 Calcium oxide (CaO);http://data.europa.eu/xsp/cn2024/282590110010;1;kg;
 Calcium sulfate;https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:31346;1;kg;
 Calcium;http://data.europa.eu/xsp/cn2024/280512000080;1;kg;
+Cells and primary batteries;http://data.europa.eu/xsp/cn2024/850600000080;1;kg;
 Cobalt sulfate (CoSO4);https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:53470;1;kg;
 Cobalt;http://data.europa.eu/xsp/cn2024/810520000080;1;kg;
 Copper foil and connectors;http://data.europa.eu/xsp/cn2024/741000000080;1;kg;
@@ -38,6 +39,7 @@ Lithium;http://data.europa.eu/xsp/cn2024/850650000080;1;kg;
 Manganese sulfate (MnSO4);https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:86360;1;kg;
 Manganese;http://data.europa.eu/xsp/cn2024/811100000080;1;kg;
 MnSO4 * 1 H2O;https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:86364;1;kg;
+Module;https://en.wikipedia.org/wiki/Battery_pack;1;kg;Module
 Natural gas (CH4);http://data.europa.eu/xsp/cn2024/271111000080;1;kg;
 Nickel;http://data.europa.eu/xsp/cn2024/750500000080;1;kg;
 Nickel;http://data.europa.eu/xsp/cn2024/750210000080;1;kg;
@@ -57,7 +59,3 @@ Steel;http://data.europa.eu/xsp/cn2024/850490130080;1;kg;
 Sulfuric acid (95%);http://data.europa.eu/xsp/cn2024/280700000080;1;kg;
 Wastewater;https://vocab.sentier.dev/flows/envo/ENVO_00002001;1;kg;
 Water (Input);http://data.europa.eu/xsp/cn2024/220100000080;1;kg;
-
-Module;EMPY;1;kg;Module
-Cell;https://en.wikipedia.org/wiki/Battery_pack;1;kg;Cell
-
