@@ -80,7 +80,8 @@ class Product:
             raise ValueError("The sum of quantities in the BoM is not equal to the reference quantity")
 
     def __str__(self):
-        return f"{self.reference_quantity} of {self.name}"
+        bom_str = str(self.bom) if self.bom else ""
+        return f"{self.reference_quantity} of {self.name} " + bom_str
 
     def get_final_bom(self) -> "BoM":
         if self.bom is None:
@@ -120,6 +121,7 @@ class BoM:
         return BoM(multiplied_quantities)
 
 
+
 class ProductInstance:
     def __init__(self, product: Product, quantity: Quantity):
         self.product: Product = product
@@ -134,8 +136,8 @@ class ProductInstance:
 
 
 class ChemicalCompound(Product):
-    def __init__(self, name, iri, formulae):
-        super().__init__(name, iri)
+    def __init__(self, name, iri,reference_quantity:Quantity, formulae:str):
+        super().__init__(name, iri,reference_quantity,bom=None)
         self.__chemical_formulae: Substance = Substance.from_formula(formulae)
         self.molar_mass = self.__chemical_formulae.mass
 

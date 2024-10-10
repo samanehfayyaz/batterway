@@ -1,6 +1,6 @@
 from typing import List, Tuple
 
-from batterway.datamodel.generic.Product import Flow, ChemicalCompound, Product, Quantity
+from batterway.datamodel.Generic.Product import Flow, ChemicalCompound, Product, Quantity
 
 from collections import Counter
 

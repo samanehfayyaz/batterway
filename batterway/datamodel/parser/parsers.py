@@ -1,11 +1,17 @@
 import pydantic
 
+from batterway.datamodel.Generic.Product import Quantity, Unit
+
+
 class UnitPdt(pydantic.BaseModel):
     name: str
     iri:str
 class QuantityPdt(pydantic.BaseModel):
     quantity: float|int
     unit:UnitPdt
+
+    def to_quantity(self,unit_possible:dict[str,Unit]):
+        return Quantity(self.quantity, unit_possible[self.unit.name])
 
 class ProductPdt(pydantic.BaseModel):
     name: str
