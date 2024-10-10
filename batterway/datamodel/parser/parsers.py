@@ -40,10 +40,7 @@ class ChemicalCompoundPdt(ProductPdt):
 class ProcessLCIPdt(BaseModel):
     lci_id: str
     direction: str
-    influencer: str
-    influenced: str
-    ratio: QuantityPdt
-
+    relative_lci: dict[tuple[ProductPdt, ProductPdt], float]
 
 class RecyclingProcess(BaseModel):
     name: str

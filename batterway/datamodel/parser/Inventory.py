@@ -7,9 +7,10 @@ from batterway.datamodel.parser.parsers import BoMPdt, ChemicalCompoundPdt, Prod
 
 
 class Inventory:
-    def __init__(self, units: dict[str, Unit] | None, products: list[str:Product] | None):
+    def __init__(self, units: dict[str, Unit] | None, products: list[str:Product] | None, all_process_lcis):
         self.units = units
         self.products = products
+        self.all_process_lcis = all_process_lcis
 
     @classmethod
     def create_from_file(cls, file_name: Path):
@@ -59,22 +60,19 @@ class Inventory:
                     for _, row in df_bom_product.iterrows()
                 },
             )
-        #TODO fix this product lci stuff below
-        all_product_lcis = dict()
-        
-        for lci_id, df_lci_product in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).groupby("lci_id"):
-            all_product_lcis[lci_id] = ProcessLCIPdt(
+
+        all_process_lcis = dict()
+
+        for (lci_id,direction), df_lci_product in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).groupby(["lci_id", "direction"]):
+            all_process_lcis[lci_id] = ProcessLCIPdt(
                 lci_id=lci_id,
-                direction=df_lci_product["direction"].iloc[0],
-                reference_product=df_lci_product["reference_product"].iloc[0],
-                product_quantities={
-                    all_products[row["influenced"]].name: QuantityPdt(
-                        quantity=row["qty"], unit=all_unit[row["unit"]]
-                    )
+                direction=direction,
+                relative_lci={
+                    (all_products[row["influencer"]].name, all_products[row["influencer"]].name): row["qty"]
                     for _, row in df_lci_product.iterrows()
                 }
             )
-        
+
         # Now we have to create the real object
         # And associate the BoM to their respective product
         real_units = {
@@ -112,7 +110,7 @@ class Inventory:
             print(p)
         
 
-        return cls(real_units, real_product_dict)
+        return cls(real_units, real_product_dict, all_product_lcis)
     
 
     @staticmethod
