@@ -1,6 +1,5 @@
 from pydantic import AnyUrl, BaseModel
 
-
 from batterway.datamodel.generic.product import Quantity, Unit
 
 
@@ -37,12 +36,13 @@ class ChemicalCompoundPdt(ProductPdt):
 
 ### RecyclingProcess parsers ###
 
+
 class ProcessLCIPdt(BaseModel):
     lci_id: str
     direction: str
     relative_lci: list[tuple[str, str, float]]
 
+
 class RecyclingProcess(BaseModel):
     name: str
     lci_input: ProcessLCIPdt
-

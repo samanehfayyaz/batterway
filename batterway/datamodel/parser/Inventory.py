@@ -79,7 +79,7 @@ class Inventory:
         for (lci_id, direction), df_lci_product in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).groupby(
             ["lci_id", "direction"]
         ):
-            all_process_lcis[lci_id] = ProcessLCIPdt(
+            all_process_lcis[(lci_id, direction)] = ProcessLCIPdt(
                 lci_id=lci_id,
                 direction=direction,
                 relative_lci=[
@@ -127,8 +127,8 @@ class Inventory:
 
         real_process_lcis = {
             l[0]: ProcessLCI(
-                id=l[1],
-                direction=l[1].direction,
+                id=l[0][0],
+                direction=l[0][1],
                 relative_lci={(real_product_dict[t[0]], real_product_dict[t[1]]): t[2] for t in l[1].relative_lci},
             )
             for l in all_process_lcis.items()

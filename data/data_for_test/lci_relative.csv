@@ -8,7 +8,7 @@ route1;input;Battery_NMC622;Iron;0.000115192;kg
 route1;input;Battery_NMC622;Hydrogen peroxide;-92160770.35;kg
 route1;input;Battery_NMC622;Sodium hydroxide;0.001099712;kg
 route1;input;Battery_NMC622;Kerosene;-3529.726474;kg
-route1;input;Battery_NMC622;Cyanex 272 ;-1588.376913;kg
+route1;input;Battery_NMC622;Cyanex 272;-1588.376913;kg
 route1;input;Battery_NMC622;D2EHPA;2.94E-07;kg
 route1;input;Battery_NMC622;Sodium carbonate;0.000209153;kg
 route1;input;Battery_NMC622;Natural gas (CH4);0.128452843;kg
@@ -43,7 +43,7 @@ route1;input;Nickel;Iron;0;kg
 route1;input;Nickel;Hydrogen peroxide;658730439.3;kg
 route1;input;Nickel;Sodium hydroxide;0.02764943;kg
 route1;input;Nickel;Kerosene;25229.15403;kg
-route1;input;Nickel;Cyanex 272 ;11353.11932;kg
+route1;input;Nickel;Cyanex 272;11353.11932;kg
 route1;input;Nickel;D2EHPA;-1.47E-06;kg
 route1;input;Nickel;Sodium carbonate;0;kg
 route1;input;Nickel;Natural gas (CH4);0;kg
@@ -78,7 +78,7 @@ route1;input;Cobalt;Iron;0;kg
 route1;input;Cobalt;Hydrogen peroxide;658730439.3;kg
 route1;input;Cobalt;Sodium hydroxide;0.027625891;kg
 route1;input;Cobalt;Kerosene;25229.15403;kg
-route1;input;Cobalt;Cyanex 272 ;11353.11932;kg
+route1;input;Cobalt;Cyanex 272;11353.11932;kg
 route1;input;Cobalt;D2EHPA;-1.47E-06;kg
 route1;input;Cobalt;Sodium carbonate;0;kg
 route1;input;Cobalt;Natural gas (CH4);0;kg
@@ -113,7 +113,7 @@ route1;input;Manganese;Iron;0;kg
 route1;input;Manganese;Hydrogen peroxide;658730439.3;kg
 route1;input;Manganese;Sodium hydroxide;0.028043937;kg
 route1;input;Manganese;Kerosene;25229.15403;kg
-route1;input;Manganese;Cyanex 272 ;11353.11931;kg
+route1;input;Manganese;Cyanex 272;11353.11931;kg
 route1;input;Manganese;D2EHPA;-1.23E-06;kg
 route1;input;Manganese;Sodium carbonate;0;kg
 route1;input;Manganese;Natural gas (CH4);0;kg
