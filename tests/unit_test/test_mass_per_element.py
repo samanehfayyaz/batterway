@@ -1,5 +1,5 @@
 from batterway.datamodel.generic.process import Process
-from batterway.datamodel.generic.product import ChemicalCompound, Flow, Quantity
+from batterway.datamodel.generic.product import ChemicalCompound, Quantity, ProductInstance
 
 
 def test_mass_per_element_process_level():
@@ -8,10 +8,10 @@ def test_mass_per_element_process_level():
     process = Process(
         "NMC622Cell",
         [
-            Flow(cathode,Quantity(1.6,"kg")),
-            Flow(anode,Quantity(1.6,"kg")),
+            ProductInstance(cathode,Quantity(1.6,"kg")),
+            ProductInstance(anode,Quantity(1.6,"kg")),
         ],
         []
     )
-    process.get_total_mass_per_element()
+    process.get_output_total_mass_per_element()
 test_mass_per_element_process_level()

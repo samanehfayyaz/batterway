@@ -1,15 +1,15 @@
 from typing import List, Tuple
 
-from batterway.datamodel.generic.product import Flow, ChemicalCompound, Product, Quantity
+from batterway.datamodel.generic.product import ChemicalCompound, Product, Quantity, ProductInstance
 
 from collections import Counter
 
 
 class Process:
-    def __init__(self, name, inputs_flows: List[Flow], output_flows: List[Flow]):
+    def __init__(self, name, inputs_flows: List[ProductInstance], output_flows: List[ProductInstance]):
         self.name = name
-        self.inputs: List[Flow] = inputs_flows
-        self.outputs: List[Flow] = output_flows
+        self.inputs: List[ProductInstance] = inputs_flows
+        self.outputs: List[ProductInstance] = output_flows
 
     def get_input_total_mass_per_element(self):
         return self.__get_total_mass_per_element(self.inputs)
@@ -17,7 +17,7 @@ class Process:
     def get_output_total_mass_per_element(self):
         return self.__get_total_mass_per_element(self.outputs)
     @staticmethod
-    def __get_total_mass_per_element(flows:List[Flow]):
+    def __get_total_mass_per_element(flows:List[ProductInstance]):
         list_of_mass_elem = [
             Counter(input.product.get_total_mass_per_element())
             for input in flows if isinstance(input.product, ChemicalCompound)
@@ -30,15 +30,18 @@ class Process:
         return f"{self.name}"
 
 class RecyclingProcess(Process):
-    def __init__(self, inputs_flows: List[Flow], output_flows: List[Flow], name, ref_input:Flow):
+    def __init__(self, inputs_flows: List[ProductInstance], output_flows: List[ProductInstance], name, ref_input:ProductInstance):
         super().__init__(name, inputs_flows, output_flows)
         self.ref_input_flow = ref_input
-        self.ref_input_to_output_relation:dict[tuple[Product, Flow], float] = []
-        self.ref_input_to_input_relation:dict[tuple[Product, Flow], float] = []
+        self.ref_input_to_output_relation:dict[tuple[Product, Product], float] = []
+        self.ref_input_to_input_relation:dict[tuple[Product, Product], float] = []
 
     def __ensure_coherency(self):
         if any([i_rel[1] not in self.outputs for i_rel in self.ref_input_to_output_relation]):raise ValueError("Influenced output flow not presents")
         if any([i_rel[1] not in self.inputs for i_rel in self.ref_input_to_input_relation]):raise ValueError("Influenced input flow not presents")
+        if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_input_relation]):raise ValueError("Input influencing product should be in the input")
+        if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_output_relation]): raise ValueError("Output influencing product should be in the inputs")
+
     def update_output_flow(self):
         final_bom = self.ref_input_flow.get_final_bom()
         updated_out_flow_value = dict()
@@ -47,7 +50,7 @@ class RecyclingProcess(Process):
             if product in final_bom:
                 if flow not in updated_out_flow_value:
                     updated_out_flow_value[flow]= 0
-                updated_out_flow_value[flow]+= ratio*final_bom[product]
+                updated_out_flow_value[flow]+= ratio* final_bom[product]
         for (product,flow),ratio in self.ref_input_to_output_relation.items():
             if product in final_bom:
                 if flow not in updated_in_flow_value:

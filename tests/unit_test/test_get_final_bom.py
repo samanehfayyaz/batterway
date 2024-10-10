@@ -1,33 +1,25 @@
 import pytest
 
-from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity, Unit
-
-# Define the Unit for kg
-kg = Unit("kg", "kg_IRI")
-
-# Define raw materials as Products
-nickel = Product("nickel", "nickel.com", Quantity(1.0, kg))
-manganese = Product("manganese", "manganese.com", Quantity(1.0, kg))
-cobalt = Product("cobalt", "cobalt.com", Quantity(1.0, kg))
-steel = Product("steel", "steel.com", Quantity(1.0, kg))
+from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity
+import tests.unit_test.utils_common as UC
 
 # Define the battery cell and battery
 cell_nmc_333 = Product(
     name="cell_type",
     iri="cell_type.com",
-    reference_quantity=Quantity(1.0, kg),
-    bom=BoM({nickel: Quantity(0.3, kg), manganese: Quantity(0.3, kg), cobalt: Quantity(0.4, kg)})
+    reference_quantity=Quantity(1.0, UC.kg),
+    bom=BoM({UC.nickel: Quantity(0.3, UC.kg), UC.manganese: Quantity(0.3, UC.kg), UC.cobalt: Quantity(0.4, UC.kg)})
 )
 
 battery_nmc_333 = Product(
     name="battery_type",
     iri="battery_type.com",
-    reference_quantity=Quantity(1.0, kg),
-    bom=BoM({cell_nmc_333: Quantity(0.8, kg), manganese: Quantity(0.1, kg), steel: Quantity(0.1, kg)})
+    reference_quantity=Quantity(1.0, UC.kg),
+    bom=BoM({cell_nmc_333: Quantity(0.8, UC.kg), UC.manganese: Quantity(0.1, UC.kg), UC.steel: Quantity(0.1, UC.kg)})
 )
 
 # Create a ProductInstance for testing
-battery_instance = ProductInstance(battery_nmc_333, Quantity(10.0, kg))
+battery_instance = ProductInstance(battery_nmc_333, Quantity(10.0, UC.kg))
 
 
 def test_product_bom() -> None:
@@ -36,10 +28,10 @@ def test_product_bom() -> None:
 
     # Expected BoM for the battery_nmc_333
     expected_bom = {
-        nickel: Quantity(0.24, kg),
-        manganese: Quantity(0.34, kg),
-        cobalt: Quantity(0.32, kg),
-        steel: Quantity(0.1, kg)
+        UC.nickel: Quantity(0.24, UC.kg),
+        UC.manganese: Quantity(0.34, UC.kg),
+        UC.cobalt: Quantity(0.32, UC.kg),
+        UC.steel: Quantity(0.1, UC.kg)
     }
 
     # Check if the BoM is correct
@@ -54,10 +46,10 @@ def test_product_instance_bom() -> None:
 
     # Expected BoM for the battery instance (multiplied by 10)
     expected_bom = {
-        nickel: Quantity(2.4, kg),
-        manganese: Quantity(3.4, kg),
-        cobalt: Quantity(3.2, kg),
-        steel: Quantity(1.0, kg)
+        UC.nickel: Quantity(2.4, UC.kg),
+        UC.manganese: Quantity(3.4, UC.kg),
+        UC.cobalt: Quantity(3.2, UC.kg),
+        UC.steel: Quantity(1.0, UC.kg)
     }
 
     # Check if the BoM is correct

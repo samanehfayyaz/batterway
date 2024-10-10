@@ -25,10 +25,3 @@ class BoMPdt(pydantic.BaseModel):
 class ChemicalCompoundPdt(ProductPdt):
     chemical_formula: str
     reference_quantity:QuantityPdt
-class ProductInstance(pydantic.BaseModel):
-    product: ProductPdt
-    quantity:QuantityPdt
-    BoM_id:BoMPdt
-class Flow(pydantic.BaseModel):
-    product: ProductPdt
-    quantity:QuantityPdt

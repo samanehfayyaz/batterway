@@ -182,34 +182,3 @@ class ChemicalCompound(Product):
         mass_per_element = self._get_mass_per_element()
         total_mass = sum(mass_per_element.values())
         return {elem: mass / total_mass for elem, mass in mass_per_element.items()}
-
-
-class Flow:
-    """Directional and quantified flow of a product."""
-
-    def __init__(self, product: Product, quantity: Quantity):
-        self.product: Product = product
-        self.quantity: Quantity = quantity
-
-    def _compatibility_check(self, other: "Flow | float | int") -> bool:
-        """Check if an object is compatible with the Flow object."""
-        if isinstance(other, Flow):
-            if other.product != self.product:
-                err_msg = f"Products {self.product.name} and {other.product.name} are not compatible"
-                raise ValueError(err_msg)
-        elif not isinstance(other, float | int):
-            err_msg = f"Flow can be updated only with float, int or Flow objects, not {other.__class__.__name__}"
-            raise TypeError(err_msg)
-        return True
-
-    def __add__(self, other: "Flow | float | int") -> "Flow":
-        self._compatibility_check(other)
-        if isinstance(other, Flow):
-            return Flow(self.product, self.quantity + other.quantity)
-        return Flow(self.product, self.quantity + other)
-
-    def __mul__(self, other: "Flow | float | int") -> "Flow":
-        self._compatibility_check(other)
-        if isinstance(other, Flow):
-            return Flow(self.product, self.quantity * other.quantity)
-        return Flow(self.product, self.quantity * other)
