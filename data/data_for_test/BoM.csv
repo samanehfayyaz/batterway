@@ -1,0 +1,26 @@
+BoMId;Material;Quantity;Unit
+Battery;Aluminum (housing, junction box);145.64;kg
+Battery;Steel;36.5;kg
+Battery;Copper / Sn;0.4556;kg
+Battery;Electronic components;3.6;kg
+Battery;Cable (1.9kg) including plug / connectors;0;kg
+Battery;Plastics;0;kg
+Battery;other (gap filler, elastomer, seals, ..);0.04;kg
+Battery;Module;5;kg
+Module;Aluminum;0.602;kg
+Module;Steel;0.843;kg
+Module;Plastics;0.1191;kg
+Module;Electronic components;0.046;kg
+Module;Cell;5;kg
+Cell;Aluminum (foil);0.0386;kg
+Cell;Nickel;0.122817198;kg
+Cell;Cobalt;0.041108096;kg
+Cell;Manganese;0.038336004;kg
+Cell;Lithium;0.024205096;kg
+Cell;Copper (foil);0.099616;kg
+Cell;Graphite;0.20412;kg
+Cell;Aluminum;0;kg
+Cell;Plastics;0.0271265;kg
+Cell;Electrolyte;0.1356;kg
+Cell;Steel;0;kg
+Cell;Others;0.141673606;kg

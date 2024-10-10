@@ -1,0 +1,14 @@
+Material;Amount;Unit;URI
+Aluminum;173.12;kg;
+Cable (1.9kg) including plug / connectors;1.9;kg;
+Cobalt;32.86053808;kg;http://data.europa.eu/xsp/cn2024/810520000080
+Copper;48.9584;kg;
+Electrolyte;54.24;kg;http://data.europa.eu/xsp/cn2024/722699100080
+Electronic components;4.52;kg;
+Graphite;81.648;kg;https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:33418
+Lithium;9.6820384;kg;http://data.europa.eu/xsp/cn2024/850650000080
+Manganese;15.3172718;kg;http://data.europa.eu/xsp/cn2024/811100000080
+Nickel;32.72670932;kg;http://data.europa.eu/xsp/cn2024/750210000080
+Others;56.7094424;kg;
+Plastics;13.2326;kg;
+Steel;53.36;kg;http://data.europa.eu/xsp/cn2024/850490130080

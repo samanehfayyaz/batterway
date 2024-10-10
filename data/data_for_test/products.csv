@@ -1,0 +1,26 @@
+name;iri;reference_quantity;unit;BoM_id
+Aluminum (housing, junction box);http://data.europa.eu/xsp/cn2024/760700000080;1;kg;
+Steel;http://data.europa.eu/xsp/cn2024/850490130080;1;kg;
+Copper / Sn;http://data.europa.eu/xsp/cn2024/741000000080;1;kg;
+Electronic components;https://empty;1;kg;
+Cable (1.9kg) including plug / connectors;https://empty;1;kg;
+Plastics;https://empty;1;kg;
+other (gap filler, elastomer, seals, ..);https://empty;1;kg;
+Module;https://empty;1;kg;Module
+Aluminum;http://data.europa.eu/xsp/cn2024/760700000080;1;kg;
+Steel;http://data.europa.eu/xsp/cn2024/850490130080;1;kg;
+Plastics;https://empty;1;kg;
+Electronic components;https://empty;1;kg;
+Cell;https://empty;1;kg;Cell
+Aluminum (foil);http://data.europa.eu/xsp/cn2024/760700000080;1;kg;
+Nickel;http://data.europa.eu/xsp/cn2024/750210000080;1;kg;
+Cobalt;http://data.europa.eu/xsp/cn2024/810520000080;1;kg;
+Manganese;http://data.europa.eu/xsp/cn2024/811100000080;1;kg;
+Lithium;http://data.europa.eu/xsp/cn2024/850650000080;1;kg;
+Copper (foil);http://data.europa.eu/xsp/cn2024/741000000080;1;kg;
+Graphite;https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:33418;1;kg;
+Aluminum;http://data.europa.eu/xsp/cn2024/760700000080;1;kg;
+Plastics;https://empty;1;kg;
+Electrolyte;http://data.europa.eu/xsp/cn2024/722699100080;1;kg;
+Steel;http://data.europa.eu/xsp/cn2024/850490130080;1;kg;
+Others;https://empty;1;kg;
