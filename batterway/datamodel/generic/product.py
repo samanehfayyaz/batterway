@@ -1,4 +1,4 @@
-"""Generic data model classes for products, quantities, and bills of materials."""
+"""generic data model classes for products, quantities, and bills of materials."""
 
 from collections import Counter
 
