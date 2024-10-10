@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from batterway.datamodel.parser.InventoryParser import InventoryParser
+from batterway.datamodel.parser.Inventory import InventoryParser
 
 
 def test_parser():
