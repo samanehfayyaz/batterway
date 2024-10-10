@@ -1,9 +1,7 @@
 name;iri;reference_quantity;unit;BoM_id;chemical_formula
-<<<<<<< HEAD
 Aluminium sulfate (Al2(SO4)3);http://data.europa.eu/xsp/cn2024/283330000080;1;kg;;AL2(SO4)3
 Ca(OH)2;http://data.europa.eu/xsp/cn2024/282590110080;1;kg;;Ca(OH)2
 Calcium oxide (CaO);http://data.europa.eu/xsp/cn2024/282590110010;1;kg;;CaO
-cell;"http://whatever.fr";1;"kg";"";"LiFePo4"
 Cobalt sulfate (CoSO4);https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:53470;1;kg;;CoSO4
 CoSO4 * 7 H2O;https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:91244;1;kg;;CoSO4(H2O)7
 Iron hydroxide Fe(OH)3;http://data.europa.eu/xsp/cn2024/282110000080;1;kg;;Fe(OH)3
@@ -18,8 +16,3 @@ Nitrogen (N2);http://data.europa.eu/xsp/cn2024/280430000080;1;kg;;N2
 Sand (SiO2);http://data.europa.eu/xsp/cn2024/250510000080;1;kg;;SiO2
 Silicium dioxide (SiO2);http://data.europa.eu/xsp/cn2024/281122000080;1;kg;;SiO2
 SO4;https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35175;1;kg;;SO4
-
-=======
-Li2CO3 (anhydrous);https://www.ebi.ac.uk/chebi/searchId.do?chebiId=166461;1;kg;
-
->>>>>>> e2be8d2b12c9614238a12f47e85317fe0186f6cb
