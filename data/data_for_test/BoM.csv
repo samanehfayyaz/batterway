@@ -1,26 +1,26 @@
-Product;Material;Quantity;Unit;URI
-Battery;Aluminum (housing, junction box);145.64;kg;http://data.europa.eu/xsp/cn2024/760700000080
-Battery;Steel;36.5;kg;http://data.europa.eu/xsp/cn2024/850490130080
-Battery;Copper / Sn;0.4556;kg;http://data.europa.eu/xsp/cn2024/741000000080
-Battery;Electronic components;3.6;kg;
-Battery;Cable (1.9kg) including plug / connectors;0;kg;
-Battery;Plastics;0;kg;
-Battery;other (gap filler, elastomer, seals, ..);0.04;kg;
-Battery;Module;5;kg;
-Module;Aluminum;0.602;kg;http://data.europa.eu/xsp/cn2024/760700000080
-Module;Steel;0.843;kg;http://data.europa.eu/xsp/cn2024/850490130080
-Module;Plastics;0.1191;kg;
-Module;Electronic components;0.046;kg;
-Module;Cell;5;kg;
-Cell;Aluminum (foil);0.0386;kg;http://data.europa.eu/xsp/cn2024/760700000080
-Cell;Nickel;0.122817198;kg;http://data.europa.eu/xsp/cn2024/750210000080
-Cell;Cobalt;0.041108096;kg;http://data.europa.eu/xsp/cn2024/810520000080
-Cell;Manganese;0.038336004;kg;http://data.europa.eu/xsp/cn2024/811100000080
-Cell;Lithium;0.024205096;kg;http://data.europa.eu/xsp/cn2024/850650000080
-Cell;Copper (foil);0.099616;kg;http://data.europa.eu/xsp/cn2024/741000000080
-Cell;Graphite;0.20412;kg;https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:33418
-Cell;Aluminum;0;kg;http://data.europa.eu/xsp/cn2024/760700000080
-Cell;Plastics;0.0271265;kg;
-Cell;Electrolyte;0.1356;kg;http://data.europa.eu/xsp/cn2024/722699100080
-Cell;Steel;0;kg;http://data.europa.eu/xsp/cn2024/850490130080
-Cell;Others;0.141673606;kg;
+Product;Material;Quantity;Unit
+Battery;Aluminum (housing, junction box);145.64;kg
+Battery;Steel;36.5;kg
+Battery;Copper / Sn;0.4556;kg
+Battery;Electronic components;3.6;kg
+Battery;Cable (1.9kg) including plug / connectors;0;kg
+Battery;Plastics;0;kg
+Battery;other (gap filler, elastomer, seals, ..);0.04;kg
+Battery;Module;5;kg
+Module;Aluminum;0.602;kg
+Module;Steel;0.843;kg
+Module;Plastics;0.1191;kg
+Module;Electronic components;0.046;kg
+Module;Cell;5;kg
+Cell;Aluminum (foil);0.0386;kg
+Cell;Nickel;0.122817198;kg
+Cell;Cobalt;0.041108096;kg
+Cell;Manganese;0.038336004;kg
+Cell;Lithium;0.024205096;kg
+Cell;Copper (foil);0.099616;kg
+Cell;Graphite;0.20412;kg
+Cell;Aluminum;0;kg
+Cell;Plastics;0.0271265;kg
+Cell;Electrolyte;0.1356;kg
+Cell;Steel;0;kg
+Cell;Others;0.141673606;kg

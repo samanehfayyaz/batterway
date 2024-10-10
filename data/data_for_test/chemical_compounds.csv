@@ -1,2 +1,2 @@
-name;iri;chemical_formulae
-cell;"whatever.fr";"LiFePo4"
+name;iri;reference_quantity;BoM;chemical_formulae
+cell;"whatever.fr";1;;"LiFePo4"

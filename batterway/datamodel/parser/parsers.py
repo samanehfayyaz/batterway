@@ -3,28 +3,25 @@ import pydantic
 class UnitPdt(pydantic.BaseModel):
     name: str
     iri:str
-class Quantity(pydantic.BaseModel):
+class QuantityPdt(pydantic.BaseModel):
     quantity: float
     unit:UnitPdt
 
 class ProductPdt(pydantic.BaseModel):
     name: str
     iri:str
-    values: list[tuple[ProductPdt,Quantity]]
+    reference_quantity : QuantityPdt
+    BoM_id: str
 
+class BoMPdt(pydantic.BaseModel):
+    product_quantities : dict[str, QuantityPdt]
 class ChemicalCompoundPdt(ProductPdt):
     chemical_formulae: str
-
-class ProductArchetype(pydantic.BaseModel):
-    name: str
-    reference_quantity:Quantity
-    bom:BoMPdt
-
+    reference_quantity:QuantityPdt
 class ProductInstance(pydantic.BaseModel):
-    name: str
-    quantity:Quantity
-    archetype:ProductArchetype
-
+    product: ProductPdt
+    quantity:QuantityPdt
+    BoM_id:BoMPdt
 class Flow(pydantic.BaseModel):
     product: ProductPdt
-    quantity:Quantity
+    quantity:QuantityPdt
