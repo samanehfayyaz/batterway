@@ -1,5 +1,6 @@
 import pytest
-from batterway.datamodel.generic.product import Product, Unit, Quantity, ProductInstance, BoM
+
+from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity, Unit
 
 # Define the Unit for kg
 kg = Unit("kg", "kg_IRI")
@@ -29,8 +30,8 @@ battery_nmc_333 = Product(
 battery_instance = ProductInstance(battery_nmc_333, Quantity(10.0, kg))
 
 
-def test_product_bom():
-    """Test the get_final_bom method for Product"""
+def test_product_bom() -> None:
+    """Test the get_final_bom method for Product."""
     final_bom = battery_nmc_333.get_final_bom()
 
     # Expected BoM for the battery_nmc_333
@@ -47,8 +48,8 @@ def test_product_bom():
         assert final_bom.product_quantities[material].value == pytest.approx(quantity.value)
 
 
-def test_product_instance_bom():
-    """Test the get_final_bom method for ProductInstance"""
+def test_product_instance_bom() -> None:
+    """Test the get_final_bom method for ProductInstance."""
     final_bom = battery_instance.get_final_bom()
 
     # Expected BoM for the battery instance (multiplied by 10)
