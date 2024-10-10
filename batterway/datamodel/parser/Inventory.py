@@ -46,21 +46,6 @@ class Inventory:
             .iterrows()
         ]
 
-        # Parse ProcessLCIs
-        pydt_process_lcis = [
-            ProcessLCIPdt(
-                **x[1].to_dict()
-                | {
-                    "reference_product": x[1].to_dict()["influencer"],
-                    "product_quantities": {x[1].to_dict()["influenced"]: QuantityPdt(
-                        quantity = x[1].to_dict()["qty"],
-                        unit = UnitPdt(name=x[1].to_dict()["unit"],iri="http://example.com"),
-                    )}
-                }
-            )
-                for x in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).iterrows()
-        ]
-
         # Merge chemical and product as they should be unique by Id
         all_products = {p.name: p for p in pydt_products_parsed + pydt_chemical_compounds}
         all_boms = dict()
@@ -74,7 +59,7 @@ class Inventory:
                     for _, row in df_bom_product.iterrows()
                 },
             )
-        
+        #TODO fix this product lci stuff below
         all_product_lcis = dict()
         
         for lci_id, df_lci_product in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).groupby("lci_id"):
@@ -125,11 +110,6 @@ class Inventory:
 
         for p in real_product_dict.values():
             print(p)
-        
-        
-        for process_lci in pydt_process_lcis:
-            
-        
         
 
         return cls(real_units, real_product_dict)
