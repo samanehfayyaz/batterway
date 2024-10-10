@@ -1,0 +1,2 @@
+process_name;fixed_input_lci;fixed_output_lci;relative_lci_input;relative_bom_output
+recyclin_process_1;fixed_input;fixed_output;recyclin_battery_input_rel_1;recycling_lci_output_battery_1;
