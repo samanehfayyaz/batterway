@@ -145,10 +145,9 @@ class Inventory:
         }
 
         for p in all_products:
-            strippe_dbom_id = all_products[p].BoM_id.strip()
-            if len(strippe_dbom_id):
-                real_product_dict[p].bom = real_BoMs[strippe_dbom_id]
-
+            stripped_bom_id = all_products[p].BoM_id.strip()
+            if len(stripped_bom_id):
+                real_product_dict[p].bom = real_BoMs[stripped_bom_id]
 
         real_fixed_lci = {
             f_lci.lci_id:{ref_label:BoM(

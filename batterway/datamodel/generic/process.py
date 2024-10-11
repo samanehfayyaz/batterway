@@ -2,6 +2,7 @@ from collections import Counter
 from typing import List, Tuple
 
 from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity
+from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, ProductInstance, Quantity, Unit
 
 
 class ProcessLCI:
@@ -35,14 +36,30 @@ class RecyclingProcess(Process):
         self.computed_input_bom: BoM|None = None
         self.__ensure_coherency()
 
+    def __get_input_final_bom(self):
+        return ProductInstance(Product(
+            "dummy", "",
+            Quantity(self.inputs.quantity_total, Unit("kg", "")),
+            self.inputs
+        ),
+            Quantity(1.0, Unit("kg", "")
+                     )
+        ).get_final_bom() + self.inputs
+
     def __ensure_coherency(self):
-        if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_input_relation]):
+        input_final_bom = self.__get_input_final_bom()
+        missing_input_influencing_input = [i_rel[0] for i_rel in self.ref_input_to_input_relation if i_rel[0] not in input_final_bom]
+        missing_input_influencing_output = [i_rel[0] for i_rel in self.ref_input_to_output_relation if i_rel[0] not in input_final_bom]
+        if len(missing_input_influencing_input):
+            print([p.name for p in missing_input_influencing_input])
             raise ValueError("Input product influencing input product should be in the input")
-        if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_output_relation]):
+        if len(missing_input_influencing_output):
+            print([p.name for p in missing_input_influencing_output])
             raise ValueError("Input product influencing output should be in the inputs")
 
     def __update_flow(self):
-        final_bom = self.inputs
+        final_bom = self.__get_input_final_bom()
+        final_bom += self.inputs
         updated_in_flow_value = dict()
         for (product_influencing, product_influenced), ratio in self.ref_input_to_input_relation.items():
             if product_influencing in final_bom:
