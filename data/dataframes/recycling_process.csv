@@ -1,3 +1,10 @@
 process_name; fixed_input_bom; relative_LCI
-recycling_process_1;Battery_NMC111;route1
-recycling_process_2;
+recycling_process_1_111;Battery_NMC111;route1
+recycling_process_1_442;Battery_NMC442;route1
+recycling_process_1_622;Battery_NMC622;route1
+recycling_process_2_111;Battery_NMC111;route2
+recycling_process_2_442;Battery_NMC442;route2
+recycling_process_2_622;Battery_NMC622;route2
+recycling_process_3_111;Battery_NMC111;route3
+recycling_process_3_442;Battery_NMC442;route3
+recycling_process_3_622;Battery_NMC622;route3
