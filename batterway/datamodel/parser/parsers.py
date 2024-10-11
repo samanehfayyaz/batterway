@@ -51,8 +51,8 @@ class ProcessLCIPdt(BaseModel):
     """Pydantic parser model for the ProcessLCI class."""
 
     lci_id: str
-    direction: str
-    relative_lci: list[tuple[str, str, float]]
+    relative_lci_output: list[tuple[str, str, float]]
+    relative_lci_input: list[tuple[str, str, float]]
 
 
 class RecyclingProcess(BaseModel):
@@ -60,3 +60,13 @@ class RecyclingProcess(BaseModel):
 
     name: str
     lci_input: ProcessLCIPdt
+class RecyclingProcessPdt(BaseModel):
+    process_name: str
+    fixed_input_bom_id: str
+    relative_lci: ProcessLCIPdt
+
+class FixedLCIPdt(BaseModel):
+    lci_id: str
+    products: list[str]
+    ref_in_rel_lci: str
+

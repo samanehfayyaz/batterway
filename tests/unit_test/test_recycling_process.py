@@ -16,13 +16,14 @@ def test_recycling_process_relative_lci():
     output_products = BoM({})
     relative_output_influences = {(UC.water, UC.vapor): Quantity(3.0, UC.kg)}
     r_p = RecyclingProcess(
+        "recyclin_test",
         input_products,
         output_products,
-        "recyclin_test",
+        relative_input_influenced,
+        relative_output_influences
     )
-    r_p.set_influencing_input_process(relative_input_influenced)
-    r_p.set_influencing_output_process(relative_output_influences)
-    r_p.update_flow()
-
+    r_p.update_fixed_input_lci(
+        {}
+    )
 
 test_recycling_process_relative_lci()

@@ -1,4 +1,4 @@
-lci-id;products;ref_in_rel_lci
-lci-route-1;Battery_NMC442;Battery
-lci-route-1;Battery_NMC111;Battery
-lci-route-1;Battery_NMC622;Battery
+lci_id;product;ref_in_rel_lci
+lci_route_1;Battery_NMC442;Battery
+lci_route_1;Battery_NMC111;Battery
+lci_route_1;Battery_NMC622;Battery

@@ -2,29 +2,31 @@ from pathlib import Path
 
 import pandas as pd
 
-from batterway.datamodel.generic.process import ProcessLCI
-from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, ProductInstance, Unit
+from batterway.datamodel.generic.process import ProcessLCI, RecyclingProcess
+from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, ProductInstance, Unit, Quantity
 from batterway.datamodel.parser.parsers import (
     BoMPdt,
     ChemicalCompoundPdt,
     ProcessLCIPdt,
     ProductPdt,
     QuantityPdt,
-    UnitPdt,
+    UnitPdt, RecyclingProcessPdt, FixedLCIPdt,
 )
 
 
 class Inventory:
     def __init__(
-        self,
-        units: dict[str, Unit] | None,
-        products: list[str:Product] | None,
-        process_lcis: dict[str, ProcessLCI] | None,
+            self,
+            units: dict[str, Unit] | None,
+            products: list[str:Product] | None,
+            process_lcis: dict[str, RecyclingProcess] | None,
     ):
         self.units = units
         self.products = products
-        self.process_lcis = process_lcis
+        self.process_lcis: dict[str, RecyclingProcess] = process_lcis
 
+    def get_process(self,process_name:str)->RecyclingProcess:
+        return self.process_lcis[process_name]
     @classmethod
     def create_from_file(cls, file_name: Path):
         pydt_units_obj = [
@@ -35,11 +37,11 @@ class Inventory:
         pydt_products_parsed = [
             ProductPdt(
                 **x[1].to_dict()
-                | {
-                    "reference_quantity": QuantityPdt(
-                        quantity=x[1].to_dict()["reference_quantity"], unit=all_unit[x[1].to_dict()["unit"]]
-                    )
-                }
+                  | {
+                      "reference_quantity": QuantityPdt(
+                          quantity=x[1].to_dict()["reference_quantity"], unit=all_unit[x[1].to_dict()["unit"]]
+                      )
+                  }
             )
             for x in Inventory.__read_csv(file_name.joinpath("products.csv"))
             .fillna({"iri": "https://empty.com", "BoM_id": ""})
@@ -49,11 +51,11 @@ class Inventory:
         pydt_chemical_compounds = [
             ChemicalCompoundPdt(
                 **x[1].to_dict()
-                | {
-                    "reference_quantity": QuantityPdt(
-                        quantity=x[1].to_dict()["reference_quantity"], unit=all_unit[x[1].to_dict()["unit"]]
-                    )
-                }
+                  | {
+                      "reference_quantity": QuantityPdt(
+                          quantity=x[1].to_dict()["reference_quantity"], unit=all_unit[x[1].to_dict()["unit"]]
+                      )
+                  }
             )
             for x in Inventory.__read_csv(file_name.joinpath("chemical_compounds.csv"))
             .fillna({"iri": "https://empty.com", "BoM_id": ""})
@@ -76,17 +78,39 @@ class Inventory:
 
         all_process_lcis = dict()
 
-        for (lci_id, direction), df_lci_product in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).groupby(
-            ["lci_id", "direction"]
+        for lci_id, df_lci_product in Inventory.__read_csv(file_name.joinpath("lci_relative.csv")).groupby(
+            "lci_id"
         ):
-            all_process_lcis[(lci_id, direction)] = ProcessLCIPdt(
+            grouped_by_direction = df_lci_product.groupby(["direction"])
+            relative_lc_input = [(row["influencer"], row["influenced"], row["qty"])
+                                 for _, row in grouped_by_direction.get_group(("input",)).iterrows()]
+            relative_lc_output = [(row["influencer"], row["influenced"], row["qty"])
+                                  for _, row in grouped_by_direction.get_group(("output",)).iterrows()]
+            all_process_lcis[lci_id] = ProcessLCIPdt(
                 lci_id=lci_id,
-                direction=direction,
-                relative_lci=[
-                    (row["influencer"], row["influenced"], row["qty"]) for _, row in df_lci_product.iterrows()
-                ],
+                relative_lci_input=relative_lc_input,
+                relative_lci_output=relative_lc_output,
             )
+        pydt_fixed_lci = [
+            FixedLCIPdt(
+                **{
+                    "lci_id":lci_id,
+                    "products":list(df_lci["product"].unique()),
+                    "ref_in_rel_lci":df_lci["ref_in_rel_lci"].to_list()[0],
+                }
 
+            ) for lci_id,df_lci in Inventory.__read_csv(file_name.joinpath("fixedlci.csv")).groupby("lci_id")
+        ]
+        pydt_recycling_process = [
+            RecyclingProcessPdt(
+                **x[1].to_dict()
+                  | {
+                      "relative_lci": all_process_lcis[x[1]["relative_lci_id"]]
+                  }
+            )
+            for x in Inventory.__read_csv(file_name.joinpath("recycling_process.csv"))
+            .iterrows()
+        ]
         # Now we have to create the real object
         # And associate the BoM to their respective product
         real_units = {
@@ -127,14 +151,44 @@ class Inventory:
 
         real_process_lcis = {
             l[0]: ProcessLCI(
-                id=l[0][0],
-                direction=l[0][1],
-                relative_lci={(real_product_dict[t[0]], real_product_dict[t[1]]): t[2] for t in l[1].relative_lci},
+                id=l[0],
+                input_relative_lci={(real_product_dict[t[0]], real_product_dict[t[1]]): t[2] for t in l[1].relative_lci_input},
+                output_relative_lci={(real_product_dict[t[0]], real_product_dict[t[1]]): t[2] for t in l[1].relative_lci_output},
             )
             for l in all_process_lcis.items()
         }
+        real_fixed_lci = {
+            f_lci.lci_id:BoM(
+                {
+                    real_product_dict[p]: ProductInstance(
+                        real_product_dict[p],
+                        Quantity(1.0,real_product_dict[p].reference_quantity.unit )
+                    )
+                    for p in f_lci.products
+                }
+            )
+            for f_lci in pydt_fixed_lci
+        }
+        real_recycling_process = {
+            r_process.process_name:
+            RecyclingProcess(
+                r_process.process_name,
+                inputs_products=BoM({
+                    real_product_dict[p.name]: ProductInstance(real_product_dict[p.name],
+                                                               real_product_dict[p.name].reference_quantity)
+                    for p in real_fixed_lci[r_process.fixed_input_bom_id].products
+                }),
+                output_products=BoM({}),
+                ref_input_to_input={(real_product_dict[p[0]], real_product_dict[p[1]]): p[2]
+                                    for p in r_process.relative_lci.relative_lci_input
+                                    },
+                ref_input_to_output={(real_product_dict[p[0]], real_product_dict[p[1]]): p[2]
+                                     for p in r_process.relative_lci.relative_lci_output
+                                     }
+            )
+            for r_process in pydt_recycling_process}
 
-        return cls(real_units, real_product_dict, real_process_lcis)
+        return cls(real_units, real_product_dict, real_recycling_process)
 
     @staticmethod
     def parse_possible_input(folder_path: Path):
