@@ -1,0 +1,36 @@
+lci_id;direction;influencer;influenced;qty;unit
+route2;input;Cobalt;Nitrogen (N2);0.0;kg
+route2;input;Cobalt;Sulfuric acid (95%);272023.3631657943;kg
+route2;input;Cobalt;Water;0.05081138914480124;kg
+route2;input;Cobalt;Iron;0.0;kg
+route2;input;Cobalt;Hydrogen peroxide;859714311.8100734;kg
+route2;input;Cobalt;Sodium hydroxide;-0.0034462676248691554;kg
+route2;input;Cobalt;Kerosene;62331.459973582234;kg
+route2;input;Cobalt;Cyanex 272 ;2.6058118326896085;kg
+route2;input;Cobalt;Cyanex 301GN;18521.307381222825;kg
+route2;input;Cobalt;D2EHPA;14817.045904869532;kg
+route2;input;Cobalt;Sodium carbonate;0.0;kg
+route2;input;Cobalt;Water;-859986335.1593475;kg
+route2;input;Cobalt;Electricity;-25812822412444.51;kg
+route2;input;Cobalt;Natural gas;0.0;kg
+route2;output;Cobalt;Electricity;0.0;kg
+route2;output;Cobalt;Aluminium;0.0;kg
+route2;output;Cobalt;Steel;0.0;kg
+route2;output;Cobalt;Copper;0.0;kg
+route2;output;Cobalt;Electronic waste;0.0;kg
+route2;output;Cobalt;Cable;0.0;kg
+route2;output;Cobalt;Waste (incineration);0.0;kg
+route2;output;Cobalt;Electrolyte;0.0;kg
+route2;output;Cobalt;Iron hydroxide Fe(OH)3;0.0;kg
+route2;output;Cobalt;Kerosene;62331.459973582234;kg
+route2;output;Cobalt;Cyanex 272;2.4817254754513405;kg
+route2;output;Cobalt;Cyanex 301GN;17639.340363708605;kg
+route2;output;Cobalt;NiSO4 * 6 H2O;-0.000656221577300476;kg
+route2;output;Cobalt;CoSO4 * 7 H2O;0.003031931669377133;kg
+route2;output;Cobalt;Graphite;0.0;kg
+route2;output;Cobalt;Aluminium hydroxide;0.0;kg
+route2;output;Cobalt;D2EHPA;14111.472290081043;kg
+route2;output;Cobalt;MnSO4 * 1 H2O;0.0019145595231276928;kg
+route2;output;Cobalt;Li2CO3 (anhydrous);0.0;kg
+route2;output;Cobalt;Water;859986335.2101588;kg
+route2;output;Cobalt;Wastewater;0.0;kg

@@ -1,0 +1,36 @@
+lci_id;direction;influencer;influenced;qty;unit
+route2;input;Manganese;Nitrogen (N2);-0.0;kg
+route2;input;Manganese;Sulfuric acid (95%);272023.3633415163;kg
+route2;input;Manganese;Water;0.04506095647856602;kg
+route2;input;Manganese;Iron;-0.0;kg
+route2;input;Manganese;Hydrogen peroxide;859714311.8098325;kg
+route2;input;Manganese;Sodium hydroxide;-0.0030909287189880845;kg
+route2;input;Manganese;Kerosene;62331.459973186225;kg
+route2;input;Manganese;Cyanex 272 ;2.6058115920802556;kg
+route2;input;Manganese;Cyanex 301GN;18521.30738110515;kg
+route2;input;Manganese;D2EHPA;14817.045905015986;kg
+route2;input;Manganese;Sodium carbonate;-0.0;kg
+route2;input;Manganese;Water;-859986335.1620058;kg
+route2;input;Manganese;Electricity;-25812822412447.664;kg
+route2;input;Manganese;Natural gas;-0.0;kg
+route2;output;Manganese;Electricity;-0.0;kg
+route2;output;Manganese;Aluminium;-0.0;kg
+route2;output;Manganese;Steel;-0.0;kg
+route2;output;Manganese;Copper;-0.0;kg
+route2;output;Manganese;Electronic waste;-0.0;kg
+route2;output;Manganese;Cable;-0.0;kg
+route2;output;Manganese;Waste (incineration);-0.0;kg
+route2;output;Manganese;Electrolyte;-0.0;kg
+route2;output;Manganese;Iron hydroxide Fe(OH)3;-0.0;kg
+route2;output;Manganese;Kerosene;62331.459973186225;kg
+route2;output;Manganese;Cyanex 272;2.481725246299576;kg
+route2;output;Manganese;Cyanex 301GN;17639.340363596537;kg
+route2;output;Manganese;NiSO4 * 6 H2O;-0.0006562215773004719;kg
+route2;output;Manganese;CoSO4 * 7 H2O;-0.0037720141048089386;kg
+route2;output;Manganese;Graphite;-0.0;kg
+route2;output;Manganese;Aluminium hydroxide;-0.0;kg
+route2;output;Manganese;D2EHPA;14111.472290220525;kg
+route2;output;Manganese;MnSO4 * 1 H2O;0.006346606346166292;kg
+route2;output;Manganese;Li2CO3 (anhydrous);-0.0;kg
+route2;output;Manganese;Water;859986335.2070667;kg
+route2;output;Manganese;Wastewater;-0.0;kg

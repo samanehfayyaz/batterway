@@ -1,0 +1,36 @@
+lci_id;direction;influencer;influenced;qty;unit
+route2;input;Battery;Nitrogen (N2);0.023850873252447755;kg
+route2;input;Battery;Sulfuric acid (95%);-38057.87748691777;kg
+route2;input;Battery;Water;-0.00406113294157076;kg
+route2;input;Battery;Iron;2.303830689009576e-06;kg
+route2;input;Battery;Hydrogen peroxide;-120279751.06356828;kg
+route2;input;Battery;Sodium hydroxide;0.0015319487483606725;kg
+route2;input;Battery;Kerosene;-8720.585880444998;kg
+route2;input;Battery;Cyanex 272 ;-0.36457037564611017;kg
+route2;input;Battery;Cyanex 301GN;-2591.254106746876;kg
+route2;input;Battery;D2EHPA;-2073.00328541595;kg
+route2;input;Battery;Sodium carbonate;0.00014411386891979174;kg
+route2;input;Battery;Water;120317808.94063406;kg
+route2;input;Battery;Electricity;3611385563054.249;kg
+route2;input;Battery;Natural gas;0.0;kg
+route2;output;Battery;Electricity;0.01495206477370524;kg
+route2;output;Battery;Aluminium;0.0005092639290832839;kg
+route2;output;Battery;Steel;0.00015746856728816313;kg
+route2;output;Battery;Copper;0.0001437263719216103;kg
+route2;output;Battery;Electronic waste;1.3133893697222682e-05;kg
+route2;output;Battery;Cable;5.62496676786791e-06;kg
+route2;output;Battery;Waste (incineration);0.0002990738056887338;kg
+route2;output;Battery;Electrolyte;0.0001284623989428023;kg
+route2;output;Battery;Iron hydroxide Fe(OH)3;4.05574852060335e-06;kg
+route2;output;Battery;Kerosene;-8720.585880444998;kg
+route2;output;Battery;Cyanex 272;-0.34720987044638413;kg
+route2;output;Battery;Cyanex 301GN;-2467.861054134079;kg
+route2;output;Battery;NiSO4 * 6 H2O;9.180976386694977e-05;kg
+route2;output;Battery;CoSO4 * 7 H2O;0.0005277298647964821;kg
+route2;output;Battery;Graphite;0.00020338631036160464;kg
+route2;output;Battery;Aluminium hydroxide;2.4615906383963153e-06;kg
+route2;output;Battery;D2EHPA;-1974.288843215386;kg
+route2;output;Battery;MnSO4 * 1 H2O;-0.00026785961298418095;kg
+route2;output;Battery;Li2CO3 (anhydrous);0.00011136071689256634;kg
+route2;output;Battery;Water;-120317808.94469519;kg
+route2;output;Battery;Wastewater;0.0012632681070627878;kg
