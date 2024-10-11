@@ -1,2 +1,3 @@
-process_name;fixed_input_bom_id;relative_lci_id
-route1;lci_route_1;route1
+process_name; fixed_input_bom; relative_LCI
+recycling_process_1;Battery_NMC111;route1
+recycling_process_2;
