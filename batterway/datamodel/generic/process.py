@@ -1,7 +1,4 @@
-from typing import List, Tuple
-
-from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity
-from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, ProductInstance, Quantity, Unit
+from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity, Unit
 
 
 class ProcessLCI:
@@ -53,7 +50,7 @@ class RecyclingProcess(Process):
         self.computed_input_bom: BoM | None = None
         self.__ensure_coherency()
 
-    def __get_input_final_bom(self):
+    def __get_input_final_bom(self) -> BoM:
         return ProductInstance(Product(
             "dummy", "",
             Quantity(self.inputs.quantity_total, Unit("kg", "")),
@@ -63,18 +60,21 @@ class RecyclingProcess(Process):
                      )
         ).get_final_bom() + self.inputs
 
-    def __ensure_coherency(self):
+    def __ensure_coherency(self) -> bool:
         input_final_bom = self.__get_input_final_bom()
         missing_input_influencing_input = [i_rel[0] for i_rel in self.ref_input_to_input_relation if i_rel[0] not in input_final_bom]
         missing_input_influencing_output = [i_rel[0] for i_rel in self.ref_input_to_output_relation if i_rel[0] not in input_final_bom]
         if len(missing_input_influencing_input):
             print([p.name for p in missing_input_influencing_input])
-            raise ValueError("Input product influencing input product should be in the input")
+            err_msg = "Products influencing the input should be present in the input LCI."
+            raise ValueError(err_msg)
         if any(missing_input_influencing_output):
             print([p.name for p in missing_input_influencing_input])
-            raise ValueError("Input product influencing output should be in the inputs")
+            err_msg = "Products influencing the output should be present in the input LCI."
+            raise ValueError(err_msg)
+        return True
 
-    def __update_flow(self):
+    def __update_flow(self) -> None:
         final_bom = self.__get_input_final_bom()
         print("#" * 20)
         print("#" * 3 + "BOM FOR RELATIVE" + "#" * 3)
@@ -83,6 +83,7 @@ class RecyclingProcess(Process):
         print("#" * 20)
 
         updated_in_flow_value = dict()
+        updated_in_flow_value = {}
         for (product_influencing, product_influenced), ratio in self.ref_input_to_input_relation.items():
             if product_influencing in final_bom:
                 if product_influenced not in updated_in_flow_value:
