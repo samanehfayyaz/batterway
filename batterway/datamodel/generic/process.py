@@ -51,7 +51,7 @@ class RecyclingProcess(Process):
         self.ref_input_to_input_relation: dict[tuple[Product, Product], float] = ref_input_to_input
         self.computed_output_bom: BoM | None = None
         self.computed_input_bom: BoM | None = None
-        self._ensure_coherency()
+        self.__ensure_coherency()
 
     def __get_input_final_bom(self):
         return ProductInstance(Product(
@@ -70,12 +70,12 @@ class RecyclingProcess(Process):
         if len(missing_input_influencing_input):
             print([p.name for p in missing_input_influencing_input])
             raise ValueError("Input product influencing input product should be in the input")
-        if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_output_relation]):
+        if any(missing_input_influencing_output):
+            print([p.name for p in missing_input_influencing_input])
             raise ValueError("Input product influencing output should be in the inputs")
 
     def __update_flow(self):
         final_bom = self.__get_input_final_bom()
-        final_bom += self.inputs
         updated_in_flow_value = dict()
         for (product_influencing, product_influenced), ratio in self.ref_input_to_input_relation.items():
             if product_influencing in final_bom:
@@ -114,8 +114,11 @@ class RecyclingProcess(Process):
         self.computed_output_bom = None
         self.computed_input_bom = None
         if not len(products_qty):
-            err_msg = "No input products provided."
-            raise ValueError(err_msg)
+            raise ValueError("Empty inputs")
+        for produc in self.inputs.products:
+            print(self.inputs.product_quantities[produc])
+            self.inputs.set_quantity_of_product(produc.name, 0)
+            print(self.inputs.product_quantities[produc])
         for product, qty in products_qty.items():
             self.inputs.set_quantity_of_product(product, qty)
         self.__update_flow()

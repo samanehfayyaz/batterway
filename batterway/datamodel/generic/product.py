@@ -100,7 +100,7 @@ class Product:
 
     def __str__(self):
         bom_str = str(self.bom) if self.bom else ""
-        return f"{self.name}[Ref:{self.reference_quantity}] " + bom_str
+        return f"{self.name}"
 
     def get_final_bom(self) -> "BoM":
         final_bom = BoM({self: ProductInstance(self,self.reference_quantity)})
@@ -118,13 +118,13 @@ class BoM:
     """A Bill of Materials with a dictionary of products and quantities."""
 
     def __init__(self, product_quantities: dict[Product, "ProductInstance"]):
-        self.product_quantities: product_quantities
+        self.product_quantities: dict[Product, "ProductInstance"] =  product_quantities
         self.products = [p.product for p in product_quantities.values()]
         self.__str_to_product: dict[str,Product] = { p.name : p for p in self.products}
         self.quantity_total = sum(x.qty.value for x in product_quantities.values())
 
     def set_quantity_of_product(self,product_name,qty):
-        self.product_quantities[self.__str_to_product[product_name]].qty = qty
+        self.product_quantities[self.__str_to_product[product_name]].qty = Quantity(qty,self.__str_to_product[product_name].reference_quantity.unit)
     def __str__(self) -> str:
         return "\n".join([f"{p.name}: {q}" for p, q in self.product_quantities.items()])
 
