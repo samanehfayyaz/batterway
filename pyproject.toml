@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 authors = [
-    { name = "Johanna Holsten", email = "j.holsten@tu-braunschweig.de" },
     { name = "Simon van Lierde", email = "simonvanlierde@gmail.com" },
+    { name = "Johanna Holsten", email = "j.holsten@tu-braunschweig.de" },
 ]
 name = "batterway"
 maintainers = [{ name = "Simon van Lierde", email = "simonvanlierde@gmail.com" }]
@@ -18,18 +18,16 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Natural Language :: English",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python",
     "Topic :: Scientific/Engineering",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 dependencies = [
-    # dependencies as strings with quotes, e.g. "foo"
-    # You can add version requirements like "foo>2.0"
+    "chempy",
+    "pandas",
+    "sentier_data_tools"
 ]
 
 [project.urls]

@@ -1,38 +1,38 @@
 import pytest
 
-import tests.unit_test.utils_common as UC
+import tests.unit_test.utils_common as uc
 from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity
 
 # Define the battery cell and battery
 cell_nmc_333 = Product(
     name="cell_type",
     iri="cell_type.com",
-    reference_quantity=Quantity(1.0, UC.kg),
+    reference_quantity=Quantity(1.0, uc.kg),
     bom=BoM(
         {
-            UC.nickel: ProductInstance(UC.nickel, Quantity(0.3, UC.kg)),
-            UC.manganese: ProductInstance(UC.manganese, Quantity(0.3, UC.kg)),
-            UC.cobalt: ProductInstance(UC.cobalt, Quantity(0.4, UC.kg)),
+            uc.nickel: ProductInstance(uc.nickel, Quantity(0.3, uc.kg)),
+            uc.manganese: ProductInstance(uc.manganese, Quantity(0.3, uc.kg)),
+            uc.cobalt: ProductInstance(uc.cobalt, Quantity(0.4, uc.kg)),
         }
     ),
 )
-leave_no_bom_product = Product(name="cell_type", iri="cell_type.com", reference_quantity=Quantity(1.0, UC.kg))
+leaf_no_bom_product = Product(name="cell_type", iri="cell_type.com", reference_quantity=Quantity(1.0, uc.kg))
 battery_nmc_333 = Product(
     name="battery_type",
     iri="battery_type.com",
-    reference_quantity=Quantity(1.1, UC.kg),
+    reference_quantity=Quantity(1.1, uc.kg),
     bom=BoM(
         {
-            cell_nmc_333: ProductInstance(cell_nmc_333, Quantity(0.8, UC.kg)),
-            UC.manganese: ProductInstance(UC.manganese, Quantity(0.1, UC.kg)),
-            UC.steel: ProductInstance(UC.steel, Quantity(0.1, UC.kg)),
-            leave_no_bom_product: ProductInstance(leave_no_bom_product, Quantity(0.1, UC.kg)),
+            cell_nmc_333: ProductInstance(cell_nmc_333, Quantity(0.8, uc.kg)),
+            uc.manganese: ProductInstance(uc.manganese, Quantity(0.1, uc.kg)),
+            uc.steel: ProductInstance(uc.steel, Quantity(0.1, uc.kg)),
+            leaf_no_bom_product: ProductInstance(leaf_no_bom_product, Quantity(0.1, uc.kg)),
         }
     ),
 )
 
 # Create a ProductInstance for testing
-battery_instance = ProductInstance(battery_nmc_333, Quantity(10.0, UC.kg))
+battery_instance = ProductInstance(battery_nmc_333, Quantity(10.0, uc.kg))
 
 
 def test_product_bom() -> None:
@@ -41,10 +41,10 @@ def test_product_bom() -> None:
 
     # Expected BoM for the battery_nmc_333
     expected_bom = {
-        UC.nickel: Quantity(0.24, UC.kg),
-        UC.manganese: Quantity(0.34, UC.kg),
-        UC.cobalt: Quantity(0.32, UC.kg),
-        UC.steel: Quantity(0.1, UC.kg),
+        uc.nickel: Quantity(0.24, uc.kg),
+        uc.manganese: Quantity(0.34, uc.kg),
+        uc.cobalt: Quantity(0.32, uc.kg),
+        uc.steel: Quantity(0.1, uc.kg),
     }
 
     # Check if the BoM is correct
@@ -61,10 +61,10 @@ def test_product_instance_bom() -> None:
     print(final_bom)
     # Expected BoM for the battery instance (multiplied by 10)
     expected_bom = {
-        UC.nickel: Quantity(2.4, UC.kg),
-        UC.manganese: Quantity(3.4, UC.kg),
-        UC.cobalt: Quantity(3.2, UC.kg),
-        UC.steel: Quantity(1.0, UC.kg),
+        uc.nickel: Quantity(2.4, uc.kg),
+        uc.manganese: Quantity(3.4, uc.kg),
+        uc.cobalt: Quantity(3.2, uc.kg),
+        uc.steel: Quantity(1.0, uc.kg),
     }
 
     # Check if the BoM is correct

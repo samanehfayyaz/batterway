@@ -1,7 +1,7 @@
 from collections import Counter
 from typing import List, Tuple
 
-from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, ProductInstance, Quantity
+from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity
 
 
 class ProcessLCI:
@@ -21,23 +21,6 @@ class Process:
         self.name = name
         self.inputs: BoM = inputs_products
         self.outputs: BoM = output_products
-
-    def get_input_total_mass_per_element(self):
-        return self.__get_total_mass_per_element(self.inputs)
-
-    def get_output_total_mass_per_element(self):
-        return self.__get_total_mass_per_element(self.outputs)
-
-    @staticmethod
-    def __get_total_mass_per_element(flows: BoM):
-        list_of_mass_elem = [
-            Counter(input.product.get_total_mass_per_element())
-            for input in flows
-            if isinstance(input.product, ChemicalCompound)
-        ]
-        if len(list_of_mass_elem) > 0:
-            map(lambda x: list_of_mass_elem[0].update(x), list_of_mass_elem[1:])
-        return dict(list_of_mass_elem[0])
 
     def __str__(self):
         return f"{self.name} : \n" + "\n".join(map(str, self.inputs)) + "\n" + "\n".join(map(str, self.outputs))
@@ -102,12 +85,6 @@ class RecyclingProcess(Process):
         for product,qty in products_qty.items():
             self.inputs.set_quantity_of_product(product,qty)
         self.__update_flow()
-
-    def ensure_recycling_coherency(self):
-        input_dfsdf = ""
-        output_sdfsdqf = ""
-        if input_dfsdf == output_sdfsdqf:
-            return True
 
     def __str__(self):
         return super().__str__()
