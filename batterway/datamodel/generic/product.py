@@ -120,10 +120,11 @@ class BoM:
     def __init__(self, product_quantities: dict[Product,'ProductInstance']):
         self.product_quantities: dict[Product,'ProductInstance'] = product_quantities
         self.products = [p.product for p in product_quantities.values()]
+        self.__str_to_product: dict[str,Product] = { p.name : p for p in self.products}
         self.quantity_total = sum(x.qty.value for x in product_quantities.values())
 
     def set_quantity_of_product(self,product_name,qty):
-        self.product_quantities[product_name].qty = qty
+        self.product_quantities[self.__str_to_product[product_name]].qty = qty
     def __str__(self) -> str:
         return "\n".join([f"{p.name}: {q}" for p, q in self.product_quantities.items()])
 
