@@ -16,15 +16,10 @@ def test_recycling_process_relative_lci():
     output_products = BoM({})
     relative_output_influences = {(UC.water, UC.vapor): Quantity(3.0, UC.kg)}
     r_p = RecyclingProcess(
-        "recycling_test",
-        input_products,
-        output_products,
-        relative_input_influenced,
-        relative_output_influences
+        "recycling_test", input_products, output_products, relative_input_influenced, relative_output_influences
     )
-    r_p.update_fixed_input_lci(
-        {}
-    )
+    r_p.update_fixed_input_lci({})
+
 
 test_recycling_process_relative_lci()
 
@@ -40,16 +35,12 @@ def test_chocolate_recycling_process():
     output_products = BoM({})
     relative_input_influenced = {
         (UC.chocolate, UC.heat): Quantity(1.0, UC.kg),
-        (UC.black_wheat, UC.heat): Quantity(10.0, UC.kg)
+        (UC.black_wheat, UC.heat): Quantity(10.0, UC.kg),
     }
     relative_output_influences = {
         (UC.water, UC.vapor): Quantity(1.0, UC.kg),
         (UC.water, UC.vapor): Quantity(1.0, UC.kg),
     }
     r_p = RecyclingProcess(
-        "recyclin_test",
-        input_products,
-        output_products,
-        relative_input_influenced,
-        relative_output_influences
+        "recyclin_test", input_products, output_products, relative_input_influenced, relative_output_influences
     )

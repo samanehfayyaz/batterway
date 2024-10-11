@@ -1,0 +1,37 @@
+lci_id;direction;influencer;influenced;qty;unit
+route3;input;Nickel;Limestone (CaO);-0.0005486565411487622;kg
+route3;input;Nickel;Sand (SiO2);0.0007749614645913479;kg
+route3;input;Nickel;Oxygen;0.0009052770023152915;kg
+route3;input;Nickel;Sulfuric acid (95%);313629.3123404295;kg
+route3;input;Nickel;Water;-0.004976272267259474;kg
+route3;input;Nickel;Iron;0.0;kg
+route3;input;Nickel;Hydrogen peroxide;2007647223.6134598;kg
+route3;input;Nickel;Sodium hydroxide;0.005435471032886963;kg
+route3;input;Nickel;Kerosene;76892.2126896303;kg
+route3;input;Nickel;Cyanex 272 ;34601.495709538;kg
+route3;input;Nickel;D2EHPA;-8.040075728486099e-07;kg
+route3;input;Nickel;Sodium carbonate;0.0;kg
+route3;input;Nickel;Water;-0.0004971138017230818;kg
+route3;input;Nickel;Electricity;-26372877054.48695;kg
+route3;input;Nickel;Natural gas;0.4728605356366044;kg
+route3;output;Nickel;Electricity;0.0;kg
+route3;output;Nickel;Aluminium;0.0;kg
+route3;output;Nickel;Steel;0.0;kg
+route3;output;Nickel;Copper;0.0;kg
+route3;output;Nickel;Electronic waste;0.0;kg
+route3;output;Nickel;Cable;0.0;kg
+route3;output;Nickel;Waste (incineration);0.00045550715484267353;kg
+route3;output;Nickel;Iron hydroxide Fe(OH)3;0.0;kg
+route3;output;Nickel;Kerosene;76892.2126896303;kg
+route3;output;Nickel;Cyanex 272;32953.80543785797;kg
+route3;output;Nickel;NiSO4 * 6 H2O;0.015704336457823088;kg
+route3;output;Nickel;CoSO4 * 7 H2O;0.0006615206390441376;kg
+route3;output;Nickel;Wastewater;-0.027400867467080016;kg
+route3;output;Nickel;Calcium sulfate;-0.0015194291659160514;kg
+route3;output;Nickel;Silicon;0.0023316171950781635;kg
+route3;output;Nickel;Aluminium hydroxide;0.0;kg
+route3;output;Nickel;D2EHPA;-5.691308683433209e-07;kg
+route3;output;Nickel;MnSO4 * 1 H2O;0.0021188308108028462;kg
+route3;output;Nickel;Li2CO3 (anhydrous);0.0;kg
+route3;output;Nickel;Water;2007960852.9461048;kg
+route3;output;Nickel;Wastewater;2007960852.9550946;kg

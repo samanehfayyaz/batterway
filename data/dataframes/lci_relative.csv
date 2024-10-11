@@ -279,3 +279,147 @@ route2;output;Nickel;MnSO4 * 1 H2O;0.0019145595231276928;kg
 route2;output;Nickel;Li2CO3 (anhydrous);0.0;kg
 route2;output;Nickel;Water;859986335.2056451;kg
 route2;output;Nickel;Wastewater;0.0;kg
+route3;input;Battery;Limestone (CaO);0.00026796480374215945;kg
+route3;input;Battery;Sand (SiO2);-9.472280199228391e-06;kg
+route3;input;Battery;Oxygen;-5.1879086194976804e-05;kg
+route3;input;Battery;Sulfuric acid (95%);-43878.82605194283;kg
+route3;input;Battery;Water;0.0019782169648535344;kg
+route3;input;Battery;Iron;1.151915344504788e-06;kg
+route3;input;Battery;Hydrogen peroxide;-280883201.503815;kg
+route3;input;Battery;Sodium hydroxide;0.0012675450989900173;kg
+route3;input;Battery;Kerosene;-10757.732044069786;kg
+route3;input;Battery;Cyanex 272 ;-4840.979419747395;kg
+route3;input;Battery;D2EHPA;1.3979073178580198e-07;kg
+route3;input;Battery;Sodium carbonate;0.0001777802261666735;kg
+route3;input;Battery;Water;0.00019774986491213643;kg
+route3;input;Battery;Electricity;3689740933.441857;kg
+route3;input;Battery;Natural gas;-0.01531737032840813;kg
+route3;output;Battery;Electricity;0.01495206477370524;kg
+route3;output;Battery;Aluminium;0.0005111519801296927;kg
+route3;output;Battery;Steel;0.0001579727509123325;kg
+route3;output;Battery;Copper;0.00014349551678023226;kg
+route3;output;Battery;Electronic waste;1.338149988987524e-05;kg
+route3;output;Battery;Cable;5.62496676786791e-06;kg
+route3;output;Battery;Waste (incineration);1.6895349056767638e-05;kg
+route3;output;Battery;Iron hydroxide Fe(OH)3;1.688998837716045e-06;kg
+route3;output;Battery;Kerosene;-10757.732044069786;kg
+route3;output;Battery;Cyanex 272;-4610.456590263978;kg
+route3;output;Battery;NiSO4 * 6 H2O;-0.0012477056674085189;kg
+route3;output;Battery;CoSO4 * 7 H2O;-9.255113785438176e-05;kg
+route3;output;Battery;Wastewater;0.005525523245755518;kg
+route3;output;Battery;Calcium sulfate;0.0007852794776369715;kg
+route3;output;Battery;Silicon;-0.0002302074813238857;kg
+route3;output;Battery;Aluminium hydroxide;9.92730072403253e-07;kg
+route3;output;Battery;D2EHPA;1.0562969346420455e-07;kg
+route3;output;Battery;MnSO4 * 1 H2O;-0.0002964385249477332;kg
+route3;output;Battery;Li2CO3 (anhydrous);7.000802828168076e-05;kg
+route3;output;Battery;Water;-280927080.3320759;kg
+route3;output;Battery;Wastewater;-280927080.33448744;kg
+route3;input;Cobalt;Limestone (CaO);-0.0005559422006604101;kg
+route3;input;Cobalt;Sand (SiO2);0.0007711910649218962;kg
+route3;input;Cobalt;Oxygen;0.0009024277613680901;kg
+route3;input;Cobalt;Sulfuric acid (95%);313629.3122832246;kg
+route3;input;Cobalt;Water;0.00021183685085452293;kg
+route3;input;Cobalt;Iron;0.0;kg
+route3;input;Cobalt;Hydrogen peroxide;2007647223.613702;kg
+route3;input;Cobalt;Sodium hydroxide;0.005319418218208118;kg
+route3;input;Cobalt;Kerosene;76892.21268983155;kg
+route3;input;Cobalt;Cyanex 272 ;34601.495709629235;kg
+route3;input;Cobalt;D2EHPA;-8.046774103772521e-07;kg
+route3;input;Cobalt;Sodium carbonate;0.0;kg
+route3;input;Cobalt;Water;2.1697110088318218e-05;kg
+route3;input;Cobalt;Electricity;-26372877054.482536;kg
+route3;input;Cobalt;Natural gas;0.47092336287410397;kg
+route3;output;Cobalt;Electricity;0.0;kg
+route3;output;Cobalt;Aluminium;0.0;kg
+route3;output;Cobalt;Steel;0.0;kg
+route3;output;Cobalt;Copper;0.0;kg
+route3;output;Cobalt;Electronic waste;0.0;kg
+route3;output;Cobalt;Cable;0.0;kg
+route3;output;Cobalt;Waste (incineration);0.0004727999653566994;kg
+route3;output;Cobalt;Iron hydroxide Fe(OH)3;0.0;kg
+route3;output;Cobalt;Kerosene;76892.21268983155;kg
+route3;output;Cobalt;Cyanex 272;32953.80543794486;kg
+route3;output;Cobalt;NiSO4 * 6 H2O;0.008918129691087287;kg
+route3;output;Cobalt;CoSO4 * 7 H2O;0.007743515660773892;kg
+route3;output;Cobalt;Wastewater;-0.02743973063897686;kg
+route3;output;Cobalt;Calcium sulfate;-0.0015412514285015545;kg
+route3;output;Cobalt;Silicon;0.002327959153318861;kg
+route3;output;Cobalt;Aluminium hydroxide;0.0;kg
+route3;output;Cobalt;D2EHPA;-5.697688088467897e-07;kg
+route3;output;Cobalt;MnSO4 * 1 H2O;0.002118830810802846;kg
+route3;output;Cobalt;Li2CO3 (anhydrous);0.0;kg
+route3;output;Cobalt;Water;2007960852.9511034;kg
+route3;output;Cobalt;Wastewater;2007960852.9554236;kg
+route3;input;Manganese;Limestone (CaO);-0.0006360844552885396;kg
+route3;input;Manganese;Sand (SiO2);0.0007297166685579217;kg
+route3;input;Manganese;Oxygen;0.0008710861109488683;kg
+route3;input;Manganese;Sulfuric acid (95%);313629.3119460246;kg
+route3;input;Manganese;Water;-0.011153390959801758;kg
+route3;input;Manganese;Iron;-0.0;kg
+route3;input;Manganese;Hydrogen peroxide;2007647223.6134355;kg
+route3;input;Manganese;Sodium hydroxide;0.004649336551077737;kg
+route3;input;Manganese;Kerosene;76892.2126893466;kg
+route3;input;Manganese;Cyanex 272 ;34601.49570921206;kg
+route3;input;Manganese;D2EHPA;-6.057198453904548e-07;kg
+route3;input;Manganese;Sodium carbonate;-0.0;kg
+route3;input;Manganese;Water;-0.0011148256709773109;kg
+route3;input;Manganese;Electricity;-26372877054.490883;kg
+route3;input;Manganese;Natural gas;0.44961446248659837;kg
+route3;output;Manganese;Electricity;-0.0;kg
+route3;output;Manganese;Aluminium;-0.0;kg
+route3;output;Manganese;Steel;-0.0;kg
+route3;output;Manganese;Copper;-0.0;kg
+route3;output;Manganese;Electronic waste;-0.0;kg
+route3;output;Manganese;Cable;-0.0;kg
+route3;output;Manganese;Waste (incineration);0.0006630208810110154;kg
+route3;output;Manganese;Iron hydroxide Fe(OH)3;-0.0;kg
+route3;output;Manganese;Kerosene;76892.2126893466;kg
+route3;output;Manganese;Cyanex 272;32953.80543754755;kg
+route3;output;Manganese;NiSO4 * 6 H2O;0.008918129691087278;kg
+route3;output;Manganese;CoSO4 * 7 H2O;0.0006615206390441357;kg
+route3;output;Manganese;Wastewater;-0.025238103834590124;kg
+route3;output;Manganese;Calcium sulfate;-0.0017812963169421083;kg
+route3;output;Manganese;Silicon;0.0022877206939665327;kg
+route3;output;Manganese;Aluminium hydroxide;-0.0;kg
+route3;output;Manganese;D2EHPA;-3.8028541362126866e-07;kg
+route3;output;Manganese;MnSO4 * 1 H2O;0.0056977086204065145;kg
+route3;output;Manganese;Li2CO3 (anhydrous);-0.0;kg
+route3;output;Manganese;Water;2007960852.9397407;kg
+route3;output;Manganese;Wastewater;2007960852.9542894;kg
+route3;input;Nickel;Limestone (CaO);-0.0005486565411487622;kg
+route3;input;Nickel;Sand (SiO2);0.0007749614645913479;kg
+route3;input;Nickel;Oxygen;0.0009052770023152915;kg
+route3;input;Nickel;Sulfuric acid (95%);313629.3123404295;kg
+route3;input;Nickel;Water;-0.004976272267259474;kg
+route3;input;Nickel;Iron;0.0;kg
+route3;input;Nickel;Hydrogen peroxide;2007647223.6134598;kg
+route3;input;Nickel;Sodium hydroxide;0.005435471032886963;kg
+route3;input;Nickel;Kerosene;76892.2126896303;kg
+route3;input;Nickel;Cyanex 272 ;34601.495709538;kg
+route3;input;Nickel;D2EHPA;-8.040075728486099e-07;kg
+route3;input;Nickel;Sodium carbonate;0.0;kg
+route3;input;Nickel;Water;-0.0004971138017230818;kg
+route3;input;Nickel;Electricity;-26372877054.48695;kg
+route3;input;Nickel;Natural gas;0.4728605356366044;kg
+route3;output;Nickel;Electricity;0.0;kg
+route3;output;Nickel;Aluminium;0.0;kg
+route3;output;Nickel;Steel;0.0;kg
+route3;output;Nickel;Copper;0.0;kg
+route3;output;Nickel;Electronic waste;0.0;kg
+route3;output;Nickel;Cable;0.0;kg
+route3;output;Nickel;Waste (incineration);0.00045550715484267353;kg
+route3;output;Nickel;Iron hydroxide Fe(OH)3;0.0;kg
+route3;output;Nickel;Kerosene;76892.2126896303;kg
+route3;output;Nickel;Cyanex 272;32953.80543785797;kg
+route3;output;Nickel;NiSO4 * 6 H2O;0.015704336457823088;kg
+route3;output;Nickel;CoSO4 * 7 H2O;0.0006615206390441376;kg
+route3;output;Nickel;Wastewater;-0.027400867467080016;kg
+route3;output;Nickel;Calcium sulfate;-0.0015194291659160514;kg
+route3;output;Nickel;Silicon;0.0023316171950781635;kg
+route3;output;Nickel;Aluminium hydroxide;0.0;kg
+route3;output;Nickel;D2EHPA;-5.691308683433209e-07;kg
+route3;output;Nickel;MnSO4 * 1 H2O;0.0021188308108028462;kg
+route3;output;Nickel;Li2CO3 (anhydrous);0.0;kg
+route3;output;Nickel;Water;2007960852.9461048;kg
+route3;output;Nickel;Wastewater;2007960852.9550946;kg
