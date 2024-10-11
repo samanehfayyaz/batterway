@@ -2,18 +2,18 @@ lci_id;product;ref_in_rel_lci
 lci-route-1;Battery_NMC442;Battery
 lci-route-1;Battery_NMC111;Battery
 lci-route-1;Battery_NMC622;Battery
-lci-route-1;Nickel; Nickel
+lci-route-1;Nickel;Nickel
 lci-route-1;Cobalt;Cobalt
 lci-route-1;Manganese;Manganese
 lci-route-2;Battery_NMC442;Battery
 lci-route-2;Battery_NMC111;Battery
 lci-route-2;Battery_NMC622;Battery
-lci-route-2;Nickel; Nickel
+lci-route-2;Nickel;Nickel
 lci-route-2;Cobalt;Cobalt
 lci-route-2;Manganese;Manganese
 lci-route-3;Battery_NMC442;Battery
 lci-route-3;Battery_NMC111;Battery
 lci-route-3;Battery_NMC622;Battery
-lci-route-3;Nickel; Nickel
+lci-route-3;Nickel;Nickel
 lci-route-3;Cobalt;Cobalt
 lci-route-3;Manganese;Manganese
