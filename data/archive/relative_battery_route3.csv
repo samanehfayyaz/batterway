@@ -1,0 +1,37 @@
+lci_id;direction;influencer;influenced;qty;unit
+route3;input;Battery;Limestone (CaO);0.00026796480374215945;kg
+route3;input;Battery;Sand (SiO2);-9.472280199228391e-06;kg
+route3;input;Battery;Oxygen;-5.1879086194976804e-05;kg
+route3;input;Battery;Sulfuric acid (95%);-43878.82605194283;kg
+route3;input;Battery;Water;0.0019782169648535344;kg
+route3;input;Battery;Iron;1.151915344504788e-06;kg
+route3;input;Battery;Hydrogen peroxide;-280883201.503815;kg
+route3;input;Battery;Sodium hydroxide;0.0012675450989900173;kg
+route3;input;Battery;Kerosene;-10757.732044069786;kg
+route3;input;Battery;Cyanex 272 ;-4840.979419747395;kg
+route3;input;Battery;D2EHPA;1.3979073178580198e-07;kg
+route3;input;Battery;Sodium carbonate;0.0001777802261666735;kg
+route3;input;Battery;Water;0.00019774986491213643;kg
+route3;input;Battery;Electricity;3689740933.441857;kg
+route3;input;Battery;Natural gas;-0.01531737032840813;kg
+route3;output;Battery;Electricity;0.01495206477370524;kg
+route3;output;Battery;Aluminium;0.0005111519801296927;kg
+route3;output;Battery;Steel;0.0001579727509123325;kg
+route3;output;Battery;Copper;0.00014349551678023226;kg
+route3;output;Battery;Electronic waste;1.338149988987524e-05;kg
+route3;output;Battery;Cable;5.62496676786791e-06;kg
+route3;output;Battery;Waste (incineration);1.6895349056767638e-05;kg
+route3;output;Battery;Iron hydroxide Fe(OH)3;1.688998837716045e-06;kg
+route3;output;Battery;Kerosene;-10757.732044069786;kg
+route3;output;Battery;Cyanex 272;-4610.456590263978;kg
+route3;output;Battery;NiSO4 * 6 H2O;-0.0012477056674085189;kg
+route3;output;Battery;CoSO4 * 7 H2O;-9.255113785438176e-05;kg
+route3;output;Battery;Wastewater;0.005525523245755518;kg
+route3;output;Battery;Calcium sulfate;0.0007852794776369715;kg
+route3;output;Battery;Silicon;-0.0002302074813238857;kg
+route3;output;Battery;Aluminium hydroxide;9.92730072403253e-07;kg
+route3;output;Battery;D2EHPA;1.0562969346420455e-07;kg
+route3;output;Battery;MnSO4 * 1 H2O;-0.0002964385249477332;kg
+route3;output;Battery;Li2CO3 (anhydrous);7.000802828168076e-05;kg
+route3;output;Battery;Water;-280927080.3320759;kg
+route3;output;Battery;Wastewater;-280927080.33448744;kg

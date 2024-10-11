@@ -1,0 +1,37 @@
+lci_id;direction;influencer;influenced;qty;unit
+route3;input;Cobalt;Limestone (CaO);-0.0005559422006604101;kg
+route3;input;Cobalt;Sand (SiO2);0.0007711910649218962;kg
+route3;input;Cobalt;Oxygen;0.0009024277613680901;kg
+route3;input;Cobalt;Sulfuric acid (95%);313629.3122832246;kg
+route3;input;Cobalt;Water;0.00021183685085452293;kg
+route3;input;Cobalt;Iron;0.0;kg
+route3;input;Cobalt;Hydrogen peroxide;2007647223.613702;kg
+route3;input;Cobalt;Sodium hydroxide;0.005319418218208118;kg
+route3;input;Cobalt;Kerosene;76892.21268983155;kg
+route3;input;Cobalt;Cyanex 272 ;34601.495709629235;kg
+route3;input;Cobalt;D2EHPA;-8.046774103772521e-07;kg
+route3;input;Cobalt;Sodium carbonate;0.0;kg
+route3;input;Cobalt;Water;2.1697110088318218e-05;kg
+route3;input;Cobalt;Electricity;-26372877054.482536;kg
+route3;input;Cobalt;Natural gas;0.47092336287410397;kg
+route3;output;Cobalt;Electricity;0.0;kg
+route3;output;Cobalt;Aluminium;0.0;kg
+route3;output;Cobalt;Steel;0.0;kg
+route3;output;Cobalt;Copper;0.0;kg
+route3;output;Cobalt;Electronic waste;0.0;kg
+route3;output;Cobalt;Cable;0.0;kg
+route3;output;Cobalt;Waste (incineration);0.0004727999653566994;kg
+route3;output;Cobalt;Iron hydroxide Fe(OH)3;0.0;kg
+route3;output;Cobalt;Kerosene;76892.21268983155;kg
+route3;output;Cobalt;Cyanex 272;32953.80543794486;kg
+route3;output;Cobalt;NiSO4 * 6 H2O;0.008918129691087287;kg
+route3;output;Cobalt;CoSO4 * 7 H2O;0.007743515660773892;kg
+route3;output;Cobalt;Wastewater;-0.02743973063897686;kg
+route3;output;Cobalt;Calcium sulfate;-0.0015412514285015545;kg
+route3;output;Cobalt;Silicon;0.002327959153318861;kg
+route3;output;Cobalt;Aluminium hydroxide;0.0;kg
+route3;output;Cobalt;D2EHPA;-5.697688088467897e-07;kg
+route3;output;Cobalt;MnSO4 * 1 H2O;0.002118830810802846;kg
+route3;output;Cobalt;Li2CO3 (anhydrous);0.0;kg
+route3;output;Cobalt;Water;2007960852.9511034;kg
+route3;output;Cobalt;Wastewater;2007960852.9554236;kg
