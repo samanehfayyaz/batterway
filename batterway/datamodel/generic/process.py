@@ -1,14 +1,25 @@
+from collections import Counter
 from typing import List, Tuple
 
-from batterway.datamodel.generic.product import ChemicalCompound, Product, Quantity, ProductInstance, BoM
+from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, ProductInstance, Quantity
 
-from collections import Counter
+
+class ProcessLCI:
+    def __init__(self, id: str, input_relative_lci: dict[tuple[Product, Product], float],output_relative_lci: dict[tuple[Product, Product], float]):
+        self.id: str = id
+        self.input_relative_lci: dict[tuple[Product, Product], float] = input_relative_lci
+        self.output_relative_lci: dict[tuple[Product, Product], float] = output_relative_lci
+
+    def __str__(self):
+        return f"{self.id} ({self.direction})" + "\n".join(
+            [f"{k[0]} / {k[1]} : {v}" for k, v in self.relative_lci.items()]
+        )
 
 
 class Process:
     def __init__(self, name, inputs_products: BoM, output_products: BoM):
         self.name = name
-        self.inputs: BoM= inputs_products
+        self.inputs: BoM = inputs_products
         self.outputs: BoM = output_products
 
     def get_input_total_mass_per_element(self):
@@ -21,7 +32,8 @@ class Process:
     def __get_total_mass_per_element(flows: BoM):
         list_of_mass_elem = [
             Counter(input.product.get_total_mass_per_element())
-            for input in flows if isinstance(input.product, ChemicalCompound)
+            for input in flows
+            if isinstance(input.product, ChemicalCompound)
         ]
         if len(list_of_mass_elem) > 0:
             map(lambda x: list_of_mass_elem[0].update(x), list_of_mass_elem[1:])
@@ -32,64 +44,78 @@ class Process:
 
 
 class RecyclingProcess(Process):
-    def __init__(self, inputs_products: BoM, output_products: BoM, name):
+    def __init__(self, name:str, inputs_products: BoM, output_products: BoM,ref_input_to_input,ref_input_to_output):
         super().__init__(name, inputs_products, output_products)
-        self.ref_input_to_output_relation: dict[tuple[Product, Product], float] = []
-        self.ref_input_to_input_relation: dict[tuple[Product, Product], float] = []
-
-    def set_influencing_input_process(self, input_to_input_relation: dict[tuple[Product, Product], float]):
-        self.ref_input_to_input_relation = input_to_input_relation
-
-    def set_influencing_output_process(self, input_to_output_relation: dict[tuple[Product, Product], float]):
-        self.ref_input_to_output_relation = input_to_output_relation
+        self.ref_input_to_output_relation: dict[tuple[Product, Product], float] = ref_input_to_output
+        self.ref_input_to_input_relation: dict[tuple[Product, Product], float] = ref_input_to_input
+        self.computed_output_bom: BoM|None = None
+        self.computed_input_bom: BoM|None = None
+        self.__ensure_coherency()
 
     def __ensure_coherency(self):
-        if any([i_rel[1] not in self.outputs for i_rel in self.ref_input_to_output_relation]): raise ValueError(
-            "Influenced output flow not presents")
-        if any([i_rel[1] not in self.inputs for i_rel in self.ref_input_to_input_relation]): raise ValueError(
-            "Influenced input flow not presents")
-        if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_input_relation]): raise ValueError(
-            "Input influencing product should be in the input")
-        if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_output_relation]): raise ValueError(
-            "Output influencing product should be in the inputs")
+        if any([i_rel[1] not in self.outputs for i_rel in self.ref_input_to_output_relation]):
+            raise ValueError("Influenced output flow not presents")
+        if any([i_rel[1] not in self.inputs for i_rel in self.ref_input_to_input_relation]):
+            raise ValueError("Influenced input flow not presents")
+        if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_input_relation]):
+            raise ValueError("Input influencing product should be in the input")
+        if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_output_relation]):
+            raise ValueError("Output influencing product should be in the inputs")
 
-    def update_flow(self):
+    def __update_flow(self):
         final_bom = self.inputs
         updated_in_flow_value = dict()
         for (product_influencing, product_influenced), ratio in self.ref_input_to_input_relation.items():
             if product_influencing in final_bom:
                 if product_influenced not in updated_in_flow_value:
-                    updated_in_flow_value[product_influenced] = ProductInstance(product_influenced,Quantity(0,product_influenced.reference_quantity.unit))
-                updated_in_flow_value[product_influenced] += final_bom.product_quantities[product_influencing].qty * ratio
+                    updated_in_flow_value[product_influenced] = ProductInstance(
+                        product_influenced, Quantity(0, product_influenced.reference_quantity.unit)
+                    )
+                updated_in_flow_value[product_influenced] += (
+                    final_bom.product_quantities[product_influencing].qty * ratio
+                )
         for product_influenced in updated_in_flow_value:
-            product_influenced.quantity = Quantity(updated_in_flow_value[product_influenced],
-                                                   product_influenced.reference_quantity.unit)
+            product_influenced.quantity = Quantity(
+                updated_in_flow_value[product_influenced], product_influenced.reference_quantity.unit
+            )
 
         updated_out_flow_value = dict()
         for (product_influencing, product_influenced), ratio in self.ref_input_to_output_relation.items():
             if product_influencing in final_bom:
                 if product_influenced not in updated_out_flow_value:
-                    updated_out_flow_value[product_influenced] = ProductInstance(product_influenced,Quantity(0,product_influenced.reference_quantity.unit))
-                updated_out_flow_value[product_influenced] +=  final_bom.product_quantities[product_influencing].qty * ratio
-
+                    updated_out_flow_value[product_influenced] = ProductInstance(
+                        product_influenced, Quantity(0, product_influenced.reference_quantity.unit)
+                    )
+                updated_out_flow_value[product_influenced] += (
+                    final_bom.product_quantities[product_influencing].qty * ratio
+                )
 
         for product_influenced in updated_out_flow_value:
-            product_influenced.quantity = Quantity(updated_out_flow_value[product_influenced],
-                                                   product_influenced.reference_quantity.unit)
+            product_influenced.quantity = Quantity(
+                updated_out_flow_value[product_influenced], product_influenced.reference_quantity.unit
+            )
 
-        # cheat
-        self.final_output_bom = updated_out_flow_value
-        self.final_input_bom = updated_in_flow_value
-        print(self.final_input_bom.items())
-        print(self.final_output_bom.items())
+        self.computed_output_bom = BoM(updated_out_flow_value)
+        self.computed_input_bom = BoM(updated_in_flow_value)
+
+    def update_fixed_input_lci(self,products_qty:dict[str,float]):
+        self.computed_output_bom = None
+        self.computed_input_bom = None
+        if not len(products_qty):
+            raise ValueError("Empty inputs")
+        for product,qty in products_qty.items():
+            self.inputs.set_quantity_of_product(product,qty)
+        self.__update_flow()
 
     def ensure_recycling_coherency(self):
         input_dfsdf = ""
         output_sdfsdqf = ""
         if input_dfsdf == output_sdfsdqf:
             return True
+
     def __str__(self):
         return super().__str__()
+
 
 class Route:
     def __init__(self, route_id, route_process_sequence: List[Tuple[Tuple[Product, Process]]]):
