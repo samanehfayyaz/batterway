@@ -67,6 +67,5 @@ class RecyclingProcessPdt(BaseModel):
 
 class FixedLCIPdt(BaseModel):
     lci_id: str
-    products: list[str]
-    ref_in_rel_lci: str
+    ref_to_product_list: dict[str,list[str]]
 

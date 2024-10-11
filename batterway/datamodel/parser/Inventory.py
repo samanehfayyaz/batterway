@@ -95,8 +95,8 @@ class Inventory:
             FixedLCIPdt(
                 **{
                     "lci_id":lci_id,
-                    "products":list(df_lci["product"].unique()),
-                    "ref_in_rel_lci":df_lci["ref_in_rel_lci"].to_list()[0],
+                    "ref_to_product_list": {rel_product:list(df_rel_target_product['product'].unique())
+                for rel_product, df_rel_target_product in df_lci.groupby('ref_in_rel_lci')},
                 }
 
             ) for lci_id,df_lci in Inventory.__read_csv(file_name.joinpath("fixedlci.csv")).groupby("lci_id")
@@ -149,44 +149,42 @@ class Inventory:
             if len(strippe_dbom_id):
                 real_product_dict[p].bom = real_BoMs[strippe_dbom_id]
 
-        real_process_lcis = {
-            l[0]: ProcessLCI(
-                id=l[0],
-                input_relative_lci={(real_product_dict[t[0]], real_product_dict[t[1]]): t[2] for t in l[1].relative_lci_input},
-                output_relative_lci={(real_product_dict[t[0]], real_product_dict[t[1]]): t[2] for t in l[1].relative_lci_output},
-            )
-            for l in all_process_lcis.items()
-        }
+
         real_fixed_lci = {
-            f_lci.lci_id:BoM(
+            f_lci.lci_id:{ref_label:BoM(
                 {
                     real_product_dict[p]: ProductInstance(
                         real_product_dict[p],
                         Quantity(1.0,real_product_dict[p].reference_quantity.unit )
                     )
-                    for p in f_lci.products
+                    for p in list_of_p
                 }
-            )
+            ) for ref_label, list_of_p in f_lci.ref_to_product_list.items()}
             for f_lci in pydt_fixed_lci
         }
-        real_recycling_process = {
-            r_process.process_name:
-            RecyclingProcess(
+        real_recycling_process = dict()
+        for r_process in pydt_recycling_process:
+
+            fixed_lci_associated = real_fixed_lci[r_process.fixed_input_bom_id]
+            relative_lci_input = {
+                (real_product_dict[p2.name], real_product_dict[p[1]]): p[2] for p in
+                      r_process.relative_lci.relative_lci_input for p2 in fixed_lci_associated[p[0]].products
+            }
+            relative_lci_output = {
+                (real_product_dict[p2.name], real_product_dict[p[1]]): p[2] for p in
+                r_process.relative_lci.relative_lci_output for p2 in fixed_lci_associated[p[0]].products
+            }
+            real_recycling_process[r_process.process_name] = RecyclingProcess(
                 r_process.process_name,
                 inputs_products=BoM({
                     real_product_dict[p.name]: ProductInstance(real_product_dict[p.name],
                                                                real_product_dict[p.name].reference_quantity)
-                    for p in real_fixed_lci[r_process.fixed_input_bom_id].products
+                    for bom in fixed_lci_associated.values() for p in bom.products
                 }),
                 output_products=BoM({}),
-                ref_input_to_input={(real_product_dict[p[0]], real_product_dict[p[1]]): p[2]
-                                    for p in r_process.relative_lci.relative_lci_input
-                                    },
-                ref_input_to_output={(real_product_dict[p[0]], real_product_dict[p[1]]): p[2]
-                                     for p in r_process.relative_lci.relative_lci_output
-                                     }
+                ref_input_to_input=relative_lci_input,
+                ref_input_to_output=relative_lci_output
             )
-            for r_process in pydt_recycling_process}
 
         return cls(real_units, real_product_dict, real_recycling_process)
 

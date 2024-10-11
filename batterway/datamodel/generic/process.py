@@ -53,14 +53,10 @@ class RecyclingProcess(Process):
         self.__ensure_coherency()
 
     def __ensure_coherency(self):
-        if any([i_rel[1] not in self.outputs for i_rel in self.ref_input_to_output_relation]):
-            raise ValueError("Influenced output flow not presents")
-        if any([i_rel[1] not in self.inputs for i_rel in self.ref_input_to_input_relation]):
-            raise ValueError("Influenced input flow not presents")
         if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_input_relation]):
-            raise ValueError("Input influencing product should be in the input")
+            raise ValueError("Input product influencing input product should be in the input")
         if any([i_rel[0] not in self.inputs for i_rel in self.ref_input_to_output_relation]):
-            raise ValueError("Output influencing product should be in the inputs")
+            raise ValueError("Input product influencing output should be in the inputs")
 
     def __update_flow(self):
         final_bom = self.inputs
