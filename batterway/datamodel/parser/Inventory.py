@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from batterway.datamodel.generic.process import ProcessLCI, RecyclingProcess
+from batterway.datamodel.generic.process import RecyclingProcess
 from batterway.datamodel.generic.product import BoM, ChemicalCompound, Product, ProductInstance, Unit, Quantity
 from batterway.datamodel.parser.parsers import (
     BoMPdt,

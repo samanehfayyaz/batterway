@@ -1,22 +1,28 @@
-from collections import Counter
 from typing import List, Tuple
 
 from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity
 
 
 class ProcessLCI:
-    def __init__(self, id: str, input_relative_lci: dict[tuple[Product, Product], float],output_relative_lci: dict[tuple[Product, Product], float]):
-        self.id: str = id
+    """Container of ratios between input and output products of a process."""
+    def __init__(
+        self,
+        name: str,
+        input_relative_lci: dict[tuple[Product, Product], float],
+        output_relative_lci: dict[tuple[Product, Product], float],
+    ):
+        self.name: str = name
         self.input_relative_lci: dict[tuple[Product, Product], float] = input_relative_lci
         self.output_relative_lci: dict[tuple[Product, Product], float] = output_relative_lci
 
     def __str__(self):
-        return f"{self.id} ({self.direction})" + "\n".join(
+        return f"{self.name} ({self.direction})" + "\n".join(
             [f"{k[0]} / {k[1]} : {v}" for k, v in self.relative_lci.items()]
         )
 
 
 class Process:
+    """A process in a supply chain, represented by its inputs and outputs."""
     def __init__(self, name, inputs_products: BoM, output_products: BoM):
         self.name = name
         self.inputs: BoM = inputs_products
@@ -27,12 +33,13 @@ class Process:
 
 
 class RecyclingProcess(Process):
-    def __init__(self, name:str, inputs_products: BoM, output_products: BoM,ref_input_to_input,ref_input_to_output):
+    """A process in a supply chain, represented by its inputs and outputs, with additional information on the relative influence of the inputs on the outputs."""
+    def __init__(self, name: str, inputs_products: BoM, output_products: BoM, ref_input_to_input, ref_input_to_output):
         super().__init__(name, inputs_products, output_products)
         self.ref_input_to_output_relation: dict[tuple[Product, Product], float] = ref_input_to_output
         self.ref_input_to_input_relation: dict[tuple[Product, Product], float] = ref_input_to_input
-        self.computed_output_bom: BoM|None = None
-        self.computed_input_bom: BoM|None = None
+        self.computed_output_bom: BoM | None = None
+        self.computed_input_bom: BoM | None = None
         self.__ensure_coherency()
 
     def __ensure_coherency(self):
@@ -77,13 +84,13 @@ class RecyclingProcess(Process):
         self.computed_output_bom = BoM(updated_out_flow_value)
         self.computed_input_bom = BoM(updated_in_flow_value)
 
-    def update_fixed_input_lci(self,products_qty:dict[str,float]):
+    def update_fixed_input_lci(self, products_qty: dict[str, float]):
         self.computed_output_bom = None
         self.computed_input_bom = None
         if not len(products_qty):
             raise ValueError("Empty inputs")
-        for product,qty in products_qty.items():
-            self.inputs.set_quantity_of_product(product,qty)
+        for product, qty in products_qty.items():
+            self.inputs.set_quantity_of_product(product, qty)
         self.__update_flow()
 
     def __str__(self):
@@ -91,6 +98,7 @@ class RecyclingProcess(Process):
 
 
 class Route:
+    """A sequence of processes in a supply chain."""
     def __init__(self, route_id, route_process_sequence: List[Tuple[Tuple[Product, Process]]]):
         self.route_id = route_id
         self.process_sequence = route_process_sequence
@@ -111,6 +119,7 @@ class Route:
 
 
 class RecyclingRoute:
+    """A sequence of recycling processes in a supply chain."""
     def __init__(self, route_id, route_process_sequence: List[RecyclingProcess]):
         self.route_id = route_id
         self.process_sequence = route_process_sequence
