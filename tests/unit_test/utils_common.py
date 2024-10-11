@@ -59,8 +59,8 @@ schwarze_kuchen = Product(
     Quantity(1.0, kg),
     bom=BoM(
         {
-            chocolate: Quantity(0.7, kg),
-            doe: Quantity(0.3, kg),
+            chocolate: ProductInstance(chocolate,Quantity(0.7, kg)),
+            doe: ProductInstance(doe,Quantity(0.3, kg)),
         }
     ),
 )
@@ -70,8 +70,8 @@ cookie = Product(
     Quantity(1.0, kg),
     bom=BoM(
         {
-            chocolate: Quantity(0.3, kg),
-            doe: Quantity(0.7, kg),
+            chocolate: ProductInstance(chocolate,Quantity(0.3, kg)),
+            doe: ProductInstance(doe,Quantity(0.7, kg)),
         }
     ),
 )
@@ -81,8 +81,8 @@ brownie = Product(
     Quantity(1.0, kg),
     bom=BoM(
         {
-            chocolate: Quantity(0.5, kg),
-            doe: Quantity(0.5, kg),
+            chocolate: ProductInstance(chocolate,Quantity(0.5, kg)),
+            doe: ProductInstance(doe,Quantity(0.5, kg)),
         }
     ),
 )

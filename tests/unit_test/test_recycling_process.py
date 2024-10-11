@@ -27,3 +27,29 @@ def test_recycling_process_relative_lci():
     )
 
 test_recycling_process_relative_lci()
+
+
+def test_chocolate_recycling_process():
+    input_products = BoM(
+        {
+            UC.cookie: ProductInstance(UC.cookie, Quantity(1.0, UC.kg)),
+            UC.schwarze_kuchen: ProductInstance(UC.schwarze_kuchen, Quantity(1.0, UC.kg)),
+            UC.brownie: ProductInstance(UC.brownie, Quantity(1.0, UC.kg)),
+        }
+    )
+    output_products = BoM({})
+    relative_input_influenced = {
+        (UC.chocolate, UC.heat): Quantity(1.0, UC.kg),
+        (UC.black_wheat, UC.heat): Quantity(10.0, UC.kg)
+    }
+    relative_output_influences = {
+        (UC.water, UC.vapor): Quantity(1.0, UC.kg),
+        (UC.water, UC.vapor): Quantity(1.0, UC.kg),
+    }
+    r_p = RecyclingProcess(
+        "recyclin_test",
+        input_products,
+        output_products,
+        relative_input_influenced,
+        relative_output_influences
+    )
