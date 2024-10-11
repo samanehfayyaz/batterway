@@ -16,7 +16,7 @@ def test_recycling_process_relative_lci():
     output_products = BoM({})
     relative_output_influences = {(UC.water, UC.vapor): Quantity(3.0, UC.kg)}
     r_p = RecyclingProcess(
-        "recyclin_test",
+        "recycling_test",
         input_products,
         output_products,
         relative_input_influenced,

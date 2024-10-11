@@ -3,8 +3,8 @@ from batterway.datamodel.generic.product import ChemicalCompound, ProductInstanc
 
 
 def test_mass_per_element_process_level():
-    cathode = ChemicalCompound("NMC622", "", "LiNi0.6Mn0.2Co0.2O2")
-    anode = ChemicalCompound("Graphite", "", "C")
+    cathode = ChemicalCompound("NMC622", "", Quantity(1.0, "kg"), "LiNi6Mn2Co2O2")
+    anode = ChemicalCompound("Graphite", "", Quantity(1.0, "kg"), "C")
     process = Process(
         "NMC622Cell",
         [

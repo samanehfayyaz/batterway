@@ -41,9 +41,9 @@ flour = Product(
         }
     ),
 )
-doe = Product(
-    "doe",
-    "brownie.com",
+dough = Product(
+    "dough",
+    "dough.com",
     Quantity(1.0, kg),
     bom=BoM(
         {
@@ -59,30 +59,30 @@ schwarze_kuchen = Product(
     Quantity(1.0, kg),
     bom=BoM(
         {
-            chocolate: ProductInstance(chocolate,Quantity(0.7, kg)),
-            doe: ProductInstance(doe,Quantity(0.3, kg)),
+            chocolate: ProductInstance(chocolate, Quantity(0.5, kg)),
+            dough: ProductInstance(dough, Quantity(0.5, kg)),
         }
     ),
 )
 cookie = Product(
     "cookie",
     "cookie.com",
-    Quantity(1.0, kg),
+    Quantity(2.0, kg),
     bom=BoM(
         {
-            chocolate: ProductInstance(chocolate,Quantity(0.3, kg)),
-            doe: ProductInstance(doe,Quantity(0.7, kg)),
+            chocolate: ProductInstance(chocolate, Quantity(0.5, kg)),
+            dough: ProductInstance(dough, Quantity(1.5, kg)),
         }
     ),
 )
 brownie = Product(
     "brownie",
     "brownie.com",
-    Quantity(1.0, kg),
+    Quantity(1.3, kg),
     bom=BoM(
         {
-            chocolate: ProductInstance(chocolate,Quantity(0.5, kg)),
-            doe: ProductInstance(doe,Quantity(0.5, kg)),
+            chocolate: ProductInstance(chocolate, Quantity(0.4, kg)),
+            dough: ProductInstance(dough, Quantity(0.9, kg)),
         }
     ),
 )

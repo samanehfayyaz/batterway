@@ -103,12 +103,6 @@ class RecyclingProcess(Process):
             self.inputs.set_quantity_of_product(product,qty)
         self.__update_flow()
 
-    def ensure_recycling_coherency(self):
-        input_dfsdf = ""
-        output_sdfsdqf = ""
-        if input_dfsdf == output_sdfsdqf:
-            return True
-
     def __str__(self):
         return super().__str__()
 
