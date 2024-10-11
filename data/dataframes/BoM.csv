@@ -1,40 +1,40 @@
 BoMId;Material;Quantity;Unit
-Battery_NMC622;Aluminium;173.12;kg
-Battery_NMC622;Cable;1.9;kg
-Battery_NMC622;Cobalt;16.4432384;kg
-Battery_NMC622;Copper;48.9584;kg
-Battery_NMC622;Electrolyte;54.24;kg
-Battery_NMC622;Electronic components;4.52;kg
-Battery_NMC622;Graphite;81.648;kg
-Battery_NMC622;Lithium;9.6820384;kg
-Battery_NMC622;Manganese;15.3344016;kg
-Battery_NMC622;Nickel;49.1268792;kg
-Battery_NMC622;Others (elastomer);56.7094424;kg
-Battery_NMC622;Plastics;13.2326;kg
-Battery_NMC622;Steel;53.36;kg
-Battery_NMC111;Aluminium;173.12;kg
-Battery_NMC111;Cable;1.9;kg
-Battery_NMC111;Cobalt;27.62956298;kg
-Battery_NMC111;Copper;48.9584;kg
-Battery_NMC111;Electrolyte;54.24;kg
-Battery_NMC111;Electronic components;4.52;kg
-Battery_NMC111;Graphite;81.648;kg
-Battery_NMC111;Lithium;9.6820384;kg
-Battery_NMC111;Manganese;25.75791819;kg
-Battery_NMC111;Nickel;27.51703803;kg
-Battery_NMC111;Others (elastomer);56.7094424;kg
-Battery_NMC111;Plastics;13.2326;kg
-Battery_NMC111;Steel;53.36;kg
-Battery_NMC442;Aluminium;173.12;kg
-Battery_NMC442;Cable;1.9;kg
-Battery_NMC442;Cobalt;32.86053808;kg
-Battery_NMC442;Copper;48.9584;kg
-Battery_NMC442;Electrolyte;54.24;kg
-Battery_NMC442;Electronic components;4.52;kg
-Battery_NMC442;Graphite;81.648;kg
-Battery_NMC442;Lithium;9.6820384;kg
-Battery_NMC442;Manganese;15.3172718;kg
-Battery_NMC442;Nickel;32.72670932;kg
-Battery_NMC442;Others (elastomer);56.7094424;kg
-Battery_NMC442;Plastics;13.2326;kg
-Battery_NMC442;Steel;53.36;kg
+Battery_NMC622;Aluminium;0.29937313561886647;kg
+Battery_NMC622;Cable;0.0032856339976654707;kg
+Battery_NMC622;Cobalt;0.028434980588820196;kg
+Battery_NMC622;Copper;0.08466283342700272;kg
+Battery_NMC622;Electrolyte;0.09379620422809218;kg
+Battery_NMC622;Electronic components;0.007816350352341014;kg
+Battery_NMC622;Graphite;0.1411923392849423;kg
+Battery_NMC622;Lithium;0.01674296554407505;kg
+Battery_NMC622;Manganese;0.026517490121481996;kg
+Battery_NMC622;Nickel;0.08495418131511824;kg
+Battery_NMC622;Others (elastomer);0.09806656417794303;kg
+Battery_NMC622;Plastics;0.02288288444079374;kg
+Battery_NMC622;Steel;0.09227443690285764;kg
+Battery_NMC111;Aluminium;0.29937313561886647;kg
+Battery_NMC111;Cable;0.0032856339976654707;kg
+Battery_NMC111;Cobalt;0.04777927971985647;kg
+Battery_NMC111;Copper;0.08466283342700272;kg
+Battery_NMC111;Electrolyte;0.09379620422809218;kg
+Battery_NMC111;Electronic components;0.007816350352341014;kg
+Battery_NMC111;Graphite;0.1411923392849423;kg
+Battery_NMC111;Lithium;0.01674296554407505;kg
+Battery_NMC111;Manganese;0.044542679849552555;kg
+Battery_NMC111;Nickel;0.047584692456011414;kg
+Battery_NMC111;Others (elastomer);0.09806656417794303;kg
+Battery_NMC111;Plastics;0.02288288444079374;kg
+Battery_NMC111;Steel;0.09227443690285764;kg
+Battery_NMC442;Aluminium;0.29937313561886647;kg
+Battery_NMC442;Cable;0.0032856339976654707;kg
+Battery_NMC442;Cobalt;0.05682510584064675;kg
+Battery_NMC442;Copper;0.08466283342700272;kg
+Battery_NMC442;Electrolyte;0.09379620422809218;kg
+Battery_NMC442;Electronic components;0.007816350352341014;kg
+Battery_NMC442;Graphite;0.1411923392849423;kg
+Battery_NMC442;Lithium;0.01674296554407505;kg
+Battery_NMC442;Manganese;0.026487867882927674;kg
+Battery_NMC442;Nickel;0.05659367830184601;kg
+Battery_NMC442;Others (elastomer);0.09806656417794303;kg
+Battery_NMC442;Plastics;0.02288288444079374;kg
+Battery_NMC442;Steel;0.09227443690285764;kg

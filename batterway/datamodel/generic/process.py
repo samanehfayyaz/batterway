@@ -1,5 +1,3 @@
-from typing import List, Tuple
-
 from batterway.datamodel.generic.product import BoM, Product, ProductInstance, Quantity
 
 
@@ -54,14 +52,16 @@ class RecyclingProcess(Process):
 
     def _ensure_coherency(self) -> bool:
         if any(i_rel[0] not in self.inputs for i_rel in self.ref_input_to_input_relation):
-            raise ValueError("Input product influencing input product should be in the input")
+            err_msg = "Products influencing the final input demand should be in the input parameters."
+            raise ValueError(err_msg)
         if any(i_rel[0] not in self.inputs for i_rel in self.ref_input_to_output_relation):
-            raise ValueError("Input product influencing output should be in the inputs")
+            err_msg = "Products influencing the final output should be in the input parameters."
+            raise ValueError(err_msg)
         return True
 
-    def _update_flow(self):
+    def _update_flow(self) -> None:
         final_bom = self.inputs
-        updated_in_flow_value = dict()
+        updated_in_flow_value = {}
         for (product_influencing, product_influenced), ratio in self.ref_input_to_input_relation.items():
             if product_influencing in final_bom:
                 if product_influenced not in updated_in_flow_value:
@@ -76,7 +76,7 @@ class RecyclingProcess(Process):
                 updated_in_flow_value[product_influenced], product_influenced.reference_quantity.unit
             )
 
-        updated_out_flow_value = dict()
+        updated_out_flow_value = {}
         for (product_influencing, product_influenced), ratio in self.ref_input_to_output_relation.items():
             if product_influencing in final_bom:
                 if product_influenced not in updated_out_flow_value:
@@ -95,11 +95,12 @@ class RecyclingProcess(Process):
         self.computed_output_bom = BoM(updated_out_flow_value)
         self.computed_input_bom = BoM(updated_in_flow_value)
 
-    def update_fixed_input_lci(self, products_qty: dict[str, float]):
+    def update_fixed_input_lci(self, products_qty: dict[str, float]) -> None:
         self.computed_output_bom = None
         self.computed_input_bom = None
         if not len(products_qty):
-            raise ValueError("Empty inputs")
+            err_msg = "No input products provided."
+            raise ValueError(err_msg)
         for product, qty in products_qty.items():
             self.inputs.set_quantity_of_product(product, qty)
         self._update_flow()
@@ -111,18 +112,19 @@ class RecyclingProcess(Process):
 class Route:
     """A sequence of processes in a supply chain."""
 
-    def __init__(self, route_id, route_process_sequence: List[Tuple[Tuple[Product, Process]]]):
-        self.route_id = route_id
+    def __init__(self, route_id: str, route_process_sequence: list[tuple[tuple[Product, Process]]]):
+        self.route_id: str = route_id
         self.process_sequence = route_process_sequence
 
-    def ensure_consistency(self):
+    def ensure_consistency(self) -> None:
         output_products = None
         previous_process = None
         for process in self.process_sequence:
             if output_products is not None:
                 input_products = [f.product for f in process.inputs]
                 if not any(p_output in input_products for p_output in output_products):
-                    raise ValueError(f"No product produced by {previous_process} used by {process}")
+                    err_msg = f"No product produced by {previous_process} used by {process}"
+                    raise ValueError(err_msg)
             output_products = [f.product for f in process.outputs]
             previous_process = process
 
@@ -133,19 +135,21 @@ class Route:
 class RecyclingRoute:
     """A sequence of recycling processes in a supply chain."""
 
-    def __init__(self, route_id, route_process_sequence: List[RecyclingProcess]):
-        self.route_id = route_id
+    def __init__(self, route_id: str, route_process_sequence: list[RecyclingProcess]):
+        self.route_id: str = route_id
         self.process_sequence = route_process_sequence
 
-    def ensure_consistency(self):
+    def ensure_consistency(self) -> None:
         output_products = None
         previous_process = None
         for process in self.process_sequence:
             if output_products is not None:
                 input_products = [f.product for f in process.inputs]
                 if not any(p_output in input_products for p_output in output_products):
-                    raise ValueError(f"No product produced by {previous_process} used by {process}")
+                    err_msg = f"No product produced by {previous_process} used by {process}"
+                    raise ValueError(err_msg)
                 if process.ref_input not in input_products:
-                    raise ValueError(f"Missing the reference input of {process} from {previous_process}")
+                    err_msg = f"Missing the reference input of {process} from {previous_process}"
+                    raise ValueError(err_msg)
             output_products = [f.product for f in process.outputs]
             previous_process = process

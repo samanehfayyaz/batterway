@@ -117,8 +117,8 @@ class Product:
 class BoM:
     """A Bill of Materials with a dictionary of products and quantities."""
 
-    def __init__(self, product_quantities: dict[Product,'ProductInstance']):
-        self.product_quantities: dict[Product,'ProductInstance'] = product_quantities
+    def __init__(self, product_quantities: dict[Product, "ProductInstance"]):
+        self.product_quantities: product_quantities
         self.products = [p.product for p in product_quantities.values()]
         self.__str_to_product: dict[str,Product] = { p.name : p for p in self.products}
         self.quantity_total = sum(x.qty.value for x in product_quantities.values())
