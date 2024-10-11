@@ -76,6 +76,12 @@ class RecyclingProcess(Process):
 
     def __update_flow(self):
         final_bom = self.__get_input_final_bom()
+        print("#" * 20)
+        print("#" * 3 + "BOM FOR RELATIVE" + "#" * 3)
+        print("#" * 20)
+        print(final_bom)
+        print("#" * 20)
+
         updated_in_flow_value = dict()
         for (product_influencing, product_influenced), ratio in self.ref_input_to_input_relation.items():
             if product_influencing in final_bom:
@@ -115,13 +121,28 @@ class RecyclingProcess(Process):
         self.computed_input_bom = None
         if not len(products_qty):
             raise ValueError("Empty inputs")
-        for produc in self.inputs.products:
-            print(self.inputs.product_quantities[produc])
-            self.inputs.set_quantity_of_product(produc.name, 0)
-            print(self.inputs.product_quantities[produc])
+        for product in self.inputs.products:
+            self.inputs.set_quantity_of_product(product.name, 0)
+
         for product, qty in products_qty.items():
             self.inputs.set_quantity_of_product(product, qty)
+        print("#"*20)
+        print("#"*3+"INPUTS"+"#"*3)
+        print(self.inputs)
+
         self.__update_flow()
+        print("#" * 20)
+        print("#" * 3 + "UPDATED" + "#" * 3)
+        print("#" * 3 + "FLOW" + "#" * 3)
+        print("#" * 20)
+        print("#" * 3 + "INPUT" + "#" * 3)
+        print("#" * 3 + "FLOW" + "#" * 3)
+        print(self.computed_input_bom)
+        print("#" * 20)
+        print("#" * 3 + "OUTPUT" + "#" * 3)
+        print("#" * 3 + "FLOW" + "#" * 3)
+        print(self.computed_output_bom)
+
 
     def __str__(self):
         return super().__str__()

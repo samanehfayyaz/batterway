@@ -121,7 +121,10 @@ class BoM:
         self.product_quantities: dict[Product, "ProductInstance"] =  product_quantities
         self.products = [p.product for p in product_quantities.values()]
         self.__str_to_product: dict[str,Product] = { p.name : p for p in self.products}
-        self.quantity_total = sum(x.qty.value for x in product_quantities.values())
+        #self.quantity_total = sum(x.qty.value for x in product_quantities.values())
+    @property
+    def quantity_total(self) -> float:
+        return sum(x.qty.value for x in self.product_quantities.values())
 
     def set_quantity_of_product(self,product_name,qty):
         self.product_quantities[self.__str_to_product[product_name]].qty = Quantity(qty,self.__str_to_product[product_name].reference_quantity.unit)

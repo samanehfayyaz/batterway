@@ -44,3 +44,5 @@ def test_chocolate_recycling_process():
     r_p = RecyclingProcess(
         "recyclin_test", input_products, output_products, relative_input_influenced, relative_output_influences
     )
+
+test_chocolate_recycling_process()
